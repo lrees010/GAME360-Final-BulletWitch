@@ -14,7 +14,18 @@ public class GameManager : MonoBehaviour
     public int lives = 3;
     public int enemiesKilled = 0;
     public float timePassed = 0f;
+    public float playingTimePassed = 0f;
     public float speedOfTime = 1f;
+    public int level = 1; //aka wave
+    /* 
+     Levels:
+    0. Debug
+    1. Forest
+    2. Cave
+    3. Lake
+    4. Beach
+    5. Mountain (final)
+     */
 
 
     //public TMP_Text scoreText;
@@ -161,7 +172,7 @@ public class GameManager : MonoBehaviour
         lives = 3;
         enemiesKilled = 0;
         timePassed = 0f;
-
+        playingTimePassed = 0f;
 
 
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);

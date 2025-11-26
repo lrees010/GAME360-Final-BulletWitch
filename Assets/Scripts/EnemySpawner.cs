@@ -13,16 +13,32 @@ public class EnemySpawner : MonoBehaviour
     public float spawnRate = 2f;
     void Update()
     {
-
-        if (Time.time >= nextSpawnTime)
-        {
-            SpawnEnemy(chargerPrefab);
-            nextSpawnTime = Time.time + spawnRate;
-        }
-        spawnRate = 10f/((float)GameManager.Instance.score/50f);
-        spawnRate = Mathf.Clamp(spawnRate, 0.1f, 3f);
+        SpawnDetermination();
     }
 
+    void SpawnDetermination()
+    {
+        switch (GameManager.Instance.level)
+        {
+            case 1: //forest
+                spawnRate = 1f;
+                if (Time.time >= nextSpawnTime)
+                {
+                    SpawnEnemy(chargerPrefab);
+                    nextSpawnTime = Time.time + spawnRate;
+                }
+                break;
+            case 2: //cave
+                spawnRate = 0.1f;
+                if (Time.time >= nextSpawnTime)
+                {
+                    SpawnEnemy(chargerPrefab);
+                    //spawn cave creatures
+                    nextSpawnTime = Time.time + spawnRate;
+                }
+                break;
+        }
+    }
     public void SpawnEnemy(GameObject enemyPrefab)
     {
         if (enemyPrefab && spawnPoints.Length > 0)

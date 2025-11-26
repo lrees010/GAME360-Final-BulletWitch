@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class PlayingState : GameState
@@ -14,8 +15,9 @@ public class PlayingState : GameState
         if (game.speedOfTime > 0f)
         {
             game.timePassed = game.timePassed + (Time.deltaTime / game.speedOfTime); //time passed always counts real seconds no matter what the speed of time is
+            game.playingTimePassed = game.playingTimePassed + Time.deltaTime;
         }
-        Debug.Log(game.timePassed);
+        game.level = (int)(game.playingTimePassed); //change level every 200 seconds
     }
 
     public override void ExitState(GameManager game) { }
