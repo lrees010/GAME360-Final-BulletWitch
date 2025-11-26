@@ -4,7 +4,7 @@ using UnityEngine;
 public class CaveState : LevelState
 {
     private float nextSpawnTime = 0f;
-    private float spawnRate = 0.25f;
+    private float spawnRate = 3f;
 
     public override void EnterState(LevelManager level)
     {
@@ -17,7 +17,7 @@ public class CaveState : LevelState
     {
         if (GameManager.Instance.playingTimePassed > 15)
         {
-            level.ChangeState(level.ForestState); //add lake later
+            //level.ChangeState(level.ForestState); //add lake later
         }
         else
         {

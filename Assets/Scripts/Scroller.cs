@@ -5,10 +5,12 @@ using UnityEngine.UI;
 public class Scroller : MonoBehaviour
 {
 
-    // scrolls the background wow
+    // scrolls the background and fades between them wow
 
     [SerializeField] private RawImage _img;
+    [SerializeField] private CanvasGroup _group; //allows adjusting opacity
     [SerializeField] private float speed;
+    [SerializeField] private float fadeDuration = 0.5f;
 
     public Texture Forest;
     public Texture Cave;
@@ -34,16 +36,48 @@ public class Scroller : MonoBehaviour
     {
         string LevelName = data.ToString();
 
+        Texture nextTex = null;
 
         switch (LevelName) //Maybe change this
         {
             case "Forest":
-                _img.texture = Forest;
+                nextTex = Forest;
                 break;
 
             case "Cave":
-                _img.texture = Cave;
+                nextTex = Cave;
                 break;
+        }
+        bool skipFadeOut = (data.ToString() == "Forest"); //skip fade out if starter level
+
+        StartCoroutine(FadeTo(nextTex, skipFadeOut));
+    }
+
+    //coroutine no halting
+    private System.Collections.IEnumerator FadeTo(Texture nextTex,bool skipFadeOut)
+    {
+        float time = 0f;
+
+        if (!skipFadeOut)
+        {
+            while (time < fadeDuration)
+            {
+                time += Time.deltaTime;
+                _group.alpha = 1f - (time / fadeDuration);
+                yield return null;
+            }
+        }
+
+
+
+        _img.texture = nextTex;
+
+        time = 0f;
+        while (time<fadeDuration)
+        {
+            time += Time.deltaTime;
+            _group.alpha = (time / fadeDuration);
+            yield return null;
         }
     }
 }

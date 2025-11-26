@@ -387,7 +387,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -1811,6 +1811,7 @@ GameObject:
   - component: {fileID: 1673269800}
   - component: {fileID: 1673269799}
   - component: {fileID: 1673269801}
+  - component: {fileID: 1673269802}
   m_Layer: 5
   m_Name: BG
   m_TagString: Untagged
@@ -1885,9 +1886,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Scroller
   _img: {fileID: 1673269799}
-  speed: 1
+  _group: {fileID: 1673269802}
+  speed: 0.4
+  fadeDuration: 0.5
   Forest: {fileID: 2800000, guid: b4721ad01d4cfaa478aed8f3e84b6f82, type: 3}
   Cave: {fileID: 2800000, guid: e38a6f3136f30d7468ea6a2a7620b5ed, type: 3}
+--- !u!225 &1673269802
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1673269797}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &1718465975
 GameObject:
   m_ObjectHideFlags: 0
