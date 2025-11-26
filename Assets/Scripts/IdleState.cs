@@ -4,7 +4,7 @@ public class IdleState : PlayerState
 {
     public override void EnterState(PlayerController player)
     {
-        Debug.Log("Entered IdleState");
+        //Debug.Log("Entered IdleState");
     }
 
     public override void UpdateState(PlayerController player)

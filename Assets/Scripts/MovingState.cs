@@ -4,7 +4,7 @@ public class MovingState : PlayerState
 {
     public override void EnterState(PlayerController player)
     {
-        Debug.Log("Entered MovingState");
+        //Debug.Log("Entered MovingState");
     }
 
     public override void UpdateState(PlayerController player)

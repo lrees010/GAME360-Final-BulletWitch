@@ -1,23 +1,23 @@
 using System;
 using UnityEngine;
 
-public class ForestState : LevelState
+public class CaveState : LevelState
 {
     private float nextSpawnTime = 0f;
-    private float spawnRate = 2f;
+    private float spawnRate = 0.25f;
 
     public override void EnterState(LevelManager level)
     {
-        Debug.Log("Entered ForestState");
-        GameManager.Instance.level = 1;
+        Debug.Log("Entered CaveState");
+        GameManager.Instance.level = 2;
     }
 
 
     public override void UpdateState(LevelManager level)
     {
-        if (GameManager.Instance.playingTimePassed>5)
+        if (GameManager.Instance.playingTimePassed > 15)
         {
-            level.ChangeState(level.CaveState);
+            level.ChangeState(level.ForestState); //add lake later
         }
         else
         {
@@ -36,6 +36,6 @@ public class ForestState : LevelState
 
     public override void ExitState(LevelManager level) { }
 
-    public override string GetLevelName() => "Forest";
+    public override string GetLevelName() => "Cave";
 }
 

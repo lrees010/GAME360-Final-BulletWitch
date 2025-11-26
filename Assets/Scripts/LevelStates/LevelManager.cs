@@ -5,6 +5,7 @@ public class LevelManager : MonoBehaviour
 {
     LevelState currentState;
     public ForestState ForestState = new ForestState();
+    public CaveState CaveState = new CaveState();
 
     private void Start()
     {

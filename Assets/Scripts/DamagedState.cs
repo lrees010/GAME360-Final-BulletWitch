@@ -5,7 +5,7 @@ public class DamagedState : PlayerState
     private float damagedTicks;
     public override void EnterState(PlayerController player)
     {
-        Debug.Log("Entered DamagedState");
+        //Debug.Log("Entered DamagedState");
         damagedTicks = 0f;
         player.damageCooldown = true;
 
@@ -16,7 +16,6 @@ public class DamagedState : PlayerState
     public override void UpdateState(PlayerController player)
     {
         damagedTicks = damagedTicks + Time.deltaTime;
-        Debug.Log(damagedTicks);
         if (damagedTicks > 0.4f)
         {
             player.ChangeState(player.IdleState);

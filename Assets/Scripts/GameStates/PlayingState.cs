@@ -17,7 +17,7 @@ public class PlayingState : GameState
             game.timePassed = game.timePassed + (Time.deltaTime / game.speedOfTime); //time passed always counts real seconds no matter what the speed of time is
             game.playingTimePassed = game.playingTimePassed + Time.deltaTime;
         }
-        game.level = (int)(game.playingTimePassed); //change level every 200 seconds
+        //game.level = (int)(game.playingTimePassed/10); //change level every 200 seconds
     }
 
     public override void ExitState(GameManager game) { }

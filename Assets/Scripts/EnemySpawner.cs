@@ -1,8 +1,26 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class EnemySpawner : MonoBehaviour
+public class EnemySpawner : MonoBehaviour //provide quick enemy spawning and ui for prefab
 {
+
+    public static EnemySpawner Instance { get; private set; }
+    private void Awake()
+    {
+        // Singleton pattern implementation
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject); // Persist across scenes
+        }
+        else
+        {
+            Destroy(gameObject); // Destroy duplicate GameManagers
+        }
+
+
+    }
+
     [Header("Spawning")]
     public GameObject chargerPrefab;
     
@@ -10,15 +28,15 @@ public class EnemySpawner : MonoBehaviour
 
     private float nextSpawnTime = 0f;
 
-    public float spawnRate = 2f;
+    //public float spawnRate = 2f;
     void Update()
     {
-        SpawnDetermination();
+        //SpawnDetermination();
     }
-
+    /*
     void SpawnDetermination()
     {
-        switch (GameManager.Instance.level)
+        switch (GameManager.Instance.level) //TEMPORARY
         {
             case 1: //forest
                 spawnRate = 1f;
@@ -38,8 +56,9 @@ public class EnemySpawner : MonoBehaviour
                 }
                 break;
         }
-    }
-    public void SpawnEnemy(GameObject enemyPrefab)
+    }*/
+
+    private void SpawnEnemy(GameObject enemyPrefab)
     {
         if (enemyPrefab && spawnPoints.Length > 0)
         {
@@ -51,4 +70,6 @@ public class EnemySpawner : MonoBehaviour
             }
         }
     }
+
+    public void SpawnCharger() => SpawnEnemy(chargerPrefab); //yup
 }
