@@ -29,19 +29,52 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject); // Destroy duplicate GameManagers
         }
+
+
     }
 
 
- 
-
-
+    GameState currentState;
+    public PlayingState PlayingState = new PlayingState();
+    public MainMenuState MainMenuState = new MainMenuState();
+    public PausedState PausedState = new PausedState();
 
     private void Start()
     {
-        //RefreshUIReferences();
-        //UpdateUI();
-  
+        if (SceneManager.GetActiveScene().name == "MainGame")
+        {
+            ChangeState(PlayingState);
+        }
+        else
+        {
+            ChangeState(MainMenuState);
+        }
     }
+    public void ChangeState(GameState newState)
+    {
+        if (currentState != null)
+        {
+            currentState.ExitState(this);
+        }
+
+        currentState = newState;
+        currentState.EnterState(this);
+
+        EventManager.TriggerEvent("OnGameStateChanged", currentState.GetStateName());
+    }
+
+    public void StartGame()
+    {
+        ChangeState(PlayingState);
+        RestartGame();
+    }
+
+    private void Update()
+    {
+        currentState.UpdateState(this);
+    }
+
+    
 
 
     public void AddScore(int points)

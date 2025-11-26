@@ -1007,10 +1007,6 @@ MonoBehaviour:
   score: 0
   lives: 3
   enemiesKilled: 0
-  scoreText: {fileID: 0}
-  livesText: {fileID: 0}
-  enemiesKilledText: {fileID: 0}
-  gameOverPanel: {fileID: 0}
 --- !u!4 &1497255249
 Transform:
   m_ObjectHideFlags: 0

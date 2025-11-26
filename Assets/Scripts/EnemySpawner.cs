@@ -1,16 +1,19 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EnemySpawner : MonoBehaviour
 {
     [Header("Spawning")]
     public GameObject enemyPrefab;
-    public float spawnRate = 2f;
+    
     public Transform[] spawnPoints;
 
     private float nextSpawnTime = 0f;
 
-    private void Update()
+    public float spawnRate = 2f;
+    void Update()
     {
+
         if (Time.time >= nextSpawnTime)
         {
             SpawnEnemy();
@@ -20,7 +23,7 @@ public class EnemySpawner : MonoBehaviour
         spawnRate = Mathf.Clamp(spawnRate, 0.1f, 3f);
     }
 
-    private void SpawnEnemy()
+    public void SpawnEnemy()
     {
         if (enemyPrefab && spawnPoints.Length > 0)
         {

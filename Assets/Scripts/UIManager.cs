@@ -95,7 +95,7 @@ public class UIManager : MonoBehaviour
     {
         if (enemiesKilledText)
         {
-            enemiesKilledText.text = "Enemies Killed: " + GameManager.Instance.enemiesKilled;
+            enemiesKilledText.text = "Kills: " + GameManager.Instance.enemiesKilled;
 
         }
         else
