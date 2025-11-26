@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour
     public int score = 0;//score is calculated
     public int lives = 3;
     public int enemiesKilled = 0;
+    public float timePassed = 0f;
+    public float speedOfTime = 1f;
 
 
     //public TMP_Text scoreText;
@@ -71,6 +73,8 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        Time.timeScale = speedOfTime;
+        
         currentState.UpdateState(this);
     }
 
@@ -127,7 +131,8 @@ public class GameManager : MonoBehaviour
         Debug.Log("GAME OVER!");
         EventManager.TriggerEvent("OnGameOver");
         EventManager.ClearAllEvents();
-        Time.timeScale = 0f; // Pause the game
+        //Time.timeScale = 0f; // Pause the game
+        speedOfTime = 0f;
     }
 
     public void reloadGame()
@@ -148,14 +153,16 @@ public class GameManager : MonoBehaviour
 
     public void RestartGame()
     {
-        Time.timeScale = 1f;
+        //Time.timeScale = 1f;
+        speedOfTime = 1f;
 
         // Reset all game state
         score = 0;
         lives = 3;
         enemiesKilled = 0;
+        timePassed = 0f;
 
-        
+
 
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
        

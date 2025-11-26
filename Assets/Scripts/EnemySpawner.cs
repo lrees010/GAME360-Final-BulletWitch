@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 public class EnemySpawner : MonoBehaviour
 {
     [Header("Spawning")]
-    public GameObject enemyPrefab;
+    public GameObject chargerPrefab;
     
     public Transform[] spawnPoints;
 
@@ -16,14 +16,14 @@ public class EnemySpawner : MonoBehaviour
 
         if (Time.time >= nextSpawnTime)
         {
-            SpawnEnemy();
+            SpawnEnemy(chargerPrefab);
             nextSpawnTime = Time.time + spawnRate;
         }
         spawnRate = 10f/((float)GameManager.Instance.score/50f);
         spawnRate = Mathf.Clamp(spawnRate, 0.1f, 3f);
     }
 
-    public void SpawnEnemy()
+    public void SpawnEnemy(GameObject enemyPrefab)
     {
         if (enemyPrefab && spawnPoints.Length > 0)
         {

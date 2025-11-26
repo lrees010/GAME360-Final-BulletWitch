@@ -11,8 +11,11 @@ public class PlayingState : GameState
 
     public override void UpdateState(GameManager game)
     {
-
-   
+        if (game.speedOfTime > 0f)
+        {
+            game.timePassed = game.timePassed + (Time.deltaTime / game.speedOfTime); //time passed always counts real seconds no matter what the speed of time is
+        }
+        Debug.Log(game.timePassed);
     }
 
     public override void ExitState(GameManager game) { }
