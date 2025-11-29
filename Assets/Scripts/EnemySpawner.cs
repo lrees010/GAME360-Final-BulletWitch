@@ -3,6 +3,10 @@ using UnityEngine.SceneManagement;
 
 public class EnemySpawner : MonoBehaviour //provide quick enemy spawning and ui for prefab
 {
+    [Header("Spawning")]
+    public GameObject chargerPrefab;
+
+    public Transform[] spawnPoints;
 
     public static EnemySpawner Instance { get; private set; }
     private void Awake()
@@ -18,13 +22,24 @@ public class EnemySpawner : MonoBehaviour //provide quick enemy spawning and ui 
             Destroy(gameObject); // Destroy duplicate GameManagers
         }
 
-
+        //get spawn points automatically
+        refreshSpawnPoints();
     }
 
-    [Header("Spawning")]
-    public GameObject chargerPrefab;
-    
-    public Transform[] spawnPoints;
+    private void refreshSpawnPoints()
+    {
+        spawnPoints = new Transform[Instance.transform.childCount];
+
+        for (int i = 0; i < spawnPoints.Length; i++)
+        {
+            spawnPoints[i] = Instance.transform.GetChild(i);
+        }
+    }
+
+    private void OnTransformChildrenChanged()
+    {
+        refreshSpawnPoints();
+    }
 
     private float nextSpawnTime = 0f;
 

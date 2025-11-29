@@ -1121,10 +1121,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chargerPrefab: {fileID: 3333278696691510216, guid: d971f7936aacef644b6c27cf8d3fac5e, type: 3}
-  spawnPoints:
-  - {fileID: 265231161}
-  - {fileID: 1846391230}
-  - {fileID: 961932718}
+  spawnPoints: []
 --- !u!4 &1021244112
 Transform:
   m_ObjectHideFlags: 0
