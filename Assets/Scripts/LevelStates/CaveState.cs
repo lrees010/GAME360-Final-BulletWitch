@@ -15,7 +15,7 @@ public class CaveState : LevelState
 
     public override void UpdateState(LevelManager level)
     {
-        if (GameManager.Instance.playingTimePassed > 15)
+        if (GameManager.Instance.playingTimePassed > 150)
         {
             //level.ChangeState(level.ForestState); //add lake later
         }

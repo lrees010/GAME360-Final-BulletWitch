@@ -19,11 +19,24 @@ public class Enemy : MonoBehaviour
         // Find player
         GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
         if (playerObj) player = playerObj.transform;
+
+        //events
+        EventManager.Subscribe("OnPlayerDeath", Vanish);
+    }
+
+    private void OnDestroy()
+    {
+        EventManager.Unsubscribe("OnPlayerDeath", Vanish);
     }
 
     private void Update()
     {
         ChasePlayer();
+    }
+
+    private void Vanish() //player dies = all enemies vanish, no points
+    {
+        Destroy(gameObject);
     }
 
     private void ChasePlayer()

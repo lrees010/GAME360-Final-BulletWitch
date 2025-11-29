@@ -11,6 +11,13 @@ public class DamagedState : PlayerState
 
         //stop movement
         player.rb.linearVelocity = new Vector2(0, 0);
+
+        //disappear
+        player.rb.position = new Vector2(100, 0); //go away buddy
+
+        //kill everything
+        EventManager.TriggerEvent("OnPlayerDeath");
+        //already doing "OnPlayerStateChanged", "Damaged"
     }
 
     public override void UpdateState(PlayerController player)
@@ -20,6 +27,9 @@ public class DamagedState : PlayerState
         {
             player.ChangeState(player.IdleState);
             player.damageCooldown = false;
+
+            //come back!
+            player.rb.position = new Vector2(0, -4);
         }
     }
 
