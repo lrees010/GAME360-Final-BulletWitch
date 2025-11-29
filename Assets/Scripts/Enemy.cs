@@ -4,10 +4,10 @@ public class Enemy : MonoBehaviour
 {
     [Header("Enemy Stats")]
     public int health = 1;
-    public float moveSpeed = 2f;
+    public float moveSpeed = 5f;
 
     [Header("AI")]
-    public float detectionRange = 5f;
+    //public float detectionRange = 0.5f;
 
     private Transform player;
     private Rigidbody2D rb;
@@ -48,16 +48,18 @@ public class Enemy : MonoBehaviour
                 moveSpeed = 3f;
             if (GameManager.Instance.score > 1999)
                 moveSpeed = 2f; */
-            float distance = Vector2.Distance(transform.position, player.position);
+            //float distance = Vector2.Distance(transform.position, player.position);
 
-            if (distance <= detectionRange)
+            if (transform.position.y > -9f && Mathf.Abs(transform.position.x) < 15) //in the play area (not lower than -9, not more than 15 units left or right)
             {
                 Vector2 direction = (player.position - transform.position).normalized;
 
-                direction = new Vector2(direction.x, Mathf.Clamp(direction.y,-1f,-0.1f));
-               
-               rb.AddForce(direction * moveSpeed);
-               rb.linearVelocity = Vector2.ClampMagnitude(rb.linearVelocity,7f);
+                //direction = new Vector2(direction.x, -1f); //Mathf.Clamp(direction.y,-1f,-0.1f)
+
+                rb.AddForce(direction * moveSpeed);
+                rb.linearVelocity = new Vector2(rb.linearVelocity.x, Mathf.Clamp(rb.linearVelocity.y,-4f,-3f));
+                rb.linearVelocity = Vector2.ClampMagnitude(rb.linearVelocity,9f);
+                
                
             }
             else
@@ -86,6 +88,7 @@ public class Enemy : MonoBehaviour
         Destroy(gameObject); // the enemy gets destroyed
     }
 
+    /*
     private void OnDrawGizmosSelected()
     {
         // Custom 2D circle for older Unity versions
@@ -107,4 +110,5 @@ public class Enemy : MonoBehaviour
             lastPos = newPos;
         }
     }
+    */
 }

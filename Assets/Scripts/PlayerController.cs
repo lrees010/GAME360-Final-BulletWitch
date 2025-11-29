@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
     [Header("Shooting")]
     public GameObject bulletPrefab;
     public Transform firePoint;
-    public float fireRate = 0.5f;
+    public float fireRate = 0.1f;
     public float nextFireTime = 0f;
 
 
@@ -53,7 +53,7 @@ public class PlayerController : MonoBehaviour
 
     public void FireBullet()
     {
-        fireRate = 100f / ((GameManager.Instance.score/10f)+100f);
+        //fireRate = 100f / ((GameManager.Instance.score/10f)+100f);
 
 
         if (bulletPrefab && firePoint)
