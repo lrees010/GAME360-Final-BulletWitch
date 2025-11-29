@@ -43,22 +43,27 @@ public class Enemy : MonoBehaviour
     {
         if (player)
         {
+            /*
             if (GameManager.Instance.score > 99)
                 moveSpeed = 3f;
             if (GameManager.Instance.score > 1999)
-                moveSpeed = 4f;
+                moveSpeed = 2f; */
             float distance = Vector2.Distance(transform.position, player.position);
 
             if (distance <= detectionRange)
             {
                 Vector2 direction = (player.position - transform.position).normalized;
+
+                direction = new Vector2(direction.x, Mathf.Clamp(direction.y,-1f,-0.1f));
                
                rb.AddForce(direction * moveSpeed);
-                // rb.linearVelocity = direction * moveSpeed;
+               rb.linearVelocity = Vector2.ClampMagnitude(rb.linearVelocity,7f);
+               
             }
             else
             {
-                rb.linearVelocity = Vector2.zero;
+                //rb.linearVelocity = Vector2.zero;
+                Vanish();
             }
         }
     }

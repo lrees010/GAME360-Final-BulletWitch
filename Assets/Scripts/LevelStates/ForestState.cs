@@ -15,7 +15,7 @@ public class ForestState : LevelState
 
     public override void UpdateState(LevelManager level)
     {
-        if (GameManager.Instance.playingTimePassed>5)
+        if (GameManager.Instance.playingTimePassed>10)
         {
             level.ChangeState(level.CaveState);
         }

@@ -4,7 +4,7 @@ using UnityEngine;
 public class CaveState : LevelState
 {
     private float nextSpawnTime = 0f;
-    private float spawnRate = 3f;
+    private float spawnRate = 0.7f;
 
     public override void EnterState(LevelManager level)
     {
