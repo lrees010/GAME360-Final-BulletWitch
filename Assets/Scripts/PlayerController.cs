@@ -28,6 +28,7 @@ public class PlayerController : MonoBehaviour
     InputAction attackAction;
     InputAction specialAction; //shift slow time
     public InputAction moveAction;
+    InputAction powerupAction;
 
     private void Start()
     {
@@ -39,6 +40,7 @@ public class PlayerController : MonoBehaviour
         attackAction = InputSystem.actions.FindAction("Attack");
         specialAction = InputSystem.actions.FindAction("Special");
         moveAction = InputSystem.actions.FindAction("Move");
+        powerupAction = InputSystem.actions.FindAction("Powerup");
     }
 
     public void ChangeState(PlayerState newState)
@@ -93,6 +95,21 @@ public class PlayerController : MonoBehaviour
         else
         {
             GameManager.Instance.speedOfTime = 1f;
+        }
+    }
+
+    public void HandleBomb(PlayerController player)
+    {
+        if (
+            powerupAction.WasPressedThisFrame()
+            && (GameManager.Instance.GetStateName() == "PlayingState")
+            && (GameManager.Instance.bombs>0)
+            )
+        {
+            
+            GameManager.Instance.bombs = GameManager.Instance.bombs - 1;
+            EventManager.TriggerEvent("OnBomb");
+            //add flair later
         }
     }
 

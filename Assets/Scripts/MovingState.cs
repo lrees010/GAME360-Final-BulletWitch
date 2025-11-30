@@ -13,6 +13,7 @@ public class MovingState : PlayerState
         HandleMovement(player);
         player.HandleShooting(player);
         player.HandleSlowTime(player);
+        player.HandleBomb(player);
     }
 
     private void HandleMovement(PlayerController player)

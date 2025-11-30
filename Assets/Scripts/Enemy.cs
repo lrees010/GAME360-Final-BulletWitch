@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
@@ -22,11 +23,13 @@ public class Enemy : MonoBehaviour
 
         //events
         EventManager.Subscribe("OnPlayerDeath", Vanish);
+        EventManager.Subscribe("OnBomb", Explode);
     }
 
     private void OnDestroy()
     {
         EventManager.Unsubscribe("OnPlayerDeath", Vanish);
+        EventManager.Unsubscribe("OnBomb", Explode);
     }
 
     private void Update()
@@ -86,6 +89,19 @@ public class Enemy : MonoBehaviour
         // Any enemy can easily notify the GameManager
         GameManager.Instance.EnemyKilled(); //update the score of the player
         Destroy(gameObject); // the enemy gets destroyed
+    }
+
+    private void Explode()
+    {
+        StartCoroutine(
+            DelayedDeath(Mathf.Clamp( ((Vector2.Distance(transform.position, player.position)) / 15f),0f,0.7f))
+            );
+    }
+
+    private IEnumerator DelayedDeath(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        Die();
     }
 
     /*

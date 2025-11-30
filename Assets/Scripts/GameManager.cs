@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     [Header("Game Stats")]
     public int score = 0;//score is calculated
     public int lives = 3;
+    public int bombs = 3;
     public int enemiesKilled = 0;
     public float timePassed = 0f;
     public float playingTimePassed = 0f;

@@ -18,6 +18,7 @@ public class UIManager : MonoBehaviour
     public Text enemiesKilledText;
     public Text AchievementText;
     public Text stateText;
+    public Text bombText;
 
     public GameObject gameOverPanel;
 
@@ -32,6 +33,9 @@ public class UIManager : MonoBehaviour
         EventManager.Subscribe("OnUnlockAchievement", UpdateAchievement);
         EventManager.Subscribe("OnPlayerStateChanged", UpdateStateDisplay);
 
+        EventManager.Subscribe("OnBomb", UpdateBombs);
+
+
         //refresh ui references
         //RefreshUIReferences();
     }
@@ -45,11 +49,26 @@ public class UIManager : MonoBehaviour
         EventManager.Unsubscribe("OnReload", RefreshUIReferences);
         EventManager.Unsubscribe("OnUnlockAchievement", UpdateAchievement);
         EventManager.Unsubscribe("OnPlayerStateChanged", UpdateStateDisplay);
+
+        EventManager.Unsubscribe("OnBomb", UpdateBombs);
     }
 
     void UpdateAchievement(object data)
     {
         AchievementText.text = data.ToString();
+    }
+
+    void UpdateBombs()
+    {
+        if (bombText)
+        {
+            bombText.text = "Bombs: " + GameManager.Instance.bombs;
+        }
+        else
+        {
+            Debug.Log("attempted refresh");
+            RefreshUIReferences();
+        }
     }
 
     void UpdateStateDisplay(object stateData)
@@ -117,6 +136,7 @@ public class UIManager : MonoBehaviour
         UpdateScore();
         UpdateLives();
         UpdateEnemiesKilled();
+        UpdateBombs();
     }
 
     private void RefreshUIReferences()
@@ -126,6 +146,7 @@ public class UIManager : MonoBehaviour
         livesText = GameObject.Find("Lives")?.GetComponent<Text>();
         AchievementText = GameObject.Find("AchievementText")?.GetComponent<Text>();
         enemiesKilledText = GameObject.Find("EnemiesKilled")?.GetComponent<Text>();
+        bombText = GameObject.Find("Bombs")?.GetComponent<Text>();
         if (gameOverPanel.activeSelf==true)
         {
             gameOverPanel = GameObject.Find("GameEndPanel");
