@@ -90,4 +90,5 @@ public class CollectibleSpawner : MonoBehaviour //provide quick collectible spaw
     }
 
     public void SpawnCoin() => SpawnCollectible(coinPrefab); //yup again
+    public void SpawnLife() => SpawnCollectible(lifePrefab);
 }

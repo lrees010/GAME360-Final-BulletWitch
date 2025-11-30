@@ -9,6 +9,7 @@ TagManager:
   - Collectible
   - Bullet
   - Coin
+  - Life
   layers:
   - Default
   - TransparentFX

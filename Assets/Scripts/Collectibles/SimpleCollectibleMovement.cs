@@ -3,7 +3,9 @@ using UnityEngine;
 public class Coin : MonoBehaviour
 {
 
-    public string collectibleType = "Coin";
+    //public string collectibleType = "Coin";
+
+    public Vector2 movement = new Vector2(0f, -4f);
     private Rigidbody2D rb;
     void Start()
     {
@@ -16,7 +18,7 @@ public class Coin : MonoBehaviour
 
         //rb.AddForce(new Vector2(0f,-0.5f));
 
-        rb.linearVelocity = new Vector2(0f, -4f);
+        rb.linearVelocity = movement;
 
         if (transform.position.y<-7f) //despawn
         {

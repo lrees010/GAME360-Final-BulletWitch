@@ -123,6 +123,12 @@ public class GameManager : MonoBehaviour
         EventManager.TriggerEvent("OnLivesChanged");
     }
 
+    public void LifePickedUp()
+    {
+        lives++;
+        EventManager.TriggerEvent("OnLivesChanged");
+    }
+
     public void EnemyKilled()
     {
         enemiesKilled++;
