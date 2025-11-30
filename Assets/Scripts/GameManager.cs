@@ -76,6 +76,8 @@ public class GameManager : MonoBehaviour
         EventManager.TriggerEvent("OnGameStateChanged", currentState.GetStateName());
     }
 
+    public string GetStateName() => currentState.GetStateName();
+
     public void StartGame()
     {
         ChangeState(PlayingState);
@@ -156,10 +158,7 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
-    public void quitGame()
-    {
-        Application.Quit();
-    }
+    public void quitGame() => Application.Quit();
 
 
     public void RestartGame()

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class MovingState : PlayerState
 {
@@ -11,17 +12,18 @@ public class MovingState : PlayerState
     {
         HandleMovement(player);
         player.HandleShooting(player);
+        player.HandleSlowTime(player);
     }
 
     private void HandleMovement(PlayerController player)
     {
-        float horizontal = Input.GetAxisRaw("Horizontal");
-        float vertical = Input.GetAxisRaw("Vertical");
+        //float horizontal = Input.GetAxisRaw("Horizontal");
+        //float vertical = Input.GetAxisRaw("Vertical");
 
-        Vector2 movement = new Vector2(horizontal, vertical).normalized;
+        Vector2 movement = player.moveAction.ReadValue<Vector2>();
         player.rb.linearVelocity = movement * player.moveSpeed;
 
-        if (Mathf.Abs(horizontal) + Mathf.Abs(vertical) < 0.1f)
+        if (Mathf.Abs(movement.x) + Mathf.Abs(movement.y) < 0.1f)
         {
             player.ChangeState(player.IdleState);
         }

@@ -18,6 +18,7 @@ public class IdleState : PlayerState
         }
 
         player.HandleShooting(player);
+        player.HandleSlowTime(player);
     }
 
 

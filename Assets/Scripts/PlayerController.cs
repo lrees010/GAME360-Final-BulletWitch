@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
@@ -23,11 +24,21 @@ public class PlayerController : MonoBehaviour
 
     public Rigidbody2D rb;
 
+    //inputactions
+    InputAction attackAction;
+    InputAction specialAction; //shift slow time
+    public InputAction moveAction;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
 
         ChangeState(IdleState);
+
+        //inputs
+        attackAction = InputSystem.actions.FindAction("Attack");
+        specialAction = InputSystem.actions.FindAction("Special");
+        moveAction = InputSystem.actions.FindAction("Move");
     }
 
     public void ChangeState(PlayerState newState)
@@ -68,9 +79,26 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    public void HandleSlowTime(PlayerController player)
+    {
+        if (
+            specialAction.IsPressed() //pressing shift/slow time button
+            && (GameManager.Instance.GetStateName() == "PlayingState") //we are in the playing state of the game, not main menu, paused, etc
+            && currentState.GetStateName() != "Damaged" //the player isn't currently respawning
+            )
+        {
+            //Debug.Log(currentState.GetStateName());
+            GameManager.Instance.speedOfTime = 0.5f;
+        }
+        else
+        {
+            GameManager.Instance.speedOfTime = 1f;
+        }
+    }
+
     public void HandleShooting(PlayerController player)
     {
-        if (Input.GetButton("Fire1") && Time.time >= player.nextFireTime)
+        if (attackAction.IsPressed() && Time.time >= player.nextFireTime)
         {
             player.FireBullet();
             player.nextFireTime = Time.time + player.fireRate;

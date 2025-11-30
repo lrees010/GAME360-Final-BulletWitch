@@ -22,6 +22,7 @@ public class DamagedState : PlayerState
 
     public override void UpdateState(PlayerController player)
     {
+        player.HandleSlowTime(player);
         damagedTicks = damagedTicks + Time.deltaTime;
         if (damagedTicks > 0.4f)
         {
