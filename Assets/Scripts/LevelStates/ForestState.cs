@@ -3,8 +3,14 @@ using UnityEngine;
 
 public class ForestState : LevelState
 {
+    //
+    //
     private float nextSpawnTime = 0f;
     private float spawnRate = 2f;
+
+    //col
+    private float nextCoinTime = 0f;
+    private float coinSpawnRate = 2f;
 
     public override void EnterState(LevelManager level)
     {
@@ -22,6 +28,7 @@ public class ForestState : LevelState
         else
         {
             SpawnBehavior();
+            CollectibleBehavior();
         }
     }
 
@@ -31,6 +38,15 @@ public class ForestState : LevelState
         {
             EnemySpawner.Instance.SpawnCharger();
             nextSpawnTime = Time.time + spawnRate;
+        }
+    }
+
+    private void CollectibleBehavior()
+    {
+        if (Time.time >= nextCoinTime)
+        {
+            CollectibleSpawner.Instance.SpawnCoin();
+            nextCoinTime = Time.time + coinSpawnRate;
         }
     }
 

@@ -123,31 +123,31 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void TakeDamage()
     {
-
-        if (other.CompareTag("Enemy") && damageCooldown==false)
+        if (damageCooldown == false)
         {
             // Player hit by enemy - lose a life
             GameManager.Instance.LoseLife();
-            if (GameManager.Instance.lives>0)
+            if (GameManager.Instance.lives > 0)
             {
                 ChangeState(DamagedState);
             }
         }
+    }
 
-        if (other.CompareTag("Collectible"))
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        switch(other.tag)
         {
-            // Player collected an item
-            Collectible collectible = other.GetComponent<Collectible>();
-            if (collectible)
-            {
+            case "Coin":
                 GameManager.Instance.CollectiblePickedUp(100);
-                
                 Destroy(other.gameObject);
+                break;
 
-
-            }
+            case "Enemy":
+                TakeDamage();
+                break;
         }
     }
 }

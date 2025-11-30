@@ -12,10 +12,10 @@ GameObject:
   - component: {fileID: 3558771233760024679}
   - component: {fileID: 3974277671813143170}
   - component: {fileID: 5198423474692115928}
-  - component: {fileID: 1547868413278195321}
+  - component: {fileID: 5524604886232518357}
   m_Layer: 0
   m_Name: Coin
-  m_TagString: Collectible
+  m_TagString: Coin
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -55,6 +55,8 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -76,9 +78,10 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 1, g: 0.7249704, b: 0, a: 1}
   m_FlipX: 0
@@ -125,7 +128,7 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Radius: 0.50000006
+  m_Radius: 0.5
 --- !u!50 &5198423474692115928
 Rigidbody2D:
   serializedVersion: 5
@@ -153,7 +156,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &1547868413278195321
+--- !u!114 &5524604886232518357
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -162,8 +165,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5312309063304280836}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e928f051a44ca848a764759450370e1, type: 3}
+  m_Script: {fileID: 11500000, guid: b2b34acfcf32a3b4d98d113d8020a19e, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
-  value: 50
-  rotationSpeed: 90
+  m_EditorClassIdentifier: Assembly-CSharp::Coin
+  collectibleType: Coin
