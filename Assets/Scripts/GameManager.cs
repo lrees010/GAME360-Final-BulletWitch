@@ -129,6 +129,12 @@ public class GameManager : MonoBehaviour
         EventManager.TriggerEvent("OnLivesChanged");
     }
 
+    public void BombPickedUp()
+    {
+        bombs++;
+        EventManager.TriggerEvent("OnBombsChanged");
+    }
+
     public void EnemyKilled()
     {
         enemiesKilled++;

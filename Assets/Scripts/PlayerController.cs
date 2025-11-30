@@ -153,6 +153,11 @@ public class PlayerController : MonoBehaviour
                 GameManager.Instance.LifePickedUp();
                 Destroy(other.gameObject);
                 break;
+
+            case "Bomb":
+                GameManager.Instance.BombPickedUp();
+                Destroy(other.gameObject);
+                break;
         }
     }
 }

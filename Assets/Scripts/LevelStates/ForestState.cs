@@ -48,6 +48,7 @@ public class ForestState : LevelState
         {
             CollectibleSpawner.Instance.SpawnCoin();
             CollectibleSpawner.Instance.SpawnLife();
+            CollectibleSpawner.Instance.SpawnBomb();
             nextCoinTime = Time.time + coinSpawnRate;
         }
     }

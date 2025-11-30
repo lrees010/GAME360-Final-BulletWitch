@@ -34,6 +34,7 @@ public class UIManager : MonoBehaviour
         EventManager.Subscribe("OnPlayerStateChanged", UpdateStateDisplay);
 
         EventManager.Subscribe("OnBomb", UpdateBombs);
+        EventManager.Subscribe("OnBombsChanged", UpdateBombs);
 
 
         //refresh ui references
@@ -51,6 +52,7 @@ public class UIManager : MonoBehaviour
         EventManager.Unsubscribe("OnPlayerStateChanged", UpdateStateDisplay);
 
         EventManager.Unsubscribe("OnBomb", UpdateBombs);
+        EventManager.Unsubscribe("OnBombsChanged", UpdateBombs);
     }
 
     void UpdateAchievement(object data)

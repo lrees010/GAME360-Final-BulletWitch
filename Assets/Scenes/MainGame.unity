@@ -259,7 +259,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CollectibleSpawner
   coinPrefab: {fileID: 5312309063304280836, guid: 17bac6fd2586d3d4bbb4bbfdb26a4bbf, type: 3}
   lifePrefab: {fileID: 5312309063304280836, guid: 958c784705ed2e54bb874ade3c7d859b, type: 3}
-  bombPrefab: {fileID: 0}
+  bombPrefab: {fileID: 5312309063304280836, guid: 6c04b5c8aeef3fd46b621cbd7234b5e5, type: 3}
   spawnPoints: []
 --- !u!4 &313332079
 Transform:

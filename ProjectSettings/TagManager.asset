@@ -10,6 +10,7 @@ TagManager:
   - Bullet
   - Coin
   - Life
+  - Bomb
   layers:
   - Default
   - TransparentFX
