@@ -21,6 +21,7 @@ public class UIManager : MonoBehaviour
     public Text bombText;
 
     public GameObject gameOverPanel;
+    public GameObject pausePanel;
 
     void Start()
     {
@@ -35,6 +36,8 @@ public class UIManager : MonoBehaviour
 
         EventManager.Subscribe("OnBomb", UpdateBombs);
         EventManager.Subscribe("OnBombsChanged", UpdateBombs);
+
+        EventManager.Subscribe("OnPause", Pause);
 
 
         //refresh ui references
@@ -60,6 +63,41 @@ public class UIManager : MonoBehaviour
         AchievementText.text = data.ToString();
         StartCoroutine(FadeOutText(AchievementText, 1f, 2f));
     }
+
+    void Pause(object data)
+    {
+        if (pausePanel == null)
+        {
+            return;
+        }
+        if (data.ToString() == "Pause")
+        {
+
+            MakeVisible(true, pausePanel.GetComponent<CanvasGroup>());
+            //pausePanel.gameObject.SetActive(true);
+        }
+        else
+        {
+            MakeVisible(false, pausePanel.GetComponent<CanvasGroup>());
+            //pausePanel.gameObject.SetActive(false);
+        }
+    }
+
+    void MakeVisible(bool visible, CanvasGroup group)
+    {
+        if (visible)
+        {
+            group.alpha = 1f;
+            group.interactable = true;
+            group.blocksRaycasts = true;
+        }
+        else
+        {
+            group.alpha = 0;
+            group.interactable = false;
+            group.blocksRaycasts = false;
+        }
+    }
     private System.Collections.IEnumerator FadeOutText(Text text, float fadeDuration, float holdDuration)
     {
         float time = 0f;
@@ -83,6 +121,7 @@ public class UIManager : MonoBehaviour
             yield return null;
         }
     }
+
 
     void UpdateBombs()
     {
@@ -153,7 +192,7 @@ public class UIManager : MonoBehaviour
     private void GameOver()
     {
         Debug.Log("owwwwww GameOver triggered | panel = " + gameOverPanel);
-        gameOverPanel.SetActive(true);
+        MakeVisible(true, gameOverPanel.GetComponent<CanvasGroup>());
 
     }
 
@@ -173,15 +212,10 @@ public class UIManager : MonoBehaviour
         AchievementText = GameObject.Find("AchievementText")?.GetComponent<Text>();
         enemiesKilledText = GameObject.Find("EnemiesKilled")?.GetComponent<Text>();
         bombText = GameObject.Find("Bombs")?.GetComponent<Text>();
-        if (gameOverPanel.activeSelf==true)
-        {
-            gameOverPanel = GameObject.Find("GameEndPanel");
-        }
-        if (gameOverPanel != null) //if panel exists
-        {
-            gameOverPanel.SetActive(false); //make inactive
 
-        }
+
+        pausePanel = GameObject.Find("PausePanel");
+        gameOverPanel = GameObject.Find("GameEndPanel");
 
         
 

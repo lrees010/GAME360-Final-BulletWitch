@@ -60,6 +60,8 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         currentState.UpdateState(this);
+
+
     }
 
 

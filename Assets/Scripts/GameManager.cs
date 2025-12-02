@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro; //Namesapce for textmeshpro
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
 
 public class GameManager : MonoBehaviour
 {
@@ -20,6 +21,8 @@ public class GameManager : MonoBehaviour
     public float speedOfSlowedTime = 0.5f;
     public bool slowingTime = false;
     public int level = 1; //aka wave
+
+    public InputAction exitAction;
     /* 
      Levels:
     0. Debug
@@ -32,6 +35,8 @@ public class GameManager : MonoBehaviour
 
 
     //public TMP_Text scoreText;
+
+  
 
     private void Awake()
     {
@@ -54,9 +59,11 @@ public class GameManager : MonoBehaviour
     public PlayingState PlayingState = new PlayingState();
     public MainMenuState MainMenuState = new MainMenuState();
     public PausedState PausedState = new PausedState();
+    public GameOverState GameOverState = new GameOverState();
 
     private void Start()
     {
+        exitAction = InputSystem.actions.FindAction("Exit");
         if (SceneManager.GetActiveScene().name == "MainGame")
         {
             ChangeState(PlayingState);
@@ -81,22 +88,15 @@ public class GameManager : MonoBehaviour
 
     public string GetStateName() => currentState.GetStateName();
 
-    public void StartGame()
+    public void StartGame() //change later
     {
-        ChangeState(PlayingState);
+        
         RestartGame();
     }
 
     private void Update()
     {
-        if (slowingTime == true)
-        {
-            Time.timeScale = speedOfSlowedTime;
-        }
-        else
-        {
-            Time.timeScale = speedOfTime;
-        }
+
             
         
         currentState.UpdateState(this);
@@ -162,6 +162,7 @@ public class GameManager : MonoBehaviour
 
     private void GameOver()
     {
+        ChangeState(GameOverState);
         Debug.Log("GAME OVER!");
         EventManager.TriggerEvent("OnGameOver");
         EventManager.ClearAllEvents();
@@ -184,6 +185,7 @@ public class GameManager : MonoBehaviour
 
     public void RestartGame()
     {
+        ChangeState(PlayingState);
         //Time.timeScale = 1f;
         speedOfTime = 1f;
 

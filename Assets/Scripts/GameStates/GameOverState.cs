@@ -12,7 +12,7 @@ public class GameOverState : GameState
 
     public override void UpdateState(GameManager game)
     {
-        //GameManager.Instance.speedOfTime = 0f;
+        Time.timeScale = 0f;
     }
 
     public override void ExitState(GameManager game) { }
