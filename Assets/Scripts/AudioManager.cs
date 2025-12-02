@@ -14,6 +14,7 @@ public class AudioManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
+            DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -70,7 +71,9 @@ public class AudioManager : MonoBehaviour
             audioSource.pitch = GameManager.Instance.speedOfTime;
         }
 
-        
+        musicSource.volume = generalVolume;
+        audioSource.volume = generalVolume;
+
     }
 
     private void OnDestroy()

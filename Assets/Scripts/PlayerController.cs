@@ -124,7 +124,8 @@ public class PlayerController : MonoBehaviour
 
     public void HandleShooting(PlayerController player)
     {
-        if (attackAction.IsPressed() && Time.time >= player.nextFireTime)
+        if (attackAction.IsPressed() && Time.time >= player.nextFireTime
+            && GameManager.Instance.GetStateName() == "PlayingState")
         {
             player.FireBullet();
             player.nextFireTime = Time.time + player.fireRate;
