@@ -17,7 +17,8 @@ public class PlayingState : GameState
     {
         if (game.speedOfTime > 0f && !DialogueManager.Instance.isDialogueActive)
         {
-            game.timePassed = game.timePassed + (Time.deltaTime / Time.timeScale); //time passed always counts real seconds no matter what the speed of time is
+            game.timePassed = game.timePassed + (Time.deltaTime / game.speedOfTime); //time passed always counts real seconds no matter what the speed of time is
+            Debug.Log(game.timePassed);
             game.playingTimePassed = game.playingTimePassed + Time.deltaTime;
 
             if (game.timePassed > game.timeLimit) //if ran out of time..
@@ -38,9 +39,8 @@ public class PlayingState : GameState
                 lastSlowTime = Time.time;
             }
             slowedTime = true;
-            Debug.Log(lastSlowTime);
 
-            Time.timeScale = Mathf.Clamp(
+            game.speedOfTime = Mathf.Clamp(
                 ((slowingSpeed-(Time.time - lastSlowTime)) / slowingSpeed),
                 game.speedOfSlowedTime,
                 1f);
@@ -52,7 +52,7 @@ public class PlayingState : GameState
                 lastSlowTime = Time.time;
             }
             slowedTime = false;
-            Time.timeScale = Mathf.Clamp(
+            game.speedOfTime = Mathf.Clamp(
                 (((Time.time - lastSlowTime)) / slowingSpeed)+game.speedOfSlowedTime,
                 game.speedOfSlowedTime,
                 1f);
@@ -65,7 +65,9 @@ public class PlayingState : GameState
         //game.level = (int)(game.playingTimePassed/10); //change level every 200 seconds
     }
 
-    public override void ExitState(GameManager game) { }
+    public override void ExitState(GameManager game) {
+        //game.speedOfTime = 1f;
+    }
 
     public override string GetStateName() => "PlayingState";
 }

@@ -64,10 +64,10 @@ public class AudioManager : MonoBehaviour
 
     private void Update()
     {
-        if (Time.timeScale > 0)
+        if (GameManager.Instance.speedOfTime > 0)
         {
-            musicSource.pitch = Time.timeScale;
-            audioSource.pitch = Time.timeScale;
+            musicSource.pitch = GameManager.Instance.speedOfTime;
+            audioSource.pitch = GameManager.Instance.speedOfTime;
         }
 
         
@@ -114,6 +114,18 @@ public class AudioManager : MonoBehaviour
             case "Forest":
                 PlayMusic(ForestMusic);
                 break;
+        }
+    }
+
+    public void PauseMusic(bool pause)
+    {
+        if (pause==true)
+        {
+            musicSource.Pause();
+        }
+        else
+        {
+            musicSource.Play();
         }
     }
 
