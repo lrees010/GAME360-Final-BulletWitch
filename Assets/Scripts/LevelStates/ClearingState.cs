@@ -21,11 +21,14 @@ public class ClearingState : LevelState
 
         TextAsset jsonFile = Resources.Load<TextAsset>("Convos/initial");
         DialogueManager.Instance.StartConversation(jsonFile);
+
+        AudioManager.Instance.ChangeMusic("Clearing");
     }
 
 
     public override void UpdateState(LevelManager level)
     {
+        
         if (DialogueManager.Instance.isDialogueActive == false) //wait for dialogue end
         {
             level.ChangeState(level.ForestState);

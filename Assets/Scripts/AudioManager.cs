@@ -20,20 +20,6 @@ public class AudioManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-    }
-
-
-    [Header("Audio")]
-    public AudioClip ShootSound; //this is where you put your mp3/wav files
-    public AudioClip CoinSound;
-    public AudioClip AchievementSound;
-    public AudioClip EnemyKilledSound;
-
-    private AudioSource audioSource;//Unity componenet
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
 
         // Get or add AudioSource component
         audioSource = GetComponent<AudioSource>();
@@ -44,13 +30,47 @@ public class AudioManager : MonoBehaviour
 
         // Configure AudioSource for sound effects
         audioSource.playOnAwake = false;
-        audioSource.volume = 0.7f; // Adjust volume as needed
+        audioSource.volume = generalVolume; // Adjust volume as needed
+
+        //musicsource
+        musicSource = gameObject.AddComponent<AudioSource>();
+        musicSource.volume = generalVolume;
+        musicSource.playOnAwake = false;
+        musicSource.loop = true;
 
 
         EventManager.Subscribe("OnScoreChanged", PlayCoinSound);
         EventManager.Subscribe("OnEnemyKilled", PlayKilledSound);
+    }
+
+    [Header("Settings")]
+    public float generalVolume = 1f;
+
+    [Header("Audio")]
+    public AudioClip ShootSound; //this is where you put your mp3/wav files
+    public AudioClip CoinSound;
+    public AudioClip AchievementSound;
+    public AudioClip EnemyKilledSound;
+
+    public AudioClip ClearingMusic;
+    public AudioClip ForestMusic;
+
+    private AudioSource audioSource;//Unity componenet
+
+    private AudioSource musicSource;
+
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
 
 
+    private void Update()
+    {
+        if (Time.timeScale > 0)
+        {
+            musicSource.pitch = Time.timeScale;
+            audioSource.pitch = Time.timeScale;
+        }
+
+        
     }
 
     private void OnDestroy()
@@ -63,7 +83,37 @@ public class AudioManager : MonoBehaviour
     {
         if (clip != null && audioSource != null)
         {
+            audioSource.volume = generalVolume;
             audioSource.PlayOneShot(clip);
+        }
+    }
+
+    private void PlayMusic(AudioClip clip)
+    {
+        Debug.Log("musico");
+        if (clip != null && musicSource != null)
+        {
+            musicSource.volume = generalVolume;
+            musicSource.clip = clip;
+            musicSource.Play();
+        }
+    }
+
+
+
+    public void ChangeMusic(string level)
+    {
+        switch (level)
+        {
+            default:
+                PlayMusic(ClearingMusic);
+                break;
+            case "Clearing":
+                PlayMusic(ClearingMusic);
+                break;
+            case "Forest":
+                PlayMusic(ForestMusic);
+                break;
         }
     }
 
