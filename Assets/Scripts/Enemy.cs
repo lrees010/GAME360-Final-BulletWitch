@@ -5,7 +5,7 @@ public class Enemy : MonoBehaviour
 {
     [Header("Enemy Stats")]
     public int health = 1;
-    public float moveSpeed = 5f;
+    public float moveSpeed = 8f;
 
     [Header("AI")]
     //public float detectionRange = 0.5f;
