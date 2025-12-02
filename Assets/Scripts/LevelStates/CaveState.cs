@@ -6,16 +6,20 @@ public class CaveState : LevelState
     private float nextSpawnTime = 0f;
     private float spawnRate = 0.7f;
 
+
     public override void EnterState(LevelManager level)
     {
         Debug.Log("Entered CaveState");
         GameManager.Instance.level = 2;
+        GameManager.Instance.EnemyGoal = 10;
+
+        
     }
 
 
     public override void UpdateState(LevelManager level)
     {
-        if (GameManager.Instance.playingTimePassed > 150)
+        if (GameManager.Instance.EnemyGoal <= 0)
         {
             //level.ChangeState(level.ForestState); //add lake later
         }

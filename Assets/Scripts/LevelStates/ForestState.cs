@@ -11,18 +11,19 @@ public class ForestState : LevelState
     //col
     private float nextCoinTime = 0f;
     private float coinSpawnRate = 2f;
-    
+
 
     public override void EnterState(LevelManager level)
     {
         Debug.Log("Entered ForestState");
         GameManager.Instance.level = 1;
+        GameManager.Instance.EnemyGoal = 5;
     }
 
 
     public override void UpdateState(LevelManager level)
     {
-        if (GameManager.Instance.playingTimePassed>10)
+        if (GameManager.Instance.EnemyGoal <= 0)
         {
             level.ChangeState(level.CaveState);
         }
@@ -31,6 +32,8 @@ public class ForestState : LevelState
             SpawnBehavior();
             CollectibleBehavior();
         }
+
+
     }
 
     private void SpawnBehavior()
@@ -53,7 +56,10 @@ public class ForestState : LevelState
         }
     }
 
-    public override void ExitState(LevelManager level) { }
+    public override void ExitState(LevelManager level) 
+    {
+
+    }
 
     public override string GetLevelName() => "Forest";
 }

@@ -23,8 +23,21 @@ public class GameManager : MonoBehaviour
     public float speedOfTime = 1f;
     public float speedOfSlowedTime = 0.5f;
     public bool slowingTime = false;
+
     public int level = 1; //aka wave
 
+    private int _enemyGoal = 10;
+    public int EnemyGoal
+    {
+        get {
+            return _enemyGoal;
+        }
+        set
+        {
+            _enemyGoal = value;
+            EventManager.TriggerEvent("OnGoalChange");
+        }
+    }
     public InputAction exitAction;
     /* 
      Levels:
@@ -149,6 +162,7 @@ public class GameManager : MonoBehaviour
     public void EnemyKilled()
     {
         enemiesKilled++;
+        EnemyGoal--;
         AddScore(100); // 100 points per enemy
         EventManager.TriggerEvent("OnEnemyKilled");
         Debug.Log($"Enemy killed! Total enemies defeated: {enemiesKilled}");

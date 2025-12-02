@@ -21,6 +21,8 @@ public class UIManager : MonoBehaviour
     public Text timeLeftText;
     public Text bombText;
 
+    public Text goalText;
+
     public GameObject gameOverPanel;
     public GameObject pausePanel;
 
@@ -41,6 +43,8 @@ public class UIManager : MonoBehaviour
         EventManager.Subscribe("OnPause", Pause);
 
         EventManager.Subscribe("OnTimeLeftChanged", UpdateTimeLeft);
+
+        EventManager.Subscribe("OnGoalChange", UpdateGoal);
 
 
         //refresh ui references
@@ -63,6 +67,8 @@ public class UIManager : MonoBehaviour
         EventManager.Unsubscribe("OnBombsChanged", UpdateBombs);
 
         EventManager.Unsubscribe("OnTimeLeftChanged", UpdateTimeLeft);
+
+        EventManager.Unsubscribe("OnGoalChange", UpdateGoal);
     }
 
     void UpdateAchievement(object data)
@@ -135,6 +141,19 @@ public class UIManager : MonoBehaviour
         if (bombText)
         {
             bombText.text = "Bombs: " + GameManager.Instance.bombs;
+        }
+        else
+        {
+            Debug.Log("attempted refresh");
+            RefreshUIReferences();
+        }
+    }
+
+    void UpdateGoal()
+    {
+        if (goalText)
+        {
+            goalText.text = "Goal: " + GameManager.Instance.EnemyGoal;
         }
         else
         {
@@ -225,6 +244,7 @@ public class UIManager : MonoBehaviour
         UpdateEnemiesKilled();
         UpdateBombs();
         UpdateTimeLeft();
+        UpdateGoal();
     }
 
     private void RefreshUIReferences()
@@ -235,8 +255,11 @@ public class UIManager : MonoBehaviour
         AchievementText = GameObject.Find("AchievementText")?.GetComponent<Text>();
         enemiesKilledText = GameObject.Find("EnemiesKilled")?.GetComponent<Text>();
         bombText = GameObject.Find("Bombs")?.GetComponent<Text>();
+        stateText = GameObject.Find("State")?.GetComponent<Text>();
 
         timeLeftText = GameObject.Find("Time")?.GetComponent<Text>();
+
+        goalText = GameObject.Find("Goal")?.GetComponent<Text>();
 
         pausePanel = GameObject.Find("PausePanel");
         gameOverPanel = GameObject.Find("GameEndPanel");
