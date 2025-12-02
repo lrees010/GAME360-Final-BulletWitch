@@ -158,7 +158,7 @@ public class UIManager : MonoBehaviour
 
     string returnS(int goal) //yup
     {
-        if(goal>0)
+        if(goal>1)
         {
             return "s";
         }

@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayingState : GameState
@@ -9,7 +10,9 @@ public class PlayingState : GameState
         
     }
 
-
+    private float lastSlowTime = 0f;
+    private bool slowedTime = false;
+    private float slowingSpeed = 0.6f;
     public override void UpdateState(GameManager game)
     {
         if (game.speedOfTime > 0f && !DialogueManager.Instance.isDialogueActive)
@@ -26,14 +29,33 @@ public class PlayingState : GameState
                 EventManager.TriggerEvent("OnTimeLeftChanged");
             }
         }
+        
 
         if (game.slowingTime == true)
         {
-            Time.timeScale = game.speedOfSlowedTime;
+            if (slowedTime == false)
+            {
+                lastSlowTime = Time.time;
+            }
+            slowedTime = true;
+            Debug.Log(lastSlowTime);
+
+            Time.timeScale = Mathf.Clamp(
+                ((slowingSpeed-(Time.time - lastSlowTime)) / slowingSpeed),
+                game.speedOfSlowedTime,
+                1f);
         }
         else
         {
-            Time.timeScale = game.speedOfTime;
+            if (slowedTime == true)
+            {
+                lastSlowTime = Time.time;
+            }
+            slowedTime = false;
+            Time.timeScale = Mathf.Clamp(
+                (((Time.time - lastSlowTime)) / slowingSpeed)+game.speedOfSlowedTime,
+                game.speedOfSlowedTime,
+                1f);
         }
 
         if (game.exitAction.WasPressedThisFrame())
