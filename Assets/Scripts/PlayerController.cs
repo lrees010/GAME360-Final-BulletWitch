@@ -83,18 +83,25 @@ public class PlayerController : MonoBehaviour
 
     public void HandleSlowTime(PlayerController player)
     {
+        if  (
+            (GameManager.Instance.GetStateName() != "PlayingState") //if we are not in the playing state of the game
+            || currentState.GetStateName() == "Damaged" //or if the player is currently respawning
+            || GameManager.Instance.lives < 1 //if we have no lives
+            )
+        {
+            return; //don't allow time slowing
+        }
+
         if (
             specialAction.IsPressed() //pressing shift/slow time button
-            && (GameManager.Instance.GetStateName() == "PlayingState") //we are in the playing state of the game, not main menu, paused, etc
-            && currentState.GetStateName() != "Damaged" //the player isn't currently respawning
             )
         {
             //Debug.Log(currentState.GetStateName());
-            GameManager.Instance.speedOfTime = 0.5f;
+            GameManager.Instance.slowingTime = true;
         }
         else
         {
-            GameManager.Instance.speedOfTime = 1f;
+            GameManager.Instance.slowingTime = false;
         }
     }
 

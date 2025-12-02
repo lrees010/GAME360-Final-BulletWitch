@@ -17,6 +17,8 @@ public class GameManager : MonoBehaviour
     public float timePassed = 0f;
     public float playingTimePassed = 0f;
     public float speedOfTime = 1f;
+    public float speedOfSlowedTime = 0.5f;
+    public bool slowingTime = false;
     public int level = 1; //aka wave
     /* 
      Levels:
@@ -87,12 +89,18 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        Time.timeScale = speedOfTime;
+        if (slowingTime == true)
+        {
+            Time.timeScale = speedOfSlowedTime;
+        }
+        else
+        {
+            Time.timeScale = speedOfTime;
+        }
+            
         
         currentState.UpdateState(this);
     }
-
-    
 
 
     public void AddScore(int points)
