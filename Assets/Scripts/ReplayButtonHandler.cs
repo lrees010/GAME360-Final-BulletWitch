@@ -12,11 +12,17 @@ public class ReplayButtonHandler : MonoBehaviour
         // Make sure we found the button
         if (replayButton != null)
         {
+            Debug.Log("button");
             // Clear any existing listeners to be safe
             replayButton.onClick.RemoveAllListeners();
 
             // Add a new listener that calls the RestartGame method on the GameManager singleton
-            replayButton.onClick.AddListener(() => GameManager.Instance.RestartGame());
+            replayButton.onClick.AddListener(clicky);
         }
+    }
+
+    void clicky()
+    {
+        GameManager.Instance.RestartGame();
     }
 }
