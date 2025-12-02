@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     public IdleState IdleState = new IdleState();
     public MovingState MovingState = new MovingState();
     public DamagedState DamagedState = new DamagedState();
+    public PowerupState PowerupState = new PowerupState();
 
     public bool damageCooldown = false;
 
@@ -118,6 +119,7 @@ public class PlayerController : MonoBehaviour
             
             GameManager.Instance.bombs = GameManager.Instance.bombs - 1;
             EventManager.TriggerEvent("OnBomb");
+            ChangeState(PowerupState);
             //add flair later
         }
     }
