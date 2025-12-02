@@ -18,7 +18,7 @@ public class PlayingState : GameState
         if (game.speedOfTime > 0f && !DialogueManager.Instance.isDialogueActive)
         {
             game.timePassed = game.timePassed + (Time.deltaTime / game.speedOfTime); //time passed always counts real seconds no matter what the speed of time is
-            Debug.Log(game.timePassed);
+            //Debug.Log(game.timePassed);
             game.playingTimePassed = game.playingTimePassed + Time.deltaTime;
 
             if (game.timePassed > game.timeLimit) //if ran out of time..

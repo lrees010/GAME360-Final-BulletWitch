@@ -116,6 +116,8 @@ public class GameManager : MonoBehaviour
         Time.timeScale = speedOfTime;
         
         currentState.UpdateState(this);
+
+
     }
 
 

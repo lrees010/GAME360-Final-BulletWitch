@@ -218,6 +218,15 @@ MonoBehaviour:
   nextFireTime: 0
   damageCooldown: 0
   rb: {fileID: 0}
+  moveAction:
+    m_Name: Move
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: afd8ea55-1ee3-4760-aa64-55e9f41366e9
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
 --- !u!82 &5585707198117153107
 AudioSource:
   m_ObjectHideFlags: 0

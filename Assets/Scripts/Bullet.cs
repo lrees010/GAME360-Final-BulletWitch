@@ -21,13 +21,7 @@ public class Bullet : MonoBehaviour
     {
         if (other.CompareTag("Enemy"))
         {
-            // Bullet hit enemy
-            Enemy enemy = other.GetComponent<Enemy>();
-            if (enemy)
-            {
-                enemy.TakeDamage(1);
-                Destroy(gameObject); // Destroy bullet
-            }
+            Destroy(gameObject);
         }
 
         // Destroy bullet if it hits walls or boundaries

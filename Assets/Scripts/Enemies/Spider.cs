@@ -1,17 +1,19 @@
 using System.Collections;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class Spider : MonoBehaviour
 {
-    [Header("Enemy Stats")]
-    public int health = 1;
-    public float moveSpeed = 8f;
+    [Header("Spider Stats")]
+    private int health = 1;
+    private float moveSpeed = 12f;
 
     [Header("AI")]
     //public float detectionRange = 0.5f;
 
     private Transform player;
     private Rigidbody2D rb;
+
+    private float birthTime = Time.time;
 
     private void Start()
     {
@@ -25,6 +27,8 @@ public class Enemy : MonoBehaviour
         EventManager.Subscribe("OnPlayerDeath", Vanish);
         EventManager.Subscribe("OnBomb", Explode);
         EventManager.Subscribe("OnLevelChanged", LevelChanged);
+
+        birthTime = Time.time;
     }
 
     private void OnDestroy()
@@ -37,7 +41,18 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
-        ChasePlayer();
+        if (InBounds==false)
+        {
+            Vanish();
+        }
+        if (Time.time-birthTime>5f)
+        {
+            Escape();
+        }
+        else
+        {
+            ChasePlayer();
+        }
     }
 
     private void Vanish() //player dies = all enemies vanish, no points
@@ -50,6 +65,17 @@ public class Enemy : MonoBehaviour
         Vanish();
     }
 
+    private bool InBounds
+    {
+        get
+        {
+            return Mathf.Abs(transform.position.y) < 9f && Mathf.Abs(transform.position.x) < 15; //in the play area (not lower than -9, not more than 15 units left or right)
+        }
+    }
+    private void Escape()
+    {
+        rb.AddForce(new Vector2(0f, -5f));
+    }
     private void ChasePlayer()
     {
         if (player)
@@ -61,23 +87,13 @@ public class Enemy : MonoBehaviour
                 moveSpeed = 2f; */
             //float distance = Vector2.Distance(transform.position, player.position);
 
-            if (transform.position.y > -9f && Mathf.Abs(transform.position.x) < 15) //in the play area (not lower than -9, not more than 15 units left or right)
-            {
                 Vector2 direction = (player.position - transform.position).normalized;
 
                 //direction = new Vector2(direction.x, -1f); //Mathf.Clamp(direction.y,-1f,-0.1f)
 
                 rb.AddForce(direction * moveSpeed);
-                rb.linearVelocity = new Vector2(rb.linearVelocity.x, Mathf.Clamp(rb.linearVelocity.y,-4f,-3f));
-                rb.linearVelocity = Vector2.ClampMagnitude(rb.linearVelocity,9f);
-                
-               
-            }
-            else
-            {
-                //rb.linearVelocity = Vector2.zero;
-                Vanish();
-            }
+                //rb.linearVelocity = new Vector2(rb.linearVelocity.x, Mathf.Clamp(rb.linearVelocity.y,-4f,-3f));
+                rb.linearVelocity = Vector2.ClampMagnitude(rb.linearVelocity,4f);
         }
     }
 
@@ -88,6 +104,16 @@ public class Enemy : MonoBehaviour
         if (health <= 0)
         {
             Die();
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Bullet"))
+        {
+           // Bullet hit enemy
+           TakeDamage(1);
+           Destroy(gameObject); // Destroy self
         }
     }
 

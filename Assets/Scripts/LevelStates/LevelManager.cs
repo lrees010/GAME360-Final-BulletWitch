@@ -28,5 +28,15 @@ public class LevelManager : MonoBehaviour
     private void Update()
     {
         currentState.UpdateState(this);
+        //debug level skipping
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            //EnemyGoal = 0;
+            ChangeState(CaveState);
+            if (DialogueManager.Instance.isDialogueActive)
+            {
+                DialogueManager.Instance.EndDialogue();
+            }
+        }
     }
 }

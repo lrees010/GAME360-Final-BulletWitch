@@ -5,6 +5,7 @@ public class EnemySpawner : MonoBehaviour //provide quick enemy spawning and ui 
 {
     [Header("Spawning")]
     public GameObject chargerPrefab;
+    public GameObject spiderPrefab;
 
     public Transform[] spawnPoints;
 
@@ -87,4 +88,6 @@ public class EnemySpawner : MonoBehaviour //provide quick enemy spawning and ui 
     }
 
     public void SpawnCharger() => SpawnEnemy(chargerPrefab); //yup
+
+    public void SpawnSpider() => SpawnEnemy(spiderPrefab); //yup
 }
