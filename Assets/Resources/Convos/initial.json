@@ -1,0 +1,19 @@
+{
+    "lines": [
+        {
+            "speaker": "Witch",
+            "text": "Oh no, I've been poisoned.",
+            "faceImagePath": "Faces/witch"
+        },
+        {
+            "speaker": "bizarre",
+            "text": "Wow, that's interesting.",
+            "faceImagePath": "Faces/bizarre"
+        },
+        {
+            "speaker": "Witch",
+            "text": "I need to get the antidote, quickly.",
+            "faceImagePath": "Faces/witch"
+        }
+    ]
+}

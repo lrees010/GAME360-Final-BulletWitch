@@ -1,0 +1,19 @@
+{
+    "lines": [
+        {
+            "speaker": "Witch",
+            "text": "Wow, I barely got away. Let's get into the caves.",
+            "faceImagePath": "Faces/witch"
+        },
+        {
+            "speaker": "bizarre",
+            "text": "Who cares.",
+            "faceImagePath": "Faces/bizarre"
+        },
+        {
+            "speaker": "Witch",
+            "text": "...",
+            "faceImagePath": "Faces/witch"
+        }
+    ]
+}

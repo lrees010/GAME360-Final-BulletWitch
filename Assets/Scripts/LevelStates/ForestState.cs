@@ -18,6 +18,8 @@ public class ForestState : LevelState
         Debug.Log("Entered ForestState");
         GameManager.Instance.level = 1;
         GameManager.Instance.EnemyGoal = 5;
+
+
     }
 
 

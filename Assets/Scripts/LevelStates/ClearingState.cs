@@ -18,12 +18,15 @@ public class ClearingState : LevelState
         Debug.Log("Entered ClearingState");
         GameManager.Instance.level = 1;
         GameManager.Instance.EnemyGoal = -1;
+
+        TextAsset jsonFile = Resources.Load<TextAsset>("Convos/initial");
+        DialogueManager.Instance.StartConversation(jsonFile);
     }
 
 
     public override void UpdateState(LevelManager level)
     {
-        if (GameManager.Instance.timePassed>3)
+        if (DialogueManager.Instance.isDialogueActive == false) //wait for dialogue end
         {
             level.ChangeState(level.ForestState);
         }

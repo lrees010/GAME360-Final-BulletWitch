@@ -4,13 +4,11 @@ using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
+using UnityEngine.UIElements;
 using static UnityEngine.InputSystem.InputRemoting;
 
 public class UIManager : MonoBehaviour
 {
-
-
-
 
     [Header("UI References")]
     public Text scoreText;
@@ -25,6 +23,8 @@ public class UIManager : MonoBehaviour
 
     public GameObject gameOverPanel;
     public GameObject pausePanel;
+
+
 
     void Start()
     {
@@ -257,6 +257,8 @@ public class UIManager : MonoBehaviour
         }
  
     }
+
+
     private void GameOver()
     {
         Debug.Log("owwwwww GameOver triggered | panel = " + gameOverPanel);
@@ -291,7 +293,6 @@ public class UIManager : MonoBehaviour
         pausePanel = GameObject.Find("PausePanel");
         gameOverPanel = GameObject.Find("GameEndPanel");
 
-        
 
     }
 

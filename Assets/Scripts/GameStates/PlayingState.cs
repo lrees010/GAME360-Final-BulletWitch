@@ -12,7 +12,7 @@ public class PlayingState : GameState
 
     public override void UpdateState(GameManager game)
     {
-        if (game.speedOfTime > 0f)
+        if (game.speedOfTime > 0f && !DialogueManager.Instance.isDialogueActive)
         {
             game.timePassed = game.timePassed + (Time.deltaTime / Time.timeScale); //time passed always counts real seconds no matter what the speed of time is
             game.playingTimePassed = game.playingTimePassed + Time.deltaTime;

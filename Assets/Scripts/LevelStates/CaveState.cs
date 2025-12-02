@@ -13,12 +13,18 @@ public class CaveState : LevelState
         GameManager.Instance.level = 2;
         GameManager.Instance.EnemyGoal = 10;
 
-        
+        TextAsset jsonFile = Resources.Load<TextAsset>("Convos/cave");
+        DialogueManager.Instance.StartConversation(jsonFile);
+
     }
 
 
     public override void UpdateState(LevelManager level)
     {
+        if (DialogueManager.Instance.isDialogueActive)
+        {
+            return;
+        }
         if (GameManager.Instance.EnemyGoal <= 0)
         {
             //level.ChangeState(level.ForestState); //add lake later

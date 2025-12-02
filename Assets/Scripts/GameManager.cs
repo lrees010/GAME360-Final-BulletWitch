@@ -195,7 +195,7 @@ public class GameManager : MonoBehaviour
     public void RestartGame()
     {
         ChangeState(PlayingState);
-        
+        EventManager.TriggerEvent("OnReload");
         speedOfTime = 1f;
         Time.timeScale = 1f;
 
