@@ -58,6 +58,30 @@ public class UIManager : MonoBehaviour
     void UpdateAchievement(object data)
     {
         AchievementText.text = data.ToString();
+        StartCoroutine(FadeOutText(AchievementText, 1f, 2f));
+    }
+    private System.Collections.IEnumerator FadeOutText(Text text, float fadeDuration, float holdDuration)
+    {
+        float time = 0f;
+        if (holdDuration > 0f)
+        {
+            while (time < holdDuration)
+            {
+                time += Time.deltaTime;
+                yield return null;
+            }
+            
+        }
+        
+
+        time = 0f;
+        //text.color = new Color(text.color.r, text.color.g, text.color.b, 1f);
+        while (time < fadeDuration)
+        {
+            time += Time.deltaTime;
+            text.color = new Color(text.color.r,text.color.g,text.color.b, 1f - (time / fadeDuration));
+            yield return null;
+        }
     }
 
     void UpdateBombs()
