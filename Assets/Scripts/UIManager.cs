@@ -46,6 +46,8 @@ public class UIManager : MonoBehaviour
 
         EventManager.Subscribe("OnGoalChange", UpdateGoal);
 
+        EventManager.Subscribe("OnLevelChanged", LevelChanged);
+
 
         //refresh ui references
         //RefreshUIReferences();
@@ -69,8 +71,13 @@ public class UIManager : MonoBehaviour
         EventManager.Unsubscribe("OnTimeLeftChanged", UpdateTimeLeft);
 
         EventManager.Unsubscribe("OnGoalChange", UpdateGoal);
-    }
 
+        EventManager.Unsubscribe("OnLevelChanged", LevelChanged);
+    }
+    void LevelChanged(object data)
+    {
+        
+    }
     void UpdateAchievement(object data)
     {
         AchievementText.text = data.ToString();
@@ -149,11 +156,31 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    string returnS(int goal) //yup
+    {
+        if(goal>0)
+        {
+            return "s";
+        }
+        else
+        {
+            return "";
+        }
+    }
     void UpdateGoal()
     {
         if (goalText)
         {
-            goalText.text = "Goal: " + GameManager.Instance.EnemyGoal;
+            int goal = GameManager.Instance.EnemyGoal;
+
+            if (goal>-1)
+            {
+                goalText.text = $"Goal: {goal} kill{returnS(goal)}";
+            }
+            else
+            {
+                goalText.text = "Goal: N/A";
+            }
         }
         else
         {

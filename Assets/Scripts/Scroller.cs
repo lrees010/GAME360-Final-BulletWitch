@@ -14,6 +14,7 @@ public class Scroller : MonoBehaviour
 
     public Texture Forest;
     public Texture Cave;
+    public Texture Clearing;
 
     void Update()
     {
@@ -23,6 +24,8 @@ public class Scroller : MonoBehaviour
     void Start()
     {
         EventManager.Subscribe("OnLevelChanged", ChangeBG); //i.e "Forest" "Cave"
+
+        ChangeBG("Clearing");
     }
 
     private void OnDestroy()
@@ -40,6 +43,9 @@ public class Scroller : MonoBehaviour
 
         switch (LevelName) //Maybe change this
         {
+            case "Clearing":
+                nextTex = Clearing;
+                break;
             case "Forest":
                 nextTex = Forest;
                 break;
@@ -48,7 +54,7 @@ public class Scroller : MonoBehaviour
                 nextTex = Cave;
                 break;
         }
-        bool skipFadeOut = (data.ToString() == "Forest"); //skip fade out if starter level
+        bool skipFadeOut = (data.ToString() == "Clearing"); //skip fade out if starter level
 
         StartCoroutine(FadeTo(nextTex, skipFadeOut));
     }

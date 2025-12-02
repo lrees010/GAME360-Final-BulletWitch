@@ -3017,7 +3017,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: b4721ad01d4cfaa478aed8f3e84b6f82, type: 3}
+  m_Texture: {fileID: 2800000, guid: 5997cd6b729e5aa47b6860e8f34b74b4, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -3050,6 +3050,7 @@ MonoBehaviour:
   fadeDuration: 0.5
   Forest: {fileID: 2800000, guid: b4721ad01d4cfaa478aed8f3e84b6f82, type: 3}
   Cave: {fileID: 2800000, guid: e38a6f3136f30d7468ea6a2a7620b5ed, type: 3}
+  Clearing: {fileID: 2800000, guid: 5997cd6b729e5aa47b6860e8f34b74b4, type: 3}
 --- !u!225 &1673269802
 CanvasGroup:
   m_ObjectHideFlags: 0

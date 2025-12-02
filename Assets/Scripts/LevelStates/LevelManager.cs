@@ -6,10 +6,11 @@ public class LevelManager : MonoBehaviour
     LevelState currentState;
     public ForestState ForestState = new ForestState();
     public CaveState CaveState = new CaveState();
+    public ClearingState ClearingState = new ClearingState();
 
     private void Start()
     {
-        ChangeState(ForestState);
+        ChangeState(ClearingState);
     }
     public void ChangeState(LevelState newState)
     {

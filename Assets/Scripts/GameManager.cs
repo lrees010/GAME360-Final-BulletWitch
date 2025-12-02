@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour
 
     public int level = 1; //aka wave
 
-    private int _enemyGoal = 10;
+    private int _enemyGoal = -1;
     public int EnemyGoal
     {
         get {
