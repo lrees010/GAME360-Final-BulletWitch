@@ -18,6 +18,7 @@ public class UIManager : MonoBehaviour
     public Text enemiesKilledText;
     public Text AchievementText;
     public Text stateText;
+    public Text timeLeftText;
     public Text bombText;
 
     public GameObject gameOverPanel;
@@ -39,6 +40,8 @@ public class UIManager : MonoBehaviour
 
         EventManager.Subscribe("OnPause", Pause);
 
+        EventManager.Subscribe("OnTimeLeftChanged", UpdateTimeLeft);
+
 
         //refresh ui references
         //RefreshUIReferences();
@@ -54,8 +57,12 @@ public class UIManager : MonoBehaviour
         EventManager.Unsubscribe("OnUnlockAchievement", UpdateAchievement);
         EventManager.Unsubscribe("OnPlayerStateChanged", UpdateStateDisplay);
 
+        EventManager.Unsubscribe("OnPause", Pause);
+
         EventManager.Unsubscribe("OnBomb", UpdateBombs);
         EventManager.Unsubscribe("OnBombsChanged", UpdateBombs);
+
+        EventManager.Unsubscribe("OnTimeLeftChanged", UpdateTimeLeft);
     }
 
     void UpdateAchievement(object data)
@@ -136,6 +143,21 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    void UpdateTimeLeft()
+    {
+        if (timeLeftText)
+        {
+            decimal timeLeftParse = Math.Round((decimal)(GameManager.Instance.timeLimit - GameManager.Instance.timePassed), 2);
+            
+            timeLeftText.text = "Time: " + (timeLeftParse);
+        }
+        else
+        {
+            Debug.Log("attempted refresh");
+            RefreshUIReferences();
+        }
+    }
+
     void UpdateStateDisplay(object stateData)
     {
         if (stateText!=null)
@@ -202,6 +224,7 @@ public class UIManager : MonoBehaviour
         UpdateLives();
         UpdateEnemiesKilled();
         UpdateBombs();
+        UpdateTimeLeft();
     }
 
     private void RefreshUIReferences()
@@ -213,6 +236,7 @@ public class UIManager : MonoBehaviour
         enemiesKilledText = GameObject.Find("EnemiesKilled")?.GetComponent<Text>();
         bombText = GameObject.Find("Bombs")?.GetComponent<Text>();
 
+        timeLeftText = GameObject.Find("Time")?.GetComponent<Text>();
 
         pausePanel = GameObject.Find("PausePanel");
         gameOverPanel = GameObject.Find("GameEndPanel");

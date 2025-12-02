@@ -1660,9 +1660,10 @@ MonoBehaviour:
   bombs: 3
   enemiesKilled: 0
   timePassed: 0
+  timeLimit: 1000
   playingTimePassed: 0
   speedOfTime: 1
-  speedOfSlowedTime: 0.5
+  speedOfSlowedTime: 0.1
   slowingTime: 0
   level: 1
   exitAction:
@@ -2438,6 +2439,7 @@ MonoBehaviour:
   enemiesKilledText: {fileID: 0}
   AchievementText: {fileID: 0}
   stateText: {fileID: 0}
+  timeLeftText: {fileID: 0}
   bombText: {fileID: 0}
   gameOverPanel: {fileID: 1077280299}
   pausePanel: {fileID: 334187708}

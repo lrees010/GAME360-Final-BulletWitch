@@ -15,7 +15,10 @@ public class GameManager : MonoBehaviour
     public int lives = 3;
     public int bombs = 3;
     public int enemiesKilled = 0;
+
     public float timePassed = 0f;
+    public float timeLimit = 500f;
+
     public float playingTimePassed = 0f;
     public float speedOfTime = 1f;
     public float speedOfSlowedTime = 0.5f;
@@ -125,7 +128,7 @@ public class GameManager : MonoBehaviour
 
         if (lives <= 0)
         {
-            GameOver();
+            ChangeState(GameOverState);
         }
 
         EventManager.TriggerEvent("OnLivesChanged");
@@ -160,15 +163,7 @@ public class GameManager : MonoBehaviour
 
 
 
-    private void GameOver()
-    {
-        ChangeState(GameOverState);
-        Debug.Log("GAME OVER!");
-        EventManager.TriggerEvent("OnGameOver");
-        EventManager.ClearAllEvents();
-        //Time.timeScale = 0f; // Pause the game
-        speedOfTime = 0f;
-    }
+ 
 
     public void reloadGame()
     {
@@ -186,8 +181,9 @@ public class GameManager : MonoBehaviour
     public void RestartGame()
     {
         ChangeState(PlayingState);
-        //Time.timeScale = 1f;
+        
         speedOfTime = 1f;
+        Time.timeScale = 1f;
 
         // Reset all game state
         score = 0;

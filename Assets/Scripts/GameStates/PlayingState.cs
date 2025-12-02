@@ -14,9 +14,19 @@ public class PlayingState : GameState
     {
         if (game.speedOfTime > 0f)
         {
-            game.timePassed = game.timePassed + (Time.deltaTime / game.speedOfTime); //time passed always counts real seconds no matter what the speed of time is
+            game.timePassed = game.timePassed + (Time.deltaTime / Time.timeScale); //time passed always counts real seconds no matter what the speed of time is
             game.playingTimePassed = game.playingTimePassed + Time.deltaTime;
+
+            if (game.timePassed > game.timeLimit) //if ran out of time..
+            {
+                game.ChangeState(game.GameOverState);
+            }
+            else
+            {
+                EventManager.TriggerEvent("OnTimeLeftChanged");
+            }
         }
+
         if (game.slowingTime == true)
         {
             Time.timeScale = game.speedOfSlowedTime;

@@ -6,7 +6,11 @@ public class GameOverState : GameState
     public override void EnterState(GameManager game)
     {
         Debug.Log("Entered GameOverState");
-        
+ 
+        Debug.Log("GAME OVER!");
+        EventManager.TriggerEvent("OnGameOver");
+        EventManager.ClearAllEvents();
+        //Time.timeScale = 0f; // Pause the game
     }
 
 

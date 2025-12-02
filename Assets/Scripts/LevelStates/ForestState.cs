@@ -6,7 +6,7 @@ public class ForestState : LevelState
     //
     //
     private float nextSpawnTime = 0f;
-    private float spawnRate = 2f;
+    private float spawnRate = 1.5f;
 
     //col
     private float nextCoinTime = 0f;
@@ -22,7 +22,7 @@ public class ForestState : LevelState
 
     public override void UpdateState(LevelManager level)
     {
-        if (GameManager.Instance.playingTimePassed>20)
+        if (GameManager.Instance.playingTimePassed>10)
         {
             level.ChangeState(level.CaveState);
         }

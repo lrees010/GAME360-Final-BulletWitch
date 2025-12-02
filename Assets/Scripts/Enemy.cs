@@ -24,12 +24,15 @@ public class Enemy : MonoBehaviour
         //events
         EventManager.Subscribe("OnPlayerDeath", Vanish);
         EventManager.Subscribe("OnBomb", Explode);
+        EventManager.Subscribe("OnLevelChanged", LevelChanged);
     }
 
     private void OnDestroy()
     {
         EventManager.Unsubscribe("OnPlayerDeath", Vanish);
         EventManager.Unsubscribe("OnBomb", Explode);
+
+        EventManager.Unsubscribe("OnLevelChanged", LevelChanged);
     }
 
     private void Update()
@@ -40,6 +43,11 @@ public class Enemy : MonoBehaviour
     private void Vanish() //player dies = all enemies vanish, no points
     {
         Destroy(gameObject);
+    }
+
+    private void LevelChanged(object data) //overload
+    {
+        Vanish();
     }
 
     private void ChasePlayer()
