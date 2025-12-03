@@ -42,9 +42,10 @@ GameObject:
   - component: {fileID: 4479030057492916331}
   - component: {fileID: 3334363820125390474}
   - component: {fileID: 1233702284177863944}
-  - component: {fileID: 8722245459676013813}
+  - component: {fileID: 961657720836215228}
   - component: {fileID: 2113636560838310359}
   - component: {fileID: 5585707198117153107}
+  - component: {fileID: 7909596016639747978}
   m_Layer: 0
   m_Name: Player 1
   m_TagString: Player
@@ -62,8 +63,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -6.18, y: 0.52, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.5, y: 0.45998743, z: 0.63011974}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 6707373514080202060}
   m_Father: {fileID: 0}
@@ -114,8 +115,8 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 297761703447499198, guid: 0fe1cf3f2fa875542b9a62f2918f811e, type: 3}
+  m_SortingOrder: 2
+  m_Sprite: {fileID: -13559271439482278, guid: 444061923a6bf1e43b1e45e1c906eeaa, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -153,8 +154,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!61 &8722245459676013813
-BoxCollider2D:
+--- !u!58 &961657720836215228
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -188,17 +189,7 @@ BoxCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.73, y: 1.94}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
+  m_Radius: 0.5
 --- !u!114 &2113636560838310359
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -213,8 +204,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 5
   bulletPrefab: {fileID: 6339858543439966721, guid: 3456f03b27c08bf408eecca441db900d, type: 3}
+  bloomBulletPrefab: {fileID: 6339858543439966721, guid: af09a7649802f92438a6b23d578b4f01, type: 3}
+  waveBulletPrefab: {fileID: 6339858543439966721, guid: 43bc6ea660db4cb4e9ab87d401b7ad4c, type: 3}
   firePoint: {fileID: 6707373514080202060}
-  fireRate: 0.5
+  fireRate: 0.25
   nextFireTime: 0
   damageCooldown: 0
   rb: {fileID: 0}
@@ -324,3 +317,25 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!95 &7909596016639747978
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4126854077953803790}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1960742f22fc2a1488c716e33fbc9b7b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

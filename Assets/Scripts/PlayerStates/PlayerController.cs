@@ -4,6 +4,8 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
+    public GameObject explosionPrefab;
+
     [Header("Movement")]
     public float moveSpeed = 5f;
 
@@ -120,6 +122,15 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    private void ExplosionFX()
+    {
+        if (explosionPrefab)
+        {
+            GameObject explosionInstance = Instantiate(explosionPrefab, gameObject.transform.position, gameObject.transform.rotation);
+            Destroy(explosionInstance,1f);
+        }
+    }
+
     public void HandleSlowTime(PlayerController player)
     {
         if  (
@@ -155,6 +166,7 @@ public class PlayerController : MonoBehaviour
             
             GameManager.Instance.bombs = GameManager.Instance.bombs - 1;
             AudioManager.Instance.PlayBombSound();
+            ExplosionFX();
             EventManager.TriggerEvent("OnBomb");
             ChangeState(PowerupState);
             //add flair later

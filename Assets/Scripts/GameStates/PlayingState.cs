@@ -16,6 +16,11 @@ public class PlayingState : GameState
     private float slowingInSpeed = 0.2f;
     public override void UpdateState(GameManager game)
     {
+        if (DialogueManager.Instance == null)
+        {
+            Debug.Log("no dialogue manager!");
+            return;
+        }
         if (game.speedOfTime > 0f && !DialogueManager.Instance.isDialogueActive)
         {
             game.timePassed = game.timePassed + (Time.deltaTime / game.speedOfTime); //time passed always counts real seconds no matter what the speed of time is
