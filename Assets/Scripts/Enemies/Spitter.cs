@@ -7,7 +7,7 @@ public class Spitter : MonoBehaviour
     public GameObject spitterBulletPrefab;
     [Header("Spitter Stats")]
     private int health = 3;
-    private float moveSpeed = 15f;
+    private float moveSpeed = 30f;
 
     [Header("AI")]
     //public float detectionRange = 0.5f;
@@ -74,6 +74,7 @@ public class Spitter : MonoBehaviour
     {
         if (spitterBulletPrefab && (Time.time- lastShootTime) >0.6f)
         {
+            rb.linearVelocity = new Vector2(0f,rb.linearVelocity.y);
             send(Instantiate(spitterBulletPrefab), Vector2.down, 3f, 6f);
             lastShootTime = Time.time;
         }
