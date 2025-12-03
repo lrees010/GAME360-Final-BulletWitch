@@ -2109,6 +2109,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54f3b3621ec420440a54614334cd39f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentBullet: Wave
   score: 0
   lives: 3
   bombs: 3
@@ -3301,6 +3302,7 @@ MonoBehaviour:
   Forest: {fileID: 2800000, guid: b4721ad01d4cfaa478aed8f3e84b6f82, type: 3}
   Cave: {fileID: 2800000, guid: e38a6f3136f30d7468ea6a2a7620b5ed, type: 3}
   Clearing: {fileID: 2800000, guid: 5997cd6b729e5aa47b6860e8f34b74b4, type: 3}
+  Lake: {fileID: 2800000, guid: 41933ac8e6be72042af5b4686137e0e5, type: 3}
 --- !u!225 &1673269802
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -5112,6 +5114,14 @@ PrefabInstance:
       propertyPath: fireRate
       value: 0.25
       objectReference: {fileID: 0}
+    - target: {fileID: 2113636560838310359, guid: a513c012c289ab54882a84faf7c7d496, type: 3}
+      propertyPath: waveBulletPrefab
+      value: 
+      objectReference: {fileID: 6339858543439966721, guid: 43bc6ea660db4cb4e9ab87d401b7ad4c, type: 3}
+    - target: {fileID: 2113636560838310359, guid: a513c012c289ab54882a84faf7c7d496, type: 3}
+      propertyPath: bloomBulletPrefab
+      value: 
+      objectReference: {fileID: 6339858543439966721, guid: af09a7649802f92438a6b23d578b4f01, type: 3}
     - target: {fileID: 2113636560838310359, guid: a513c012c289ab54882a84faf7c7d496, type: 3}
       propertyPath: moveAction.m_Name
       value: Move

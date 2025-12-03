@@ -9,6 +9,8 @@ public class PlayerController : MonoBehaviour
 
     [Header("Shooting")]
     public GameObject bulletPrefab;
+    public GameObject bloomBulletPrefab;
+    public GameObject waveBulletPrefab;
     public Transform firePoint;
     public float fireRate = 0.1f;
     public float nextFireTime = 0f;
@@ -64,17 +66,51 @@ public class PlayerController : MonoBehaviour
 
 
     }
+    
+    private GameObject currentBulletPrefab
+    {
+        get
+        {
+            switch(GameManager.Instance.currentBullet)
+            {
+                default: //"Bullet"
+                    {
+                        nextFireTime = Time.time + 0.5f;
+                        return bulletPrefab;
+                    }
+                case "Bloom":
+                    {
+                        nextFireTime = Time.time + 0.3f;
+                        return bloomBulletPrefab;
+                    }
+                case "Wave":
+                    {
+                        nextFireTime = Time.time + 0.1f;
+                        return waveBulletPrefab;
+                    }
+            }
+        }
+    }
 
+    public void HandleShooting(PlayerController player)
+    {
+        if (attackAction.IsPressed() && Time.time >= player.nextFireTime
+            && GameManager.Instance.GetStateName() == "PlayingState")
+        {
+            player.FireBullet();
+            
+        }
 
+    }
 
     public void FireBullet()
     {
         //fireRate = 100f / ((GameManager.Instance.score/10f)+100f);
 
 
-        if (bulletPrefab && firePoint)
+        if (currentBulletPrefab && firePoint)
         {
-            Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+            Instantiate(currentBulletPrefab, firePoint.position, firePoint.rotation);
 
             AudioManager.Instance.PlayShootSound();
             // Play shoot sound effect
@@ -124,16 +160,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void HandleShooting(PlayerController player)
-    {
-        if (attackAction.IsPressed() && Time.time >= player.nextFireTime
-            && GameManager.Instance.GetStateName() == "PlayingState")
-        {
-            player.FireBullet();
-            player.nextFireTime = Time.time + player.fireRate;
-        }
 
-    }
 
     private void TakeDamage()
     {

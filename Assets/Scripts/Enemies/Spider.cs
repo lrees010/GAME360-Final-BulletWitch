@@ -14,7 +14,7 @@ public class Spider : MonoBehaviour
     private Rigidbody2D rb;
     private Collider2D col;
 
-    private float birthTime = Time.time;
+    private float birthTime;
 
     private void Start()
     {

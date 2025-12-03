@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour
     // Singleton instance
     public static GameManager Instance { get; private set; }
 
+    public string currentBullet = "Bullet";
+
     [Header("Game Stats")]
     public int score = 0;//score is calculated
     public int lives = 3;
@@ -132,7 +134,7 @@ public class GameManager : MonoBehaviour
 
         if (score>1999)
         {
-            SceneManager.LoadScene("WinScreen");
+            //SceneManager.LoadScene("WinScreen");
         }
     }
 

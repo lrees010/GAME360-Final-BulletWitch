@@ -3,8 +3,8 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     [Header("Bullet Settings")]
-    public float speed = 10f;
-    public float lifetime = 3f;
+    private float speed = 10f;
+    private float lifetime = 3f;
 
     private Rigidbody2D rb;
 
