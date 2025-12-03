@@ -40,7 +40,7 @@ public class AudioManager : MonoBehaviour
         musicSource.loop = true;
 
 
-        EventManager.Subscribe("OnScoreChanged", PlayCoinSound);
+        //EventManager.Subscribe("OnScoreChanged", PlayCoinSound);
     }
 
     [Header("Settings")]
@@ -78,7 +78,7 @@ public class AudioManager : MonoBehaviour
 
     private void OnDestroy()
     {
-        EventManager.Unsubscribe("OnScoreChanged", PlayCoinSound);
+        //EventManager.Unsubscribe("OnScoreChanged", PlayCoinSound);
     }
 
     public void PlaySFX(AudioClip clip)
@@ -131,14 +131,14 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    void PlayCoinSound()
-    {
-        PlaySFX(CoinSound);
-    }
+
 
 
     //non observer sounds
-
+    public void PlayCoinSound()
+    {
+        PlaySFX(CoinSound);
+    }
     public void PlayShootSound() => PlaySFX(ShootSound);
 
     public void PlayBloomShootSound() => PlaySFX(BloomShootSound);

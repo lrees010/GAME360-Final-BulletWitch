@@ -134,6 +134,8 @@ public class GameManager : MonoBehaviour
 
         EventManager.TriggerEvent("OnScoreChanged");
 
+       
+
         if (score>1999)
         {
             //SceneManager.LoadScene("WinScreen");
@@ -179,6 +181,7 @@ public class GameManager : MonoBehaviour
 
     public void CollectiblePickedUp(int value)
     {
+        AudioManager.Instance.PlayCoinSound();
         AddScore(value);
         Debug.Log($"Collectible picked up worth {value} points!");
     }
