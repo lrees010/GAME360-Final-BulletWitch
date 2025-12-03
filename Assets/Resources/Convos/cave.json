@@ -3,17 +3,17 @@
         {
             "speaker": "Witch",
             "text": "Wow, I barely got away. Let's get into the caves.",
-            "faceImagePath": "Faces/witch"
+            "faceImagePath": "Faces/PlayerPortrait/happy"
         },
         {
-            "speaker": "bizarre",
-            "text": "Who cares.",
-            "faceImagePath": "Faces/bizarre"
+            "speaker": "Broom",
+            "text": "I am a broom.",
+            "faceImagePath": "Faces/BroomPortrait/broom"
         },
         {
             "speaker": "Witch",
             "text": "...",
-            "faceImagePath": "Faces/witch"
+            "faceImagePath": "Faces/PlayerPortrait/normal"
         }
     ]
 }

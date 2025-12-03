@@ -3,17 +3,17 @@
         {
             "speaker": "Witch",
             "text": "Oh no, I've been poisoned.",
-            "faceImagePath": "Faces/witch"
+            "faceImagePath": "Faces/PlayerPortrait/scared"
         },
         {
-            "speaker": "bizarre",
+            "speaker": "Broom",
             "text": "Wow, that's interesting.",
-            "faceImagePath": "Faces/bizarre"
+            "faceImagePath": "Faces/BroomPortrait/broom"
         },
         {
             "speaker": "Witch",
             "text": "I need to get the antidote, quickly.",
-            "faceImagePath": "Faces/witch"
+            "faceImagePath": "Faces/PlayerPortrait/normal"
         }
     ]
 }
