@@ -112,7 +112,7 @@ public class PlayerController : MonoBehaviour
         {
             Instantiate(currentBulletPrefab, firePoint.position, firePoint.rotation);
 
-            AudioManager.Instance.PlayShootSound();
+            
             // Play shoot sound effect
         }
 

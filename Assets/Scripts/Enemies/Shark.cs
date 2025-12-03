@@ -13,11 +13,14 @@ public class Shark : MonoBehaviour
     private Transform player;
     private Rigidbody2D rb;
 
+    private SpriteRenderer spr;
+
     private Vector2 chargeDirection;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        spr = GetComponent<SpriteRenderer>();
 
         // Find player
         GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
@@ -95,10 +98,39 @@ public class Shark : MonoBehaviour
         }
     }
 
+    private System.Collections.IEnumerator DamageVisual(float fadeDuration, float holdDuration)
+    {
+        float time = 0f;
+        /*
+        
+        if (holdDuration > 0f)
+        {
+            while (time < holdDuration)
+            {
+                time += Time.deltaTime;
+                yield return null;
+            }
+
+        }
+        */
+
+        time = 0f;
+        //text.color = new Color(text.color.r, text.color.g, text.color.b, 1f);
+        while (time < fadeDuration)
+        {
+            time += Time.deltaTime;
+            spr.color = new Color((1f-(time/fadeDuration))+holdDuration, spr.color.g, spr.color.b);
+            yield return null;
+        }
+    }
+
     public void TakeDamage(int damage)
     {
         health -= damage;
         rb.linearVelocity = rb.linearVelocity * new Vector2(0.8f, 0.5f);
+
+        StopAllCoroutines();
+        StartCoroutine(DamageVisual(0.3f,0.3f));
 
         if (health <= 0)
         {

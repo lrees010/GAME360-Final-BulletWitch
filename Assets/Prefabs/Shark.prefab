@@ -168,5 +168,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cad175014a87988488f3903b3ff592b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Shark
-  health: 1
   moveSpeed: 8

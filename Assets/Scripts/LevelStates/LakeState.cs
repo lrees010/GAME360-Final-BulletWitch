@@ -44,14 +44,19 @@ public class LakeState : LevelState
     {
         if (Time.time >= nextSpawnTime)
         {
-            switch((int)Time.time%3)
+            switch((int)Time.time%4)
             {
                 case 0:
                     EnemySpawner.Instance.SpawnCharger();
                     EnemySpawner.Instance.SpawnSpider();
                     break;
-                case >=1:
+                case 1:
                     Debug.Log("sharko");
+                    EnemySpawner.Instance.SpawnShark();
+                    EnemySpawner.Instance.SpawnSpider();
+                    break;
+                case >=2:
+                    EnemySpawner.Instance.SpawnCharger();
                     EnemySpawner.Instance.SpawnShark();
                     break;
             }

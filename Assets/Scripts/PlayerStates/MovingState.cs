@@ -24,6 +24,8 @@ public class MovingState : PlayerState
         Vector2 movement = player.moveAction.ReadValue<Vector2>();
         player.rb.linearVelocity = movement * player.moveSpeed;
 
+        player.transform.position = new Vector2(player.transform.position.x,Mathf.Clamp(player.transform.position.y,-6f,5f));
+
         if (Mathf.Abs(movement.x) + Mathf.Abs(movement.y) < 0.1f)
         {
             player.ChangeState(player.IdleState);
