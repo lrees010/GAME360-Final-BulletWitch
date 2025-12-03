@@ -154,6 +154,7 @@ public class PlayerController : MonoBehaviour
         {
             
             GameManager.Instance.bombs = GameManager.Instance.bombs - 1;
+            AudioManager.Instance.PlayBombSound();
             EventManager.TriggerEvent("OnBomb");
             ChangeState(PowerupState);
             //add flair later

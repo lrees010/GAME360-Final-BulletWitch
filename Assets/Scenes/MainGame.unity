@@ -3956,6 +3956,7 @@ MonoBehaviour:
   CoinSound: {fileID: 8300000, guid: 3d16df54a64d949448af175ba9d65dea, type: 3}
   AchievementSound: {fileID: 8300000, guid: 67f3fc789b708144881655c2f3b0d11e, type: 3}
   EnemyKilledSound: {fileID: 8300000, guid: 9bc9cd8bb1d84dc4d8ed2a0418b925dd, type: 3}
+  BombSound: {fileID: 8300000, guid: dc6b9904926bd59449bfe9e1fedff4e4, type: 3}
   ClearingMusic: {fileID: 8300000, guid: 77a6b3c4029bbde488a5886c9cf83875, type: 3}
   ForestMusic: {fileID: 8300000, guid: d76bb2cab213e7b4799c79631713c174, type: 3}
 --- !u!4 &1893884080

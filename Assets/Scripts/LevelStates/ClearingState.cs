@@ -5,12 +5,7 @@ public class ClearingState : LevelState
 {
     //
     //
-    private float nextSpawnTime = 0f;
-    private float spawnRate = 1.5f;
 
-    //col
-    private float nextCoinTime = 0f;
-    private float coinSpawnRate = 2f;
 
 
     public override void EnterState(LevelManager level)

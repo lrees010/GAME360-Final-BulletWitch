@@ -214,6 +214,7 @@ public class GameManager : MonoBehaviour
         score = 0;
         lives = 3;
         enemiesKilled = 0;
+        bombs = 3;
         timePassed = 0f;
         playingTimePassed = 0f;
         currentBullet = "Bullet";

@@ -43,7 +43,7 @@ public class CollectibleSpawner : MonoBehaviour //provide quick collectible spaw
         refreshSpawnPoints();
     }
 
-    private float nextSpawnTime = 0f;
+    //private float nextSpawnTime = 0f;
 
     //public float spawnRate = 2f;
     void Update()

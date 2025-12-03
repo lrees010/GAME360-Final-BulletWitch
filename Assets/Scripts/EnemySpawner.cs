@@ -45,7 +45,7 @@ public class EnemySpawner : MonoBehaviour //provide quick enemy spawning and ui 
         refreshSpawnPoints();
     }
 
-    private float nextSpawnTime = 0f;
+    //private float nextSpawnTime = 0f;
 
     //public float spawnRate = 2f;
     void Update()

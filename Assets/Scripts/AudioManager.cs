@@ -52,6 +52,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip CoinSound;
     public AudioClip AchievementSound;
     public AudioClip EnemyKilledSound;
+    public AudioClip BombSound;
 
     public AudioClip ClearingMusic;
     public AudioClip ForestMusic;
@@ -146,4 +147,6 @@ public class AudioManager : MonoBehaviour
     public void PlayAchievementSound() => PlaySFX(AchievementSound);
 
     public void PlayEnemyKilledSound() => PlaySFX(EnemyKilledSound);
+
+    public void PlayBombSound() => PlaySFX(BombSound);
 }
