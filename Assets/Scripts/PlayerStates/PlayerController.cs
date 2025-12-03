@@ -192,8 +192,12 @@ public class PlayerController : MonoBehaviour
                 break;
 
             case "Life":
-                GameManager.Instance.LifePickedUp();
-                Destroy(other.gameObject);
+                if (GameManager.Instance.lives< GameManager.Instance.maxLives)
+                {
+                    GameManager.Instance.LifePickedUp();
+                    Destroy(other.gameObject);
+                }
+
                 break;
 
             case "Bomb":

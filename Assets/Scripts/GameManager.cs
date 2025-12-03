@@ -18,6 +18,8 @@ public class GameManager : MonoBehaviour
     public int bombs = 3;
     public int enemiesKilled = 0;
 
+    public int maxLives = 6;
+
     public float timePassed = 0f;
     public float timeLimit = 500f;
 

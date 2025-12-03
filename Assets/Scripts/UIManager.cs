@@ -233,7 +233,7 @@ public class UIManager : MonoBehaviour
     {
         if (livesText)
         {
-            livesText.text = "Lives: " + GameManager.Instance.lives;
+            livesText.text = "Lives: " + GameManager.Instance.lives+"/"+GameManager.Instance.maxLives;
             
         }
         else
