@@ -24,6 +24,8 @@ public class UIManager : MonoBehaviour
     public GameObject gameOverPanel;
     public GameObject pausePanel;
 
+    public GameObject slowingPanel;
+
 
 
     void Start()
@@ -77,6 +79,14 @@ public class UIManager : MonoBehaviour
     void LevelChanged(object data)
     {
         
+    }
+
+    private void Update()
+    {
+        if (slowingPanel != null && GameManager.Instance.GetStateName()=="PlayingState" && Time.timeScale>0f)
+        {
+            slowingPanel.GetComponent<CanvasGroup>().alpha = 1f-(Time.timeScale);
+        }
     }
     void UpdateAchievement(object data)
     {
@@ -292,6 +302,8 @@ public class UIManager : MonoBehaviour
 
         pausePanel = GameObject.Find("PausePanel");
         gameOverPanel = GameObject.Find("GameEndPanel");
+
+        slowingPanel = GameObject.Find("SlowingPanel");
 
 
     }

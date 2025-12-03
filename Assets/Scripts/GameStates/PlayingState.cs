@@ -13,6 +13,7 @@ public class PlayingState : GameState
     private float lastSlowTime = 0f;
     private bool slowedTime = false;
     private float slowingSpeed = 0.6f;
+    private float slowingInSpeed = 0.2f;
     public override void UpdateState(GameManager game)
     {
         if (game.speedOfTime > 0f && !DialogueManager.Instance.isDialogueActive)
@@ -41,7 +42,7 @@ public class PlayingState : GameState
             slowedTime = true;
 
             game.speedOfTime = Mathf.Clamp(
-                ((slowingSpeed-(Time.time - lastSlowTime)) / slowingSpeed),
+                ((slowingInSpeed - (Time.time - lastSlowTime)) / slowingInSpeed),
                 game.speedOfSlowedTime,
                 1f);
         }

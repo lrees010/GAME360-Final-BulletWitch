@@ -48,7 +48,7 @@ public class BeachState : LevelState
             {
                 case 0:
                     EnemySpawner.Instance.SpawnCharger();
-                    EnemySpawner.Instance.SpawnSpider();
+                    //EnemySpawner.Instance.SpawnSpider();
                     break;
                 case 1:
                     EnemySpawner.Instance.SpawnCharger();
