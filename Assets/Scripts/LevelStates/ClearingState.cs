@@ -18,6 +18,7 @@ public class ClearingState : LevelState
         Debug.Log("Entered ClearingState");
         GameManager.Instance.level = 1;
         GameManager.Instance.EnemyGoal = -1;
+        GameManager.Instance.currentBullet = "Bullet";
 
         TextAsset jsonFile = Resources.Load<TextAsset>("Convos/initial");
         DialogueManager.Instance.StartConversation(jsonFile);
