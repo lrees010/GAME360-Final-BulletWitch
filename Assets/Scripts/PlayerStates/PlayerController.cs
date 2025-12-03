@@ -187,6 +187,9 @@ public class PlayerController : MonoBehaviour
             case "Enemy":
                 TakeDamage();
                 break;
+            case "EnemyBullet":
+                TakeDamage();
+                break;
 
             case "Life":
                 GameManager.Instance.LifePickedUp();

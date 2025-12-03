@@ -8,6 +8,8 @@ public class EnemySpawner : MonoBehaviour //provide quick enemy spawning and ui 
     public GameObject spiderPrefab;
     public GameObject sharkPrefab;
 
+    public GameObject spitterPrefab;
+
     public Transform[] spawnPoints;
 
     public static EnemySpawner Instance { get; private set; }
@@ -93,4 +95,6 @@ public class EnemySpawner : MonoBehaviour //provide quick enemy spawning and ui 
     public void SpawnSpider() => SpawnEnemy(spiderPrefab); //yup
 
     public void SpawnShark() => SpawnEnemy(sharkPrefab);
+
+    public void SpawnSpitter() => SpawnEnemy(spitterPrefab);
 }

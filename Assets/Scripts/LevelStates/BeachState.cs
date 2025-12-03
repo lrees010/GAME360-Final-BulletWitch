@@ -1,18 +1,18 @@
 using System;
 using UnityEngine;
 
-public class LakeState : LevelState
+public class BeachState : LevelState
 {
     private float nextSpawnTime = 0f;
     private float spawnRate = 0.4f;
     //col
     private float nextCoinTime = 0f;
-    private float coinSpawnRate = 2f;
+    private float coinSpawnRate = 1.7f;
 
     public override void EnterState(LevelManager level)
     {
-        Debug.Log("Entered LakeState");
-        GameManager.Instance.level = 3;
+        Debug.Log("Entered BeachState");
+        GameManager.Instance.level = 4;
         GameManager.Instance.EnemyGoal = 40;
 
         GameManager.Instance.currentBullet = "Bloom";
@@ -31,7 +31,7 @@ public class LakeState : LevelState
         }
         if (GameManager.Instance.EnemyGoal <= 0)
         {
-            level.ChangeState(level.BeachState); //add lake later
+            //level.ChangeState(level.ForestState); //add lake later
         }
         else
         {
@@ -51,15 +51,15 @@ public class LakeState : LevelState
                     EnemySpawner.Instance.SpawnSpider();
                     break;
                 case 1:
-                    //Debug.Log("sharko");
-                    EnemySpawner.Instance.SpawnShark();
-                    //EnemySpawner.Instance.SpawnSpider();
+                    EnemySpawner.Instance.SpawnCharger();
                     break;
                 case >=2:
-                    EnemySpawner.Instance.SpawnCharger();
-                    EnemySpawner.Instance.SpawnShark();
+                    EnemySpawner.Instance.SpawnSpider();
+                    EnemySpawner.Instance.SpawnSpitter();
                     break;
             }
+
+            
             
 
             nextSpawnTime = Time.time + spawnRate;
@@ -73,6 +73,7 @@ public class LakeState : LevelState
             {
                 case 0:
                     CollectibleSpawner.Instance.SpawnCoin();
+                    CollectibleSpawner.Instance.SpawnLife();
                     break;
                 case 1:
                     CollectibleSpawner.Instance.SpawnLife();
@@ -89,6 +90,6 @@ public class LakeState : LevelState
     }
     public override void ExitState(LevelManager level) { }
 
-    public override string GetLevelName() => "Lake";
+    public override string GetLevelName() => "Beach";
 }
 

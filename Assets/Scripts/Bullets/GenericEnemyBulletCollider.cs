@@ -1,7 +1,8 @@
 using UnityEngine;
 
-public class GenericBulletCollider : MonoBehaviour
+public class GenericEnemyBulletCollider : MonoBehaviour
 {
+
     private void Start()
     {
         EventManager.Subscribe("OnPlayerDeath", Vanish);
@@ -16,21 +17,19 @@ public class GenericBulletCollider : MonoBehaviour
 
     private void Vanish()
     {
-        Destroy(gameObject);
+        Destroy(gameObject );
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Enemy"))
+        if (other.CompareTag("Player"))
         {
             Destroy(gameObject);
         }
 
         // Destroy BloomBullet if it hits walls or boundaries
-        /*
         if (other.CompareTag("Wall"))
         {
             Destroy(gameObject);
         }
-        */
     }
 }

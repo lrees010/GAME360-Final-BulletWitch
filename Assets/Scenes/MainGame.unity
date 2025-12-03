@@ -985,37 +985,6 @@ CanvasGroup:
   m_Interactable: 0
   m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
---- !u!1 &336077062
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 336077063}
-  m_Layer: 0
-  m_Name: Spawn 04
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &336077063
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 336077062}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -8.39, y: 7.04, z: 90.46}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1021244112}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &426750000
 GameObject:
   m_ObjectHideFlags: 0
@@ -1065,37 +1034,6 @@ Transform:
   m_Children:
   - {fileID: 2119380897}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &458559834
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 458559835}
-  m_Layer: 0
-  m_Name: Spawn 04 (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &458559835
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 458559834}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 10, y: 7.0399995, z: 90.46}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1021244112}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &518835207
 GameObject:
@@ -2366,6 +2304,7 @@ MonoBehaviour:
   chargerPrefab: {fileID: 3333278696691510216, guid: d971f7936aacef644b6c27cf8d3fac5e, type: 3}
   spiderPrefab: {fileID: 3333278696691510216, guid: 52f09381f70100f4a93c0eb4f2e81769, type: 3}
   sharkPrefab: {fileID: 3333278696691510216, guid: 2c10941e0304e8a4f9e651f7bcb5e90d, type: 3}
+  spitterPrefab: {fileID: 3333278696691510216, guid: bea83e2f81f07a145ba4442b3beb330b, type: 3}
   spawnPoints: []
 --- !u!4 &1021244112
 Transform:
@@ -2383,10 +2322,8 @@ Transform:
   - {fileID: 265231161}
   - {fileID: 1846391230}
   - {fileID: 961932718}
-  - {fileID: 336077063}
   - {fileID: 1686492191}
   - {fileID: 922362468}
-  - {fileID: 458559835}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1077280299
@@ -3400,6 +3337,7 @@ MonoBehaviour:
   Cave: {fileID: 2800000, guid: e38a6f3136f30d7468ea6a2a7620b5ed, type: 3}
   Clearing: {fileID: 2800000, guid: 5997cd6b729e5aa47b6860e8f34b74b4, type: 3}
   Lake: {fileID: 2800000, guid: 41933ac8e6be72042af5b4686137e0e5, type: 3}
+  Beach: {fileID: 2800000, guid: 00a243b98c94ea84987a07c9b9467c1d, type: 3}
 --- !u!225 &1673269802
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -3820,6 +3758,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AudioManager
   generalVolume: 1
   ShootSound: {fileID: 8300000, guid: aa659eeaf7a850a41a19d990aa3355dc, type: 3}
+  BloomShootSound: {fileID: 8300000, guid: 005f236d730616e40980873737ad50b8, type: 3}
   CoinSound: {fileID: 8300000, guid: 3d16df54a64d949448af175ba9d65dea, type: 3}
   AchievementSound: {fileID: 8300000, guid: 67f3fc789b708144881655c2f3b0d11e, type: 3}
   EnemyKilledSound: {fileID: 8300000, guid: 9bc9cd8bb1d84dc4d8ed2a0418b925dd, type: 3}

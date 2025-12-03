@@ -8,6 +8,7 @@ public class LevelManager : MonoBehaviour
     public CaveState CaveState = new CaveState();
     public ClearingState ClearingState = new ClearingState();
     public LakeState LakeState = new LakeState();
+    public BeachState BeachState = new BeachState();
 
     private void Start()
     {
@@ -34,7 +35,7 @@ public class LevelManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             //EnemyGoal = 0;
-            ChangeState(LakeState);
+            ChangeState(BeachState);
             if (DialogueManager.Instance.isDialogueActive)
             {
                 DialogueManager.Instance.EndDialogue();
