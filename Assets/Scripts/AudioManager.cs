@@ -41,7 +41,6 @@ public class AudioManager : MonoBehaviour
 
 
         EventManager.Subscribe("OnScoreChanged", PlayCoinSound);
-        EventManager.Subscribe("OnEnemyKilled", PlayKilledSound);
     }
 
     [Header("Settings")]
@@ -79,7 +78,6 @@ public class AudioManager : MonoBehaviour
     private void OnDestroy()
     {
         EventManager.Unsubscribe("OnScoreChanged", PlayCoinSound);
-        EventManager.Unsubscribe("OnEnemyKilled", PlayKilledSound);
     }
 
     public void PlaySFX(AudioClip clip)
@@ -144,5 +142,5 @@ public class AudioManager : MonoBehaviour
 
     public void PlayAchievementSound() => PlaySFX(AchievementSound);
 
-    public void PlayKilledSound() => PlaySFX(EnemyKilledSound);
+    public void PlayEnemyKilledSound() => PlaySFX(EnemyKilledSound);
 }

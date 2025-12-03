@@ -5,19 +5,21 @@ public class Spider : MonoBehaviour
 {
     [Header("Spider Stats")]
     private int health = 1;
-    private float moveSpeed = 12f;
+    private float moveSpeed = 20f;
 
     [Header("AI")]
     //public float detectionRange = 0.5f;
 
     private Transform player;
     private Rigidbody2D rb;
+    private Collider2D col;
 
     private float birthTime = Time.time;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        col = GetComponent<Collider2D>();
 
         // Find player
         GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
@@ -45,7 +47,7 @@ public class Spider : MonoBehaviour
         {
             Vanish();
         }
-        if (Time.time-birthTime>5f)
+        if (isEscaping == true)
         {
             Escape();
         }
@@ -55,6 +57,13 @@ public class Spider : MonoBehaviour
         }
     }
 
+    private bool isEscaping
+    {
+        get
+        {
+            return Time.time - birthTime > 5f;
+        }
+    }
     private void Vanish() //player dies = all enemies vanish, no points
     {
         Destroy(gameObject);
@@ -75,6 +84,7 @@ public class Spider : MonoBehaviour
     private void Escape()
     {
         rb.AddForce(new Vector2(0f, -5f));
+
     }
     private void ChasePlayer()
     {
@@ -93,7 +103,7 @@ public class Spider : MonoBehaviour
 
                 rb.AddForce(direction * moveSpeed);
                 //rb.linearVelocity = new Vector2(rb.linearVelocity.x, Mathf.Clamp(rb.linearVelocity.y,-4f,-3f));
-                rb.linearVelocity = Vector2.ClampMagnitude(rb.linearVelocity,4f);
+                rb.linearVelocity = Vector2.ClampMagnitude(rb.linearVelocity,7f);
         }
     }
 
@@ -115,6 +125,11 @@ public class Spider : MonoBehaviour
            TakeDamage(1);
            Destroy(gameObject); // Destroy self
         }
+
+        if (other.CompareTag("Wall") && !isEscaping)
+        {
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x*-0.2f, rb.linearVelocity.y * -0.2f);
+        }
     }
 
     private void Die()
@@ -122,6 +137,7 @@ public class Spider : MonoBehaviour
         // This is where Singleton shines!
         // Any enemy can easily notify the GameManager
         GameManager.Instance.EnemyKilled(); //update the score of the player
+        AudioManager.Instance.PlayEnemyKilledSound();
         Destroy(gameObject); // the enemy gets destroyed
     }
 

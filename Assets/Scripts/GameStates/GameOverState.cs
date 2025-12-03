@@ -11,6 +11,8 @@ public class GameOverState : GameState
         EventManager.TriggerEvent("OnGameOver");
         EventManager.ClearAllEvents();
         //Time.timeScale = 0f; // Pause the game
+
+        AudioManager.Instance.PauseMusic(true);
     }
 
 

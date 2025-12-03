@@ -104,6 +104,8 @@ public class Enemy : MonoBehaviour
         // This is where Singleton shines!
         // Any enemy can easily notify the GameManager
         GameManager.Instance.EnemyKilled(); //update the score of the player
+        AudioManager.Instance.PlayEnemyKilledSound();
+        
         Destroy(gameObject); // the enemy gets destroyed
     }
 
