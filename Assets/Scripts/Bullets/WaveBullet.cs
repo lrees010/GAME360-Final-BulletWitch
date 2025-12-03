@@ -50,18 +50,4 @@ public class WaveBullet : MonoBehaviour
         // Destroy WaveBullet after lifetime
         Destroy(gameObject, lifetime);
     }
-
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.CompareTag("Enemy"))
-        {
-            Destroy(gameObject);
-        }
-
-        // Destroy WaveBullet if it hits walls or boundaries
-        if (other.CompareTag("Wall"))
-        {
-            Destroy(gameObject);
-        }
-    }
 }

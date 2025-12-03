@@ -118,19 +118,26 @@ public class Shark : MonoBehaviour
         //text.color = new Color(text.color.r, text.color.g, text.color.b, 1f);
         while (time < fadeDuration)
         {
+           
             time += Time.deltaTime;
             spr.color = new Color((1f-(time/fadeDuration))+holdDuration, spr.color.g, spr.color.b);
             yield return null;
         }
     }
 
+
+    private Coroutine damageCoroutine;
     public void TakeDamage(int damage)
     {
         health -= damage;
         rb.linearVelocity = rb.linearVelocity * new Vector2(0.8f, 0.5f);
 
-        StopAllCoroutines();
-        StartCoroutine(DamageVisual(0.3f,0.3f));
+        if (damageCoroutine!=null)
+        {
+            StopCoroutine(damageCoroutine);
+        }
+        //StopAllCoroutines();
+        damageCoroutine = StartCoroutine(DamageVisual(0.3f, 0.3f));
 
         if (health <= 0)
         {

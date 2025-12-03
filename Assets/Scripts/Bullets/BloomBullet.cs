@@ -21,7 +21,7 @@ public class BloomBullet : MonoBehaviour
     }
     private void Start()
     {
-        AudioManager.Instance.PlayShootSound();
+        AudioManager.Instance.PlayBloomShootSound();
         send(Instantiate(bloom), Vector2.up);
         send(Instantiate(bloom), (Vector2.up + new Vector2(-0.2f, 0f)));
         send(Instantiate(bloom), (Vector2.up + new Vector2(0.2f, 0f)));
@@ -30,17 +30,5 @@ public class BloomBullet : MonoBehaviour
         Destroy(gameObject, lifetime);
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.CompareTag("Enemy"))
-        {
-            Destroy(gameObject);
-        }
 
-        // Destroy BloomBullet if it hits walls or boundaries
-        if (other.CompareTag("Wall"))
-        {
-            Destroy(gameObject);
-        }
-    }
 }

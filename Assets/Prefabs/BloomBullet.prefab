@@ -60,6 +60,7 @@ GameObject:
   - component: {fileID: 7465970180216594920}
   - component: {fileID: 8631821670933243064}
   - component: {fileID: 595723653891319808}
+  - component: {fileID: 8412196117829959214}
   m_Layer: 0
   m_Name: Bloom
   m_TagString: Bullet
@@ -203,3 +204,15 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &8412196117829959214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8410475308135785868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd7ec5ff1a016d64c95dce45556ac1e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GenericBulletCollider

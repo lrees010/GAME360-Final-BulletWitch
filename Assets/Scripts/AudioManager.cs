@@ -48,6 +48,7 @@ public class AudioManager : MonoBehaviour
 
     [Header("Audio")]
     public AudioClip ShootSound; //this is where you put your mp3/wav files
+    public AudioClip BloomShootSound;
     public AudioClip CoinSound;
     public AudioClip AchievementSound;
     public AudioClip EnemyKilledSound;
@@ -139,6 +140,8 @@ public class AudioManager : MonoBehaviour
     //non observer sounds
 
     public void PlayShootSound() => PlaySFX(ShootSound);
+
+    public void PlayBloomShootSound() => PlaySFX(BloomShootSound);
 
     public void PlayAchievementSound() => PlaySFX(AchievementSound);
 
