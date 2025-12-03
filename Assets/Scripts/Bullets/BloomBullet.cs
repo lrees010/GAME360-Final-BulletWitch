@@ -21,9 +21,10 @@ public class BloomBullet : MonoBehaviour
     }
     private void Start()
     {
+        AudioManager.Instance.PlayShootSound();
         send(Instantiate(bloom), Vector2.up);
-        send(Instantiate(bloom), (Vector2.up+Vector2.left));
-        send(Instantiate(bloom), (Vector2.up + Vector2.right));
+        send(Instantiate(bloom), (Vector2.up + new Vector2(-0.2f, 0f)));
+        send(Instantiate(bloom), (Vector2.up + new Vector2(0.2f, 0f)));
 
         // Destroy BloomBullet after lifetime
         Destroy(gameObject, lifetime);

@@ -75,7 +75,7 @@ public class PlayerController : MonoBehaviour
             {
                 default: //"Bullet"
                     {
-                        nextFireTime = Time.time + 0.5f;
+                        nextFireTime = Time.time + 0.3f;
                         return bulletPrefab;
                     }
                 case "Bloom":

@@ -4,7 +4,7 @@ using UnityEngine;
 public class Shark : MonoBehaviour
 {
     [Header("Shark Stats")]
-    public int health = 1;
+    private int health = 5;
     public float moveSpeed = 8f;
 
     [Header("AI")]
@@ -98,9 +98,11 @@ public class Shark : MonoBehaviour
     public void TakeDamage(int damage)
     {
         health -= damage;
+        rb.linearVelocity = rb.linearVelocity * new Vector2(0.8f, 0.5f);
 
         if (health <= 0)
         {
+            //Debug.Log("die");
             Die();
         }
     }
@@ -110,7 +112,7 @@ public class Shark : MonoBehaviour
         {
             // Bullet hit enemy
             TakeDamage(1);
-            Destroy(gameObject); // Destroy self
+            
         }
     }
     private void Die()

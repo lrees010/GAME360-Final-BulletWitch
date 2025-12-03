@@ -40,6 +40,7 @@ public class WaveBullet : MonoBehaviour
     }
     private void Start()
     {
+        AudioManager.Instance.PlayShootSound();
         //send(Instantiate(bloom), Vector2.up, true);
         send(Instantiate(bloom), (Vector2.up+new Vector2(-0.5f,0f)), true);
         send(Instantiate(bloom), (Vector2.up + new Vector2(0.5f, 0f)), true);

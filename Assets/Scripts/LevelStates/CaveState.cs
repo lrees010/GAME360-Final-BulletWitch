@@ -4,7 +4,7 @@ using UnityEngine;
 public class CaveState : LevelState
 {
     private float nextSpawnTime = 0f;
-    private float spawnRate = 0.7f;
+    private float spawnRate = 0.4f;
     //col
     private float nextCoinTime = 0f;
     private float coinSpawnRate = 2f;
@@ -13,7 +13,7 @@ public class CaveState : LevelState
     {
         Debug.Log("Entered CaveState");
         GameManager.Instance.level = 2;
-        GameManager.Instance.EnemyGoal = 10;
+        GameManager.Instance.EnemyGoal = 30;
 
         TextAsset jsonFile = Resources.Load<TextAsset>("Convos/cave");
         DialogueManager.Instance.StartConversation(jsonFile);

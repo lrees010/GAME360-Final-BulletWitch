@@ -2109,7 +2109,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54f3b3621ec420440a54614334cd39f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentBullet: Wave
+  currentBullet: Bullet
   score: 0
   lives: 3
   bombs: 3

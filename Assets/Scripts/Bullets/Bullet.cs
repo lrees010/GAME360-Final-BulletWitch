@@ -12,6 +12,7 @@ public class Bullet : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         rb.linearVelocity = transform.up * speed;
+        AudioManager.Instance.PlayShootSound();
 
         // Destroy bullet after lifetime
         Destroy(gameObject, lifetime);

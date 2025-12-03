@@ -13,7 +13,9 @@ public class LakeState : LevelState
     {
         Debug.Log("Entered LakeState");
         GameManager.Instance.level = 3;
-        GameManager.Instance.EnemyGoal = 10;
+        GameManager.Instance.EnemyGoal = 40;
+
+        GameManager.Instance.currentBullet = "Bloom";
 
         //TextAsset jsonFile = Resources.Load<TextAsset>("Convos/cave");
         //DialogueManager.Instance.StartConversation(jsonFile);
@@ -46,6 +48,7 @@ public class LakeState : LevelState
             {
                 case 0:
                     EnemySpawner.Instance.SpawnCharger();
+                    EnemySpawner.Instance.SpawnSpider();
                     break;
                 case >=1:
                     Debug.Log("sharko");
