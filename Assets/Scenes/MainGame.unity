@@ -2119,6 +2119,7 @@ MonoBehaviour:
   speedOfTime: 1
   speedOfSlowedTime: 0.5
   slowingTime: 0
+  powerupActive: 0
   level: 1
   exitAction:
     m_Name: Exit
@@ -2270,6 +2271,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chargerPrefab: {fileID: 3333278696691510216, guid: d971f7936aacef644b6c27cf8d3fac5e, type: 3}
   spiderPrefab: {fileID: 3333278696691510216, guid: 52f09381f70100f4a93c0eb4f2e81769, type: 3}
+  sharkPrefab: {fileID: 3333278696691510216, guid: 2c10941e0304e8a4f9e651f7bcb5e90d, type: 3}
   spawnPoints: []
 --- !u!4 &1021244112
 Transform:

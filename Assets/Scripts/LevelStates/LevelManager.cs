@@ -7,6 +7,7 @@ public class LevelManager : MonoBehaviour
     public ForestState ForestState = new ForestState();
     public CaveState CaveState = new CaveState();
     public ClearingState ClearingState = new ClearingState();
+    public LakeState LakeState = new LakeState();
 
     private void Start()
     {
@@ -28,11 +29,12 @@ public class LevelManager : MonoBehaviour
     private void Update()
     {
         currentState.UpdateState(this);
+
         //debug level skipping
         if (Input.GetKeyDown(KeyCode.Space))
         {
             //EnemyGoal = 0;
-            ChangeState(CaveState);
+            ChangeState(LakeState);
             if (DialogueManager.Instance.isDialogueActive)
             {
                 DialogueManager.Instance.EndDialogue();

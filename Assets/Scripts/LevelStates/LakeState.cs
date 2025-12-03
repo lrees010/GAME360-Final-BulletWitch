@@ -1,22 +1,22 @@
 using System;
 using UnityEngine;
 
-public class CaveState : LevelState
+public class LakeState : LevelState
 {
     private float nextSpawnTime = 0f;
-    private float spawnRate = 0.7f;
+    private float spawnRate = 0.4f;
     //col
     private float nextCoinTime = 0f;
     private float coinSpawnRate = 2f;
 
     public override void EnterState(LevelManager level)
     {
-        Debug.Log("Entered CaveState");
-        GameManager.Instance.level = 2;
+        Debug.Log("Entered LakeState");
+        GameManager.Instance.level = 3;
         GameManager.Instance.EnemyGoal = 10;
 
-        TextAsset jsonFile = Resources.Load<TextAsset>("Convos/cave");
-        DialogueManager.Instance.StartConversation(jsonFile);
+        //TextAsset jsonFile = Resources.Load<TextAsset>("Convos/cave");
+        //DialogueManager.Instance.StartConversation(jsonFile);
 
     }
 
@@ -29,7 +29,7 @@ public class CaveState : LevelState
         }
         if (GameManager.Instance.EnemyGoal <= 0)
         {
-            level.ChangeState(level.LakeState); //add lake later
+            //level.ChangeState(level.ForestState); //add lake later
         }
         else
         {
@@ -42,13 +42,14 @@ public class CaveState : LevelState
     {
         if (Time.time >= nextSpawnTime)
         {
-            switch((int)Time.time%2)
+            switch((int)Time.time%3)
             {
                 case 0:
                     EnemySpawner.Instance.SpawnCharger();
                     break;
-                case 1:
-                    EnemySpawner.Instance.SpawnSpider();
+                case >=1:
+                    Debug.Log("sharko");
+                    EnemySpawner.Instance.SpawnShark();
                     break;
             }
             
@@ -72,7 +73,7 @@ public class CaveState : LevelState
                     CollectibleSpawner.Instance.SpawnBomb();
                     break;
             }
-            Debug.Log((int)Time.time % 3);
+            //Debug.Log((int)Time.time % 3);
             
             
             nextCoinTime = Time.time + coinSpawnRate;
@@ -80,6 +81,6 @@ public class CaveState : LevelState
     }
     public override void ExitState(LevelManager level) { }
 
-    public override string GetLevelName() => "Cave";
+    public override string GetLevelName() => "Lake";
 }
 

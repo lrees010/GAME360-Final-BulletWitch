@@ -37,7 +37,14 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
-        ChasePlayer();
+        if (InBounds==false)
+        {
+            Vanish();
+        }
+        else
+        {
+            ChasePlayer();
+        }
     }
 
     private void Vanish() //player dies = all enemies vanish, no points
@@ -50,6 +57,14 @@ public class Enemy : MonoBehaviour
         Vanish();
     }
 
+    private bool InBounds
+    {
+        get
+        {
+            return Mathf.Abs(transform.position.y) < 9f && Mathf.Abs(transform.position.x) < 15; //in the play area (not lower than -9, not more than 15 units left or right)
+        }
+    }
+
     private void ChasePlayer()
     {
         if (player)
@@ -60,9 +75,13 @@ public class Enemy : MonoBehaviour
             if (GameManager.Instance.score > 1999)
                 moveSpeed = 2f; */
             //float distance = Vector2.Distance(transform.position, player.position);
-
-            if (transform.position.y > -9f && Mathf.Abs(transform.position.x) < 15) //in the play area (not lower than -9, not more than 15 units left or right)
+            if (GameManager.Instance.powerupActive)
             {
+                rb.linearVelocity = Vector2.zero;
+                return;
+            }
+
+
                 Vector2 direction = (player.position - transform.position).normalized;
 
                 //direction = new Vector2(direction.x, -1f); //Mathf.Clamp(direction.y,-1f,-0.1f)
@@ -72,12 +91,7 @@ public class Enemy : MonoBehaviour
                 rb.linearVelocity = Vector2.ClampMagnitude(rb.linearVelocity,9f);
                 
                
-            }
-            else
-            {
-                //rb.linearVelocity = Vector2.zero;
-                Vanish();
-            }
+
         }
     }
 

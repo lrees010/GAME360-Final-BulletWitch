@@ -24,6 +24,8 @@ public class GameManager : MonoBehaviour
     public float speedOfSlowedTime = 0.5f;
     public bool slowingTime = false;
 
+    public bool powerupActive = false;
+
     public int level = 1; //aka wave
 
     private int _enemyGoal = -1;

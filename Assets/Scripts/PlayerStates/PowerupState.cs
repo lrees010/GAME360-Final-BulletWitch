@@ -15,6 +15,8 @@ public class PowerupState : PlayerState
         player.rb.linearVelocity = new Vector2(0, 0);
 
         //already doing "OnPlayerStateChanged", "Damaged"
+
+        GameManager.Instance.powerupActive = true;
     }
 
     public override void UpdateState(PlayerController player)
@@ -27,7 +29,9 @@ public class PowerupState : PlayerState
         }
     }
 
-    public override void ExitState(PlayerController player) { }
+    public override void ExitState(PlayerController player) {
+        GameManager.Instance.powerupActive = false;
+    }
 
     public override string GetStateName() => "Powerup";
 }

@@ -6,6 +6,7 @@ public class EnemySpawner : MonoBehaviour //provide quick enemy spawning and ui 
     [Header("Spawning")]
     public GameObject chargerPrefab;
     public GameObject spiderPrefab;
+    public GameObject sharkPrefab;
 
     public Transform[] spawnPoints;
 
@@ -76,7 +77,7 @@ public class EnemySpawner : MonoBehaviour //provide quick enemy spawning and ui 
 
     private void SpawnEnemy(GameObject enemyPrefab)
     {
-        if (enemyPrefab && spawnPoints.Length > 0)
+        if (enemyPrefab && spawnPoints.Length > 0 && GameManager.Instance.powerupActive == false)
         {
             // Check if game is still running through Singleton
             if (GameManager.Instance.lives > 0)
@@ -90,4 +91,6 @@ public class EnemySpawner : MonoBehaviour //provide quick enemy spawning and ui 
     public void SpawnCharger() => SpawnEnemy(chargerPrefab); //yup
 
     public void SpawnSpider() => SpawnEnemy(spiderPrefab); //yup
+
+    public void SpawnShark() => SpawnEnemy(sharkPrefab);
 }
