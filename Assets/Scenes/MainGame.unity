@@ -2540,6 +2540,7 @@ MonoBehaviour:
   spiderPrefab: {fileID: 3333278696691510216, guid: 52f09381f70100f4a93c0eb4f2e81769, type: 3}
   sharkPrefab: {fileID: 3333278696691510216, guid: 2c10941e0304e8a4f9e651f7bcb5e90d, type: 3}
   spitterPrefab: {fileID: 3333278696691510216, guid: bea83e2f81f07a145ba4442b3beb330b, type: 3}
+  obsidianPrefab: {fileID: 3333278696691510216, guid: 835d1a79dab5217478667085fd80ce52, type: 3}
   spawnPoints: []
 --- !u!4 &1021244112
 Transform:

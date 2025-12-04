@@ -13,7 +13,7 @@ public class WaveBullet : MonoBehaviour
 
     private Rigidbody2D rb;
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (rbList.Count > 0)
         {
@@ -26,7 +26,7 @@ public class WaveBullet : MonoBehaviour
                     rbList.Clear();
                     Destroy(gameObject);
                 }
-                rbList[i].AddForce((new Vector2(velocity, 0)) / Time.deltaTime);
+                rbList[i].AddForce((new Vector2(velocity, 0))*9);
             }
         }
     }

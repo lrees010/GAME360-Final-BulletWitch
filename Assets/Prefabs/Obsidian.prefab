@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 3697747552564348551}
   - component: {fileID: 3727105530209096356}
   - component: {fileID: 4760228048523808413}
-  - component: {fileID: 7112727899739728995}
   - component: {fileID: 7974785382104903572}
   m_Layer: 0
   m_Name: Obsidian
@@ -130,7 +129,7 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Radius: 3
+  m_Radius: 1.5
 --- !u!50 &4760228048523808413
 Rigidbody2D:
   serializedVersion: 5
@@ -158,28 +157,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!95 &7112727899739728995
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3333278696691510216}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: a26108c6426cdc94991c227cf89d8844, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &7974785382104903572
 MonoBehaviour:
   m_ObjectHideFlags: 0

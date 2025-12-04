@@ -14,6 +14,7 @@ public class MountainState : LevelState
         Debug.Log("Entered MountainState");
         GameManager.Instance.level = 5;
         GameManager.Instance.EnemyGoal = 1;
+        spawnedBoss = false;
 
         GameManager.Instance.currentBullet = "Wave";
 
@@ -48,7 +49,7 @@ public class MountainState : LevelState
         if (!spawnedBoss)
         {
             spawnedBoss = true;
-            EnemySpawner.Instance.SpawnShark();
+            EnemySpawner.Instance.SpawnObsidian();
 
         }
         /*

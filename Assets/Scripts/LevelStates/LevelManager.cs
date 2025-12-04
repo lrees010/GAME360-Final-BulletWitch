@@ -36,7 +36,7 @@ public class LevelManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             //EnemyGoal = 0;
-            ChangeState(BeachState);
+            ChangeState(MountainState);
             if (DialogueManager.Instance.isDialogueActive)
             {
                 DialogueManager.Instance.EndDialogue();
