@@ -20,7 +20,7 @@ public class Scroller : MonoBehaviour
 
     void Update()
     {
-        _img.uvRect = new Rect(_img.uvRect.position + new Vector2(0,speed) * Time.deltaTime,_img.uvRect.size);
+        _img.uvRect = new Rect(_img.uvRect.position + new Vector2(0,0.3f) * Time.deltaTime,_img.uvRect.size);
     }
 
     void Start()

@@ -1,10 +1,13 @@
 fileFormatVersion: 2
-guid: b4721ad01d4cfaa478aed8f3e84b6f82
+guid: b7842c28591e8af4fb9c368c71557778
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5014823285642650696
-    second: forestBG_0
+      213: -9038110683507111462
+    second: charger_sheet_0
+  - first:
+      213: 4336995969193726333
+    second: charger_sheet_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -40,9 +43,9 @@ TextureImporter:
     filterMode: 1
     aniso: 1
     mipBias: 0
-    wrapU: 2
-    wrapV: 2
-    wrapW: 2
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
@@ -100,13 +103,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: forestBG_0
+      name: charger_sheet_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 400
-        height: 400
+        width: 25
+        height: 24
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +118,30 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 8446618653b389540800000000000000
-      internalID: 5014823285642650696
+      spriteID: ad945e4283e229280800000000000000
+      internalID: -9038110683507111462
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: charger_sheet_1
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 0
+        width: 23
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d71d7180bda103c30800000000000000
+      internalID: 4336995969193726333
       vertices: []
       indices: 
       edges: []
@@ -135,7 +160,8 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      forestBG_0: 5014823285642650696
+      charger_sheet_0: -9038110683507111462
+      charger_sheet_1: 4336995969193726333
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

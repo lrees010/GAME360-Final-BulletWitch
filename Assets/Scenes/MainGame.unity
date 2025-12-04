@@ -3591,8 +3591,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: 0.00020623, y: -82.9}
+  m_SizeDelta: {x: 91.712, y: 91.7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1673269799
 MonoBehaviour:
@@ -3614,7 +3614,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: 5997cd6b729e5aa47b6860e8f34b74b4, type: 3}
+  m_Texture: {fileID: 2800000, guid: ef8a714b9fde72b4fa9a6cdca3dc8704, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -3647,7 +3647,7 @@ MonoBehaviour:
   fadeDuration: 0.5
   Forest: {fileID: 2800000, guid: b4721ad01d4cfaa478aed8f3e84b6f82, type: 3}
   Cave: {fileID: 2800000, guid: e38a6f3136f30d7468ea6a2a7620b5ed, type: 3}
-  Clearing: {fileID: 2800000, guid: 5997cd6b729e5aa47b6860e8f34b74b4, type: 3}
+  Clearing: {fileID: 2800000, guid: ef8a714b9fde72b4fa9a6cdca3dc8704, type: 3}
   Lake: {fileID: 2800000, guid: 41933ac8e6be72042af5b4686137e0e5, type: 3}
   Beach: {fileID: 2800000, guid: 00a243b98c94ea84987a07c9b9467c1d, type: 3}
 --- !u!225 &1673269802

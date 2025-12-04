@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 5997cd6b729e5aa47b6860e8f34b74b4
+guid: a9229811c1aba4b468ff0534264b7407
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6054258722776619967
-    second: clearing_0
+      213: 6522594400000613951
+    second: Obsidian_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -40,9 +40,9 @@ TextureImporter:
     filterMode: 1
     aniso: 1
     mipBias: 0
-    wrapU: 0
-    wrapV: 0
-    wrapW: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: clearing_0
+      name: Obsidian_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 600
-        height: 600
+        x: 7
+        y: 7
+        width: 86
+        height: 86
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 144e69ab4c3fafba0800000000000000
-      internalID: -6054258722776619967
+      spriteID: f3e1df17c09e48a50800000000000000
+      internalID: 6522594400000613951
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      clearing_0: -6054258722776619967
+      Obsidian_0: 6522594400000613951
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

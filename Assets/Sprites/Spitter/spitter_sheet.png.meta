@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: b4721ad01d4cfaa478aed8f3e84b6f82
+guid: 40643b811cdc5a849a44bba1e5575d13
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5014823285642650696
-    second: forestBG_0
+      213: -1252607028156898107
+    second: spitter_sheet_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -40,9 +40,9 @@ TextureImporter:
     filterMode: 1
     aniso: 1
     mipBias: 0
-    wrapU: 2
-    wrapV: 2
-    wrapW: 2
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: forestBG_0
+      name: spitter_sheet_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 400
-        height: 400
+        y: 1
+        width: 50
+        height: 23
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 8446618653b389540800000000000000
-      internalID: 5014823285642650696
+      spriteID: 5c4ec836b88dd9ee0800000000000000
+      internalID: -1252607028156898107
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      forestBG_0: 5014823285642650696
+      spitter_sheet_0: -1252607028156898107
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
