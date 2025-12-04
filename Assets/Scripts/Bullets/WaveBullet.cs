@@ -26,7 +26,7 @@ public class WaveBullet : MonoBehaviour
                     rbList.Clear();
                     Destroy(gameObject);
                 }
-                rbList[i].AddForce(new Vector2(velocity, 0));
+                rbList[i].AddForce((new Vector2(velocity, 0)) / Time.deltaTime);
             }
         }
     }
