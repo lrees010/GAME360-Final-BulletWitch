@@ -9,6 +9,7 @@ public class LevelManager : MonoBehaviour
     public ClearingState ClearingState = new ClearingState();
     public LakeState LakeState = new LakeState();
     public BeachState BeachState = new BeachState();
+    public MountainState MountainState = new MountainState();
 
     private void Start()
     {

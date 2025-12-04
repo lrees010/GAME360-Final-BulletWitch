@@ -3646,10 +3646,11 @@ MonoBehaviour:
   speed: 0.4
   fadeDuration: 0.5
   Forest: {fileID: 2800000, guid: b4721ad01d4cfaa478aed8f3e84b6f82, type: 3}
-  Cave: {fileID: 2800000, guid: e38a6f3136f30d7468ea6a2a7620b5ed, type: 3}
+  Cave: {fileID: 2800000, guid: c07dd3e51ead072438c2cb0f441af9e6, type: 3}
   Clearing: {fileID: 2800000, guid: ef8a714b9fde72b4fa9a6cdca3dc8704, type: 3}
   Lake: {fileID: 2800000, guid: 41933ac8e6be72042af5b4686137e0e5, type: 3}
   Beach: {fileID: 2800000, guid: 00a243b98c94ea84987a07c9b9467c1d, type: 3}
+  Mountain: {fileID: 2800000, guid: 821295e30186eb3498f9639edcc2e9e7, type: 3}
 --- !u!225 &1673269802
 CanvasGroup:
   m_ObjectHideFlags: 0

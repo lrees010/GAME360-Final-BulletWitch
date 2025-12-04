@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class BeachState : LevelState
+public class MountainState : LevelState
 {
     private float nextSpawnTime = 0f;
     private float spawnRate = 0.4f;
@@ -11,15 +11,16 @@ public class BeachState : LevelState
 
     public override void EnterState(LevelManager level)
     {
-        Debug.Log("Entered BeachState");
-        GameManager.Instance.level = 4;
-        GameManager.Instance.EnemyGoal = 40;
+        Debug.Log("Entered MountainState");
+        GameManager.Instance.level = 5;
+        GameManager.Instance.EnemyGoal = 1;
 
-        GameManager.Instance.currentBullet = "Bloom";
+        GameManager.Instance.currentBullet = "Wave";
 
         //TextAsset jsonFile = Resources.Load<TextAsset>("Convos/cave");
         //DialogueManager.Instance.StartConversation(jsonFile);
 
+        
     }
 
 
@@ -31,7 +32,7 @@ public class BeachState : LevelState
         }
         if (GameManager.Instance.EnemyGoal <= 0)
         {
-            level.ChangeState(level.MountainState);
+            //level.ChangeState(level.ForestState); //add victory later
         }
         else
         {
@@ -40,8 +41,17 @@ public class BeachState : LevelState
         }
     }
 
+    private bool spawnedBoss = false;
     private void SpawnBehavior()
     {
+        //spawn boss
+        if (!spawnedBoss)
+        {
+            spawnedBoss = true;
+            EnemySpawner.Instance.SpawnShark();
+
+        }
+        /*
         if (Time.time >= nextSpawnTime)
         {
             switch((int)Time.time%4)
@@ -58,12 +68,12 @@ public class BeachState : LevelState
                     EnemySpawner.Instance.SpawnSpitter();
                     break;
             }
-
+        
             
             
 
             nextSpawnTime = Time.time + spawnRate;
-        }
+        }*/
     }
     private void CollectibleBehavior()
     {
@@ -90,6 +100,6 @@ public class BeachState : LevelState
     }
     public override void ExitState(LevelManager level) { }
 
-    public override string GetLevelName() => "Beach";
+    public override string GetLevelName() => "Mountain";
 }
 

@@ -85,6 +85,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        //Application.targetFrameRate = 60;
         exitAction = InputSystem.actions.FindAction("Exit");
         if (SceneManager.GetActiveScene().name == "MainGame")
         {

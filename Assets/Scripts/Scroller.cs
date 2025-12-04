@@ -17,6 +17,8 @@ public class Scroller : MonoBehaviour
     public Texture Clearing;
     public Texture Lake;
     public Texture Beach;
+    public Texture Mountain;
+
 
     void Update()
     {
@@ -62,6 +64,10 @@ public class Scroller : MonoBehaviour
 
             case "Beach":
                 nextTex = Beach;
+                break;
+
+            case "Mountain":
+                nextTex = Mountain;
                 break;
         }
         bool skipFadeOut = (data.ToString() == "Clearing"); //skip fade out if starter level
