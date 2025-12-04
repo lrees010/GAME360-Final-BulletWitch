@@ -21,10 +21,11 @@ public class WaveBullet : MonoBehaviour
             {
                 float velocity = Mathf.Sin((Time.time+i) * 10) * 4f;
 
-                if (rbList[i] == null)
+                if (rbList==null||rbList[i] == null || i > rbList.Count)
                 {
                     rbList.Clear();
                     Destroy(gameObject);
+                    return;
                 }
                 rbList[i].AddForce((new Vector2(velocity, 0))*9);
             }

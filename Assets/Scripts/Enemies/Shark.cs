@@ -120,7 +120,8 @@ public class Shark : MonoBehaviour
         {
            
             time += Time.deltaTime;
-            spr.color = new Color((1f-(time/fadeDuration))+holdDuration, spr.color.g, spr.color.b);
+            float colorCalc = ((time / fadeDuration)) + holdDuration;
+            spr.color = new Color(spr.color.r, colorCalc, colorCalc);
             yield return null;
         }
     }

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3697747552564348551}
   - component: {fileID: 3727105530209096356}
   - component: {fileID: 4760228048523808413}
-  - component: {fileID: 7974785382104903572}
+  - component: {fileID: 715034068284370145}
   m_Layer: 0
   m_Name: Obsidian
   m_TagString: Enemy
@@ -85,7 +85,7 @@ SpriteRenderer:
   m_SortingOrder: 1
   m_Sprite: {fileID: 6522594400000613951, guid: a9229811c1aba4b468ff0534264b7407, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 1, y: 1}
@@ -157,7 +157,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!114 &7974785382104903572
+--- !u!114 &715034068284370145
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -166,9 +166,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 3333278696691510216}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1de4db6df3bbbeb49acc16b5af643e93, type: 3}
+  m_Script: {fileID: 11500000, guid: 1df9f5c291a9fa0438ff5386a67d5aaf, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Spitter
+  m_EditorClassIdentifier: Assembly-CSharp::Obsidian
   spitterBulletPrefab: {fileID: 0}
 --- !u!1 &4159791702855725673
 GameObject:

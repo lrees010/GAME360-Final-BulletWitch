@@ -1,12 +1,14 @@
 using System.Collections;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
-public class Spitter : MonoBehaviour
+public class Obsidian : MonoBehaviour
 {
 
     public GameObject spitterBulletPrefab;
-    [Header("Spitter Stats")]
-    private int health = 3;
+    [Header("Obsidian Stats")]
+    private int health = 300;
+    private int originalHealth;
     private float moveSpeed = 30f;
 
     [Header("AI")]
@@ -19,6 +21,7 @@ public class Spitter : MonoBehaviour
 
     private void Start()
     {
+        originalHealth = health;
         rb = GetComponent<Rigidbody2D>();
         spr = GetComponent<SpriteRenderer>();
 
@@ -28,14 +31,14 @@ public class Spitter : MonoBehaviour
         if (playerObj) player = playerObj.transform;
 
         //events
-        EventManager.Subscribe("OnPlayerDeath", Vanish);
+        //EventManager.Subscribe("OnPlayerDeath", Vanish);
         EventManager.Subscribe("OnBomb", Explode);
         EventManager.Subscribe("OnLevelChanged", LevelChanged);
     }
 
     private void OnDestroy()
     {
-        EventManager.Unsubscribe("OnPlayerDeath", Vanish);
+        //EventManager.Unsubscribe("OnPlayerDeath", Vanish);
         EventManager.Unsubscribe("OnBomb", Explode);
 
         EventManager.Unsubscribe("OnLevelChanged", LevelChanged);
@@ -51,11 +54,6 @@ public class Spitter : MonoBehaviour
         }
         else
         {
-            if (GameManager.Instance.powerupActive|| Exploding==true)
-            {
-                rb.linearVelocity = Vector2.zero;
-                return;
-            }
             ChasePlayer();
             Shoot();
         }
@@ -157,6 +155,8 @@ public class Spitter : MonoBehaviour
     public void TakeDamage(int damage)
     {
         health -= damage;
+        float healthPercentage = Mathf.Clamp((float)health / (float)originalHealth, 0.1f,1f);
+        transform.localScale = new Vector3(healthPercentage, healthPercentage, healthPercentage);
         rb.linearVelocity = rb.linearVelocity * new Vector2(0.8f, 0.5f);
 
         if (damageCoroutine != null)
@@ -172,6 +172,18 @@ public class Spitter : MonoBehaviour
             Die();
         }
     }
+    private void Explode()
+    {
+        StartCoroutine(
+    DelayedDamage(Mathf.Clamp(((Vector2.Distance(transform.position, player.position)) / 15f), 0f, 0.7f))
+    );
+    }
+    private IEnumerator DelayedDamage(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        TakeDamage(15);
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Bullet"))
@@ -190,19 +202,8 @@ public class Spitter : MonoBehaviour
         Destroy(gameObject); // the enemy gets destroyed
     }
 
-    private void Explode()
-    {
-        Exploding = true;
-        StartCoroutine(
-            DelayedDeath(Mathf.Clamp( ((Vector2.Distance(transform.position, player.position)) / 15f),0f,0.7f))
-            );
-    }
-    private bool Exploding = false;
-    private IEnumerator DelayedDeath(float delay)
-    {
-        yield return new WaitForSeconds(delay);
-        Die();
-    }
+
+
 
     /*
     private void OnDrawGizmosSelected()
