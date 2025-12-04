@@ -48,16 +48,18 @@ public class LakeState : LevelState
             {
                 case 0:
                     EnemySpawner.Instance.SpawnCharger();
+                    EnemySpawner.Instance.SpawnShark();
                     EnemySpawner.Instance.SpawnSpider();
                     break;
                 case 1:
                     //Debug.Log("sharko");
                     EnemySpawner.Instance.SpawnShark();
+                    EnemySpawner.Instance.SpawnCharger();
                     //EnemySpawner.Instance.SpawnSpider();
                     break;
                 case >=2:
                     EnemySpawner.Instance.SpawnCharger();
-                    EnemySpawner.Instance.SpawnShark();
+                    //EnemySpawner.Instance.SpawnShark();
                     break;
             }
             
