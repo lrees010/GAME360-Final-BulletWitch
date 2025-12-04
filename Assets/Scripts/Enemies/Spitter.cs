@@ -43,7 +43,7 @@ public class Spitter : MonoBehaviour
 
    
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (InBounds==false)
         {
@@ -115,7 +115,7 @@ public class Spitter : MonoBehaviour
 
                 //direction = new Vector2(direction.x, -1f); //Mathf.Clamp(direction.y,-1f,-0.1f)
 
-                rb.AddForce(direction * moveSpeed);
+                rb.AddForce((direction * moveSpeed) * 9);
                 rb.linearVelocity = new Vector2(rb.linearVelocity.x, -2f);
                 rb.linearVelocity = Vector2.ClampMagnitude(rb.linearVelocity,6f);
                 

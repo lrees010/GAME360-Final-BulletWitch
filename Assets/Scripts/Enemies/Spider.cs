@@ -41,7 +41,7 @@ public class Spider : MonoBehaviour
         EventManager.Unsubscribe("OnLevelChanged", LevelChanged);
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (InBounds==false)
         {
@@ -106,7 +106,7 @@ public class Spider : MonoBehaviour
 
                 //direction = new Vector2(direction.x, -1f); //Mathf.Clamp(direction.y,-1f,-0.1f)
 
-                rb.AddForce((direction * moveSpeed) / Time.deltaTime);
+                rb.AddForce((direction * moveSpeed) * 9);
                 //rb.linearVelocity = new Vector2(rb.linearVelocity.x, Mathf.Clamp(rb.linearVelocity.y,-4f,-3f));
                 rb.linearVelocity = Vector2.ClampMagnitude(rb.linearVelocity,7f);
         }

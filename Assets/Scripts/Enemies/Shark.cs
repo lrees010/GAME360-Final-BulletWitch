@@ -42,7 +42,7 @@ public class Shark : MonoBehaviour
         EventManager.Unsubscribe("OnLevelChanged", LevelChanged);
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (InBounds==false)
         {
@@ -91,7 +91,7 @@ public class Shark : MonoBehaviour
 
                 //direction = new Vector2(direction.x, -1f); //Mathf.Clamp(direction.y,-1f,-0.1f)
 
-                rb.AddForce((chargeDirection * moveSpeed) / Time.deltaTime);
+                rb.AddForce((chargeDirection * moveSpeed)*9);
                 rb.linearVelocity = Vector2.ClampMagnitude(rb.linearVelocity,9f);
                 transform.rotation = new Quaternion(chargeDirection.x, chargeDirection.y,0,0);
 
