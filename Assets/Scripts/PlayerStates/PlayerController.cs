@@ -96,6 +96,10 @@ public class PlayerController : MonoBehaviour
 
     public void HandleShooting(PlayerController player)
     {
+        if (DialogueManager.Instance.isDialogueActive==true)
+        {
+            return;
+        }
         if (attackAction.IsPressed() && Time.time >= player.nextFireTime
             && GameManager.Instance.GetStateName() == "PlayingState")
         {
@@ -133,6 +137,10 @@ public class PlayerController : MonoBehaviour
 
     public void HandleSlowTime(PlayerController player)
     {
+        if (DialogueManager.Instance.isDialogueActive == true)
+        {
+            return;
+        }
         if  (
             (GameManager.Instance.GetStateName() != "PlayingState") //if we are not in the playing state of the game
             || currentState.GetStateName() == "Damaged" //or if the player is currently respawning
@@ -157,6 +165,10 @@ public class PlayerController : MonoBehaviour
 
     public void HandleBomb(PlayerController player)
     {
+        if (DialogueManager.Instance.isDialogueActive == true)
+        {
+            return;
+        }
         if (
             powerupAction.WasPressedThisFrame()
             && (GameManager.Instance.GetStateName() == "PlayingState")
@@ -177,6 +189,11 @@ public class PlayerController : MonoBehaviour
 
     private void TakeDamage()
     {
+        if (DialogueManager.Instance.isDialogueActive == true)
+        {
+            return;
+        }
+
         if (damageCooldown == false)
         {
             // Player hit by enemy - lose a life
