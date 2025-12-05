@@ -220,7 +220,7 @@ public class GameManager : MonoBehaviour
         timePassed = 0f;
         playingTimePassed = 0f;
         currentBullet = "Bullet";
-        _enemyGoal = -1; //don't wanna trigger events
+        //_enemyGoal = 1; //don't wanna trigger events
 
 
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);

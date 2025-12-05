@@ -65,7 +65,7 @@ public class Spitter : MonoBehaviour
         bullet.transform.position = gameObject.transform.position;
         Rigidbody2D bulletrb;
         bulletrb = bullet.GetComponent<Rigidbody2D>();
-        bulletrb.linearVelocity = direction * speed;
+        bulletrb.linearVelocity = (direction * speed);// + rb.linearVelocity; ;
         Destroy(bullet, lifetime);
     }
 

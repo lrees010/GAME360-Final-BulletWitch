@@ -26,10 +26,7 @@ public class GenericEnemyBulletCollider : MonoBehaviour
             Destroy(gameObject);
         }
 
-        // Destroy BloomBullet if it hits walls or boundaries
-        if (other.CompareTag("Wall"))
-        {
-            Destroy(gameObject);
-        }
+
+
     }
 }

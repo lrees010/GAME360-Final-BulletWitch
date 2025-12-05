@@ -9,6 +9,8 @@ public class MountainState : LevelState
     private float nextCoinTime = 0f;
     private float coinSpawnRate = 1.7f;
 
+    private bool spawnedBoss = false;
+
     public override void EnterState(LevelManager level)
     {
         Debug.Log("Entered MountainState");
@@ -18,8 +20,8 @@ public class MountainState : LevelState
 
         GameManager.Instance.currentBullet = "Wave";
 
-        //TextAsset jsonFile = Resources.Load<TextAsset>("Convos/cave");
-        //DialogueManager.Instance.StartConversation(jsonFile);
+        TextAsset jsonFile = Resources.Load<TextAsset>("Convos/boss");
+        DialogueManager.Instance.StartConversation(jsonFile);
 
         
     }
@@ -27,6 +29,7 @@ public class MountainState : LevelState
 
     public override void UpdateState(LevelManager level)
     {
+        SpawnBehavior();
         if (DialogueManager.Instance.isDialogueActive)
         {
             return;
@@ -37,12 +40,11 @@ public class MountainState : LevelState
         }
         else
         {
-            SpawnBehavior();
             CollectibleBehavior();
         }
     }
 
-    private bool spawnedBoss = false;
+    
     private void SpawnBehavior()
     {
         //spawn boss

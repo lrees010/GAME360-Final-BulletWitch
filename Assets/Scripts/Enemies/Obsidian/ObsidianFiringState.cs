@@ -29,7 +29,8 @@ public class ObsidianFiringState : ObsidianState
     }
 
 
-    public override void ExitState(ObsidianManager obsidian) { }
+    public override void ExitState(ObsidianManager obsidian) {
+    }
 
     public override string GetStateName() => "ObsidianFiringState";
 }

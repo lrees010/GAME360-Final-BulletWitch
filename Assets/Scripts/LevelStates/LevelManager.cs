@@ -14,6 +14,8 @@ public class LevelManager : MonoBehaviour
     private void Start()
     {
         ChangeState(ClearingState);
+
+        EventManager.Subscribe("OnReload", Reload);
     }
     public void ChangeState(LevelState newState)
     {
@@ -28,6 +30,11 @@ public class LevelManager : MonoBehaviour
         EventManager.TriggerEvent("OnLevelChanged", currentState.GetLevelName());
     }
 
+    private void Reload()
+    {
+        ChangeState(ClearingState);
+    }
+
     private void Update()
     {
         currentState.UpdateState(this);
@@ -35,8 +42,8 @@ public class LevelManager : MonoBehaviour
         //debug level skipping
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            //EnemyGoal = 0;
-            ChangeState(MountainState);
+            GameManager.Instance.EnemyGoal = 0;
+            //ChangeState(MountainState);
             if (DialogueManager.Instance.isDialogueActive)
             {
                 DialogueManager.Instance.EndDialogue();

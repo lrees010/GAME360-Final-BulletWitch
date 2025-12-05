@@ -164,7 +164,7 @@ public class DialogueManager : MonoBehaviour
 
     float CalculateLineSpeed(int lineLength)
     {
-        return Mathf.Clamp(((float)lineLength / 14) * dialogueSpeed,1.5f,7f);
+        return Mathf.Clamp(((float)lineLength / 14) * dialogueSpeed,3f,7f);
     }
     /*
     private void Update()

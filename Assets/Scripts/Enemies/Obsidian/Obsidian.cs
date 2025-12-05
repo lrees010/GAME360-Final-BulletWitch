@@ -22,11 +22,12 @@ public class ObsidianManager : MonoBehaviour
     private Rigidbody2D rb;
     private SpriteRenderer spr;
 
-    //state manager
+    //state manager 
     ObsidianState currentState;
     public ObsidianChaseState ObsidianChaseState = new ObsidianChaseState();
     public ObsidianFiringState ObsidianFiringState = new ObsidianFiringState();
-
+    public ObsidianIdleState ObsidianIdleState = new ObsidianIdleState();
+    public ObsidianRestingState ObsidianRestingState = new ObsidianRestingState();
 
     private void Start()
     {
@@ -45,7 +46,7 @@ public class ObsidianManager : MonoBehaviour
         EventManager.Subscribe("OnLevelChanged", LevelChanged);
 
         //state manager
-        ChangeState(ObsidianFiringState);
+        ChangeState(ObsidianIdleState);
     }
     public void ChangeState(ObsidianState newState)
     {
@@ -77,21 +78,28 @@ public class ObsidianManager : MonoBehaviour
         if (InBounds==false)
         {
             Respawn();
+            return;
         }
-        else
-        {
-            currentState.UpdateState(this);
-        }
+        currentState.UpdateState(this);
+
     }
 
     private void Respawn()
     {
+        if (currentState==ObsidianChaseState)
+        {
+            ChangeState(ObsidianRestingState);
+            return;
+        }
+
         if (currentState!=ObsidianFiringState)
         {
+
             transform.position = new Vector2(0, 7);
             rb.linearVelocity = Vector2.zero;
         }
 
+        
     }
 
     private void send(GameObject bullet, Vector2 direction, float lifetime, float speed)
@@ -99,7 +107,7 @@ public class ObsidianManager : MonoBehaviour
         bullet.transform.position = firePoint.position;
         Rigidbody2D bulletrb;
         bulletrb = bullet.GetComponent<Rigidbody2D>();
-        bulletrb.linearVelocity = (direction * speed)+rb.linearVelocity;
+        bulletrb.linearVelocity = (direction * speed);
         Destroy(bullet, lifetime);
     }
 
@@ -141,7 +149,7 @@ public class ObsidianManager : MonoBehaviour
     {
         get
         {
-            return Mathf.Abs(transform.position.y) < 9f && Mathf.Abs(transform.position.x) < 15; //in the play area (not lower than -9, not more than 15 units left or right)
+            return Mathf.Abs(transform.position.y) < 20f && Mathf.Abs(transform.position.x) < 25; //in the play area
         }
     }
 
@@ -199,6 +207,10 @@ public class ObsidianManager : MonoBehaviour
     private Coroutine damageCoroutine;
     public void TakeDamage(int damage)
     {
+        if (DialogueManager.Instance.isDialogueActive ==true) //don't take damage during dialogue
+        {
+            return;
+        }
         health -= damage;
         float healthPercentage = Mathf.Clamp((float)health / (float)originalHealth, 0.5f,1f);
         transform.localScale = new Vector3(healthPercentage, healthPercentage, healthPercentage);

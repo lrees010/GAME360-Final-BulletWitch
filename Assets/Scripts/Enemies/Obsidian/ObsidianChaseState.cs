@@ -15,16 +15,18 @@ public class ObsidianChaseState : ObsidianState
     {
         if (Time.time-startTime<10f)
         {
-            obsidian.SideShoot(0.2f);
+            obsidian.SideShoot(0.4f);
             obsidian.ChasePlayer();
         }
         else
         {
-            obsidian.ChangeState(obsidian.ObsidianFiringState);
+            obsidian.ChangeState(obsidian.ObsidianRestingState);
         }
     }
 
-    public override void ExitState(ObsidianManager obsidian) { }
+    public override void ExitState(ObsidianManager obsidian) {
+        
+    }
 
     public override string GetStateName() => "ObsidianChaseState";
 }

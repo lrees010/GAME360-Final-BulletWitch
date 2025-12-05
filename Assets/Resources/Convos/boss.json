@@ -1,0 +1,24 @@
+{
+    "lines": [
+        {
+            "speaker": "Witch",
+            "text": "...I see something.",
+            "faceImagePath": "Faces/PlayerPortrait/normal"
+        },
+        {
+            "speaker": "Witch",
+            "text": "What's that?",
+            "faceImagePath": "Faces/PlayerPortrait/normal"
+        },
+        {
+            "speaker": "Broom",
+            "text": "That is an obsidian sphere. It's guarding the antidote.",
+            "faceImagePath": "Faces/BroomPortrait/broom"
+        },
+        {
+            "speaker": "Witch",
+            "text": "Ok.",
+            "faceImagePath": "Faces/PlayerPortrait/sigh"
+        }
+    ]
+}
