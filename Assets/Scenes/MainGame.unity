@@ -2476,7 +2476,7 @@ MonoBehaviour:
   enemiesKilled: 0
   maxLives: 6
   timePassed: 0
-  timeLimit: 1000
+  timeLimit: 400
   playingTimePassed: 0
   speedOfTime: 1
   speedOfSlowedTime: 0.5
@@ -2551,7 +2551,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: edad63992b8040743944b4bef7ab3a25, type: 3}
-    m_FontSize: 60
+    m_FontSize: 40
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 4

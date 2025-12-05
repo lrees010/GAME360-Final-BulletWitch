@@ -13,7 +13,7 @@ public class BeachState : LevelState
     {
         Debug.Log("Entered BeachState");
         GameManager.Instance.level = 4;
-        GameManager.Instance.EnemyGoal = 40;
+        GameManager.Instance.EnemyGoal = 300;
 
         GameManager.Instance.currentBullet = "Bloom";
 

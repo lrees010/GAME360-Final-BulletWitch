@@ -13,7 +13,7 @@ public class LakeState : LevelState
     {
         Debug.Log("Entered LakeState");
         GameManager.Instance.level = 3;
-        GameManager.Instance.EnemyGoal = 40;
+        GameManager.Instance.EnemyGoal = 250;
 
         GameManager.Instance.currentBullet = "Bloom";
 

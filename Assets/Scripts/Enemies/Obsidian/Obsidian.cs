@@ -8,7 +8,7 @@ public class ObsidianManager : MonoBehaviour
 
     public GameObject spitterBulletPrefab;
     [Header("Obsidian Stats")]
-    private int health = 300;
+    private int health = 400;
     private int originalHealth;
     private float moveSpeed = 6f;
 

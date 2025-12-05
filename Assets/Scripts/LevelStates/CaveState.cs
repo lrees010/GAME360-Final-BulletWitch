@@ -13,7 +13,7 @@ public class CaveState : LevelState
     {
         Debug.Log("Entered CaveState");
         GameManager.Instance.level = 2;
-        GameManager.Instance.EnemyGoal = 30;
+        GameManager.Instance.EnemyGoal = 80;
 
         TextAsset jsonFile = Resources.Load<TextAsset>("Convos/cave");
         DialogueManager.Instance.StartConversation(jsonFile);
