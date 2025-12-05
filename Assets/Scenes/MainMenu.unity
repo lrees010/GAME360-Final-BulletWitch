@@ -209,7 +209,6 @@ GameObject:
   - component: {fileID: 160430066}
   - component: {fileID: 160430070}
   - component: {fileID: 160430069}
-  - component: {fileID: 160430068}
   - component: {fileID: 160430067}
   m_Layer: 5
   m_Name: BG
@@ -249,28 +248,6 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
---- !u!114 &160430068
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 160430065}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1082fff8e69972a4a97a9248610866ee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Scroller
-  _img: {fileID: 160430069}
-  _group: {fileID: 160430067}
-  speed: 0.4
-  fadeDuration: 0.5
-  Forest: {fileID: 2800000, guid: b4721ad01d4cfaa478aed8f3e84b6f82, type: 3}
-  Cave: {fileID: 2800000, guid: c07dd3e51ead072438c2cb0f441af9e6, type: 3}
-  Clearing: {fileID: 2800000, guid: ef8a714b9fde72b4fa9a6cdca3dc8704, type: 3}
-  Lake: {fileID: 2800000, guid: 41933ac8e6be72042af5b4686137e0e5, type: 3}
-  Beach: {fileID: 2800000, guid: 00a243b98c94ea84987a07c9b9467c1d, type: 3}
-  Mountain: {fileID: 2800000, guid: 821295e30186eb3498f9639edcc2e9e7, type: 3}
 --- !u!114 &160430069
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,11 +1,14 @@
 using System.Collections;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class Shark : MonoBehaviour
 {
     [Header("Shark Stats")]
     private int health = 5;
     public float moveSpeed = 8f;
+
+    public GameObject SpriteObject;
 
     [Header("AI")]
     //public float detectionRange = 0.5f;
@@ -15,18 +18,21 @@ public class Shark : MonoBehaviour
 
     private SpriteRenderer spr;
 
-    private Vector2 chargeDirection;
+    private Vector3 chargeLocation;
+    private Quaternion chargeDirection;
 
     private void Start()
     {
+        transform.position = transform.position + new Vector3(0, 3,0);
         rb = GetComponent<Rigidbody2D>();
-        spr = GetComponent<SpriteRenderer>();
+        spr = SpriteObject.GetComponent<SpriteRenderer>();
 
         // Find player
         GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
         if (playerObj) player = playerObj.transform;
 
-        chargeDirection = (player.position - transform.position).normalized;
+        chargeLocation = (player.position - transform.position).normalized;
+        chargeDirection = Quaternion.LookRotation(player.position - transform.position);
 
         //events
         EventManager.Subscribe("OnPlayerDeath", Vanish);
@@ -67,7 +73,7 @@ public class Shark : MonoBehaviour
     {
         get
         {
-            return Mathf.Abs(transform.position.y) < 9f && Mathf.Abs(transform.position.x) < 15; //in the play area (not lower than -9, not more than 15 units left or right)
+            return Mathf.Abs(transform.position.y) < 15f && Mathf.Abs(transform.position.x) < 15; //in the play area (not lower than -9, not more than 15 units left or right)
         }
     }
     private void ChasePlayer()
@@ -89,11 +95,13 @@ public class Shark : MonoBehaviour
 
 
 
-                //direction = new Vector2(direction.x, -1f); //Mathf.Clamp(direction.y,-1f,-0.1f)
 
-                rb.AddForce((chargeDirection * moveSpeed)*9);
-                rb.linearVelocity = Vector2.ClampMagnitude(rb.linearVelocity,9f);
-                transform.rotation = new Quaternion(chargeDirection.x, chargeDirection.y,0,0);
+            
+
+            transform.rotation = new Quaternion(0, 0, chargeDirection.z, chargeDirection.w);
+            rb.AddForce((chargeLocation*9f)*9f);
+            rb.linearVelocity = Vector2.ClampMagnitude(rb.linearVelocity,6f);
+            
 
         }
     }
