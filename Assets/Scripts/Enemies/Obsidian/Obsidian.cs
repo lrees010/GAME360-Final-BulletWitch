@@ -1,22 +1,31 @@
 using System.Collections;
 using System.Runtime.CompilerServices;
 using UnityEngine;
+using UnityEngine.XR;
 
-public class Obsidian : MonoBehaviour
+public class ObsidianManager : MonoBehaviour
 {
 
     public GameObject spitterBulletPrefab;
     [Header("Obsidian Stats")]
     private int health = 300;
     private int originalHealth;
-    private float moveSpeed = 30f;
+    private float moveSpeed = 6f;
+
+    public Transform firePoint;
 
     [Header("AI")]
     //public float detectionRange = 0.5f;
 
     private Transform player;
+    private GameObject playerObj;
     private Rigidbody2D rb;
     private SpriteRenderer spr;
+
+    //state manager
+    ObsidianState currentState;
+    public ObsidianChaseState ObsidianChaseState = new ObsidianChaseState();
+    public ObsidianFiringState ObsidianFiringState = new ObsidianFiringState();
 
 
     private void Start()
@@ -24,16 +33,31 @@ public class Obsidian : MonoBehaviour
         originalHealth = health;
         rb = GetComponent<Rigidbody2D>();
         spr = GetComponent<SpriteRenderer>();
-
+        transform.position = new Vector2(0, 7); //overwrite spawn position
 
         // Find player
-        GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+        playerObj = GameObject.FindGameObjectWithTag("Player");
         if (playerObj) player = playerObj.transform;
 
         //events
-        //EventManager.Subscribe("OnPlayerDeath", Vanish);
+        EventManager.Subscribe("OnPlayerDeath", Respawn);
         EventManager.Subscribe("OnBomb", Explode);
         EventManager.Subscribe("OnLevelChanged", LevelChanged);
+
+        //state manager
+        ChangeState(ObsidianFiringState);
+    }
+    public void ChangeState(ObsidianState newState)
+    {
+        if (currentState != null)
+        {
+            currentState.ExitState(this);
+        }
+
+        currentState = newState;
+        currentState.EnterState(this);
+
+        EventManager.TriggerEvent("OnObsidianStateChanged", currentState.GetStateName());
     }
 
     private void OnDestroy()
@@ -42,6 +66,8 @@ public class Obsidian : MonoBehaviour
         EventManager.Unsubscribe("OnBomb", Explode);
 
         EventManager.Unsubscribe("OnLevelChanged", LevelChanged);
+
+        EventManager.Unsubscribe("OnPlayerDeath", Respawn);
     }
 
    
@@ -50,17 +76,27 @@ public class Obsidian : MonoBehaviour
     {
         if (InBounds==false)
         {
-            Vanish();
+            Respawn();
         }
         else
         {
-            ChasePlayer();
-            Shoot();
+            currentState.UpdateState(this);
         }
     }
+
+    private void Respawn()
+    {
+        if (currentState!=ObsidianFiringState)
+        {
+            transform.position = new Vector2(0, 7);
+            rb.linearVelocity = Vector2.zero;
+        }
+
+    }
+
     private void send(GameObject bullet, Vector2 direction, float lifetime, float speed)
     {
-        bullet.transform.position = gameObject.transform.position;
+        bullet.transform.position = firePoint.position;
         Rigidbody2D bulletrb;
         bulletrb = bullet.GetComponent<Rigidbody2D>();
         bulletrb.linearVelocity = direction * speed;
@@ -68,17 +104,30 @@ public class Obsidian : MonoBehaviour
     }
 
     private float lastShootTime = 0f;
-    void Shoot()
+    public void Shoot(float fireRate)
     {
-        if (spitterBulletPrefab && (Time.time- lastShootTime) >0.6f)
+        if (spitterBulletPrefab && (Time.time- lastShootTime) > fireRate)
         {
-            rb.linearVelocity = new Vector2(0f,rb.linearVelocity.y);
-            send(Instantiate(spitterBulletPrefab), Vector2.down, 3f, 6f);
+            //rb.linearVelocity = new Vector2(0f,rb.linearVelocity.y);
+            send(Instantiate(spitterBulletPrefab), Vector2.down, 7f, 2f);
+            send(Instantiate(spitterBulletPrefab), Vector2.down+Vector2.left, 7f, 2f);
+            send(Instantiate(spitterBulletPrefab), Vector2.down + Vector2.right, 7f, 2f);
             lastShootTime = Time.time;
         }
     }
 
-    private void Vanish() //player dies = all enemies vanish, no points
+    public void SideShoot(float fireRate)
+    {
+        if (spitterBulletPrefab && (Time.time - lastShootTime) > fireRate)
+        {
+            //rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
+            send(Instantiate(spitterBulletPrefab), Vector2.left, 7f, 3f);
+            send(Instantiate(spitterBulletPrefab), Vector2.right, 7f, 3f);
+            lastShootTime = Time.time;
+        }
+    }
+
+    public void Vanish() //player dies = all enemies vanish, no points
     {
         Destroy(gameObject);
     }
@@ -96,30 +145,26 @@ public class Obsidian : MonoBehaviour
         }
     }
 
-    private void ChasePlayer()
+    public void MoveTo(Vector3 pos,float speedMultiplier, float speedLimit)
     {
-        if (player)
+        Vector2 direction = (pos - transform.position).normalized;
+
+        rb.AddForce(((direction * moveSpeed) * 9)*speedMultiplier);
+        //rb.linearVelocity = new Vector2(rb.linearVelocity.x, -2f);
+        rb.linearVelocity = Vector2.ClampMagnitude(rb.linearVelocity, speedLimit);
+    }
+    public void ChasePlayer()
+    {
+        if (player==null)
         {
-            /*
-            if (GameManager.Instance.score > 99)
-                moveSpeed = 3f;
-            if (GameManager.Instance.score > 1999)
-                moveSpeed = 2f; */
-            //float distance = Vector2.Distance(transform.position, player.position);
-
-
-
-                Vector2 direction = (player.position - transform.position).normalized;
-
-                //direction = new Vector2(direction.x, -1f); //Mathf.Clamp(direction.y,-1f,-0.1f)
-
-                rb.AddForce((direction * moveSpeed) * 9);
-                rb.linearVelocity = new Vector2(rb.linearVelocity.x, -2f);
-                rb.linearVelocity = Vector2.ClampMagnitude(rb.linearVelocity,6f);
-                
-               
-
+            return;
         }
+        if (GameManager.Instance.powerupActive == false)
+        {
+
+            MoveTo(player.position, Mathf.Abs((Mathf.Sin(Time.time) / 2f)), 8f);
+        }
+
     }
 
     private System.Collections.IEnumerator DamageVisual(float fadeDuration, float holdDuration)
@@ -155,7 +200,7 @@ public class Obsidian : MonoBehaviour
     public void TakeDamage(int damage)
     {
         health -= damage;
-        float healthPercentage = Mathf.Clamp((float)health / (float)originalHealth, 0.1f,1f);
+        float healthPercentage = Mathf.Clamp((float)health / (float)originalHealth, 0.5f,1f);
         transform.localScale = new Vector3(healthPercentage, healthPercentage, healthPercentage);
         rb.linearVelocity = rb.linearVelocity * new Vector2(0.8f, 0.5f);
 
@@ -182,6 +227,7 @@ public class Obsidian : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
         TakeDamage(15);
+        Respawn();
     }
 
     private void OnTriggerEnter2D(Collider2D other)

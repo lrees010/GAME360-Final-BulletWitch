@@ -13,7 +13,7 @@ public class DamagedState : PlayerState
         player.rb.linearVelocity = new Vector2(0, 0);
 
         //disappear
-        player.rb.position = new Vector2(0, -10);
+        player.rb.position = new Vector2(0, 40);
 
         //kill everything
         EventManager.TriggerEvent("OnPlayerDeath");
