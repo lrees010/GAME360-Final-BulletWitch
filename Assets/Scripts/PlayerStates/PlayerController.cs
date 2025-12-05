@@ -139,6 +139,7 @@ public class PlayerController : MonoBehaviour
     {
         if (DialogueManager.Instance.isDialogueActive == true)
         {
+            GameManager.Instance.slowingTime = false;
             return;
         }
         if  (
