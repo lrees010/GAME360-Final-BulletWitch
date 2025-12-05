@@ -15,7 +15,7 @@ public class AchievementManager : MonoBehaviour
         EventManager.Subscribe("OnScoreChanged", ScoreAchievement);
         EventManager.Subscribe("OnEnemyKilled", EnemiesKilledAchievement);
 
-        achievementDictionary["500Score"] = false;
+        achievementDictionary["600Score"] = false;
         achievementDictionary["5Enemies"] = false;
 
     }
@@ -49,9 +49,9 @@ public class AchievementManager : MonoBehaviour
 
     void ScoreAchievement()
     {
-        if (GameManager.Instance.score >= 500)
+        if (GameManager.Instance.score >= 600)
         {
-            UnlockAchievement("500Score", "Achievement:\n 500 score GAINED");
+            UnlockAchievement("600Score", "Achievement:\n 600 score GAINED");
         }
     }
 }

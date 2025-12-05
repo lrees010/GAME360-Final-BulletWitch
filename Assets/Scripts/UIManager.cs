@@ -92,10 +92,16 @@ public class UIManager : MonoBehaviour
             slowingPanel.GetComponent<CanvasGroup>().alpha = 1f-(Time.timeScale);
         }
     }
+
+    private Coroutine achievementVisualCoroutine;
     void UpdateAchievement(object data)
     {
         AchievementText.text = data.ToString();
-        StartCoroutine(FadeOutText(AchievementText, 1f, 2f));
+        if (achievementVisualCoroutine != null)
+        {
+            StopCoroutine(achievementVisualCoroutine);
+        }
+        achievementVisualCoroutine = StartCoroutine(FadeOutText(AchievementText, 1f, 2f));
     }
 
     void Pause(object data)
