@@ -99,7 +99,7 @@ public class ObsidianManager : MonoBehaviour
         bullet.transform.position = firePoint.position;
         Rigidbody2D bulletrb;
         bulletrb = bullet.GetComponent<Rigidbody2D>();
-        bulletrb.linearVelocity = direction * speed;
+        bulletrb.linearVelocity = (direction * speed)+rb.linearVelocity;
         Destroy(bullet, lifetime);
     }
 
@@ -121,8 +121,8 @@ public class ObsidianManager : MonoBehaviour
         if (spitterBulletPrefab && (Time.time - lastShootTime) > fireRate)
         {
             //rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
-            send(Instantiate(spitterBulletPrefab), Vector2.left, 7f, 3f);
-            send(Instantiate(spitterBulletPrefab), Vector2.right, 7f, 3f);
+            send(Instantiate(spitterBulletPrefab), Vector2.left, 7f, 6f);
+            send(Instantiate(spitterBulletPrefab), Vector2.right, 7f, 6f);
             lastShootTime = Time.time;
         }
     }

@@ -33,7 +33,7 @@ public class MountainState : LevelState
         }
         if (GameManager.Instance.EnemyGoal <= 0)
         {
-            //level.ChangeState(level.ForestState); //add victory later
+            GameManager.Instance.ChangeState(GameManager.Instance.VictoryState);
         }
         else
         {

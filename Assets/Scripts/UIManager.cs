@@ -23,6 +23,8 @@ public class UIManager : MonoBehaviour
 
     public GameObject gameOverPanel;
     public GameObject pausePanel;
+    public GameObject victoryPanel;
+    public Text victoryPanelText;
 
     public GameObject slowingPanel;
 
@@ -35,6 +37,7 @@ public class UIManager : MonoBehaviour
         EventManager.Subscribe("OnLivesChanged", UpdateLives);
         EventManager.Subscribe("OnEnemyKilled", UpdateEnemiesKilled);
         EventManager.Subscribe("OnGameOver", GameOver);
+        EventManager.Subscribe("OnVictory", Victory);
         EventManager.Subscribe("OnReload", RefreshUIReferences);
         EventManager.Subscribe("OnUnlockAchievement", UpdateAchievement);
         EventManager.Subscribe("OnPlayerStateChanged", UpdateStateDisplay);
@@ -61,6 +64,7 @@ public class UIManager : MonoBehaviour
         EventManager.Unsubscribe("OnLivesChanged", UpdateLives);
         EventManager.Unsubscribe("OnEnemyKilled", UpdateEnemiesKilled);
         EventManager.Unsubscribe("OnGameOver", GameOver);
+        EventManager.Unsubscribe("OnVictory", Victory);
         EventManager.Unsubscribe("OnReload", RefreshUIReferences);
         EventManager.Unsubscribe("OnUnlockAchievement", UpdateAchievement);
         EventManager.Unsubscribe("OnPlayerStateChanged", UpdateStateDisplay);
@@ -276,6 +280,14 @@ public class UIManager : MonoBehaviour
 
     }
 
+    private void Victory()
+    {
+        Debug.Log("ui victory");
+        MakeVisible(true, victoryPanel.GetComponent<CanvasGroup>());
+
+        victoryPanelText.text = $"- FINAL STATS -\nFinal Score: {GameManager.Instance.score}\nFinal Time: {GameManager.Instance.timePassed}";
+    }
+
     public void InitializeUI()
     {
         UpdateScore();
@@ -300,8 +312,11 @@ public class UIManager : MonoBehaviour
 
         goalText = GameObject.Find("Goal")?.GetComponent<Text>();
 
+        victoryPanelText = GameObject.Find("VictoryDetails")?.GetComponent<Text>();
+
         pausePanel = GameObject.Find("PausePanel");
         gameOverPanel = GameObject.Find("GameEndPanel");
+        victoryPanel = GameObject.Find("VictoryPanel");
 
         slowingPanel = GameObject.Find("SlowingPanel");
 

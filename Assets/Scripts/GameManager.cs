@@ -82,6 +82,7 @@ public class GameManager : MonoBehaviour
     public MainMenuState MainMenuState = new MainMenuState();
     public PausedState PausedState = new PausedState();
     public GameOverState GameOverState = new GameOverState();
+    public VictoryState VictoryState = new VictoryState();
 
     private void Start()
     {
