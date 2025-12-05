@@ -1,13 +1,13 @@
-using System;
+//using System;
 using UnityEngine;
 
 public class MountainState : LevelState
 {
     private float nextSpawnTime = 0f;
-    private float spawnRate = 0.4f;
+    private float spawnRate = 2f;
     //col
     private float nextCoinTime = 0f;
-    private float coinSpawnRate = 1.7f;
+    private float coinSpawnRate = 3f;
 
     private bool spawnedBoss = false;
 
@@ -29,7 +29,7 @@ public class MountainState : LevelState
 
     public override void UpdateState(LevelManager level)
     {
-        SpawnBehavior();
+        SpawnObsidian();
         if (DialogueManager.Instance.isDialogueActive)
         {
             return;
@@ -41,11 +41,12 @@ public class MountainState : LevelState
         else
         {
             CollectibleBehavior();
+            //SpawnBehavior();
         }
     }
 
-    
-    private void SpawnBehavior()
+
+    private void SpawnObsidian()
     {
         //spawn boss
         if (!spawnedBoss)
@@ -54,20 +55,24 @@ public class MountainState : LevelState
             EnemySpawner.Instance.SpawnObsidian();
 
         }
-        /*
+    }
+    
+    private void SpawnBehavior()
+    {
+
+
         if (Time.time >= nextSpawnTime)
         {
-            switch((int)Time.time%4)
+            switch (Random.Range(0, 3))
             {
                 case 0:
                     EnemySpawner.Instance.SpawnCharger();
                     //EnemySpawner.Instance.SpawnSpider();
                     break;
                 case 1:
-                    EnemySpawner.Instance.SpawnCharger();
-                    break;
-                case >=2:
                     EnemySpawner.Instance.SpawnSpider();
+                    break;
+                case 2:
                     EnemySpawner.Instance.SpawnSpitter();
                     break;
             }
@@ -76,23 +81,24 @@ public class MountainState : LevelState
             
 
             nextSpawnTime = Time.time + spawnRate;
-        }*/
+        }
     }
     private void CollectibleBehavior()
     {
         if (Time.time >= nextCoinTime)
         {
-            switch((int)Time.time%3) //never hits 3. only 0,1,2
+            switch (Random.Range(0, 4))
             {
                 case 0:
-                    CollectibleSpawner.Instance.SpawnCoin();
-                    CollectibleSpawner.Instance.SpawnLife();
+                    CollectibleSpawner.Instance.SpawnBomb();
+                    
+                    //CollectibleSpawner.Instance.SpawnLife();
                     break;
                 case 1:
                     CollectibleSpawner.Instance.SpawnLife();
                     break;
-                case 2:
-                    CollectibleSpawner.Instance.SpawnBomb();
+                case >=2:
+                    CollectibleSpawner.Instance.SpawnCoin();
                     break;
             }
             //Debug.Log((int)Time.time % 3);

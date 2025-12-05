@@ -1,4 +1,4 @@
-using System;
+//using System;
 using UnityEngine;
 
 public class CaveState : LevelState
@@ -42,7 +42,7 @@ public class CaveState : LevelState
     {
         if (Time.time >= nextSpawnTime)
         {
-            switch((int)Time.time%2)
+            switch (Random.Range(0, 2))
             {
                 case 0:
                     EnemySpawner.Instance.SpawnCharger();
@@ -60,7 +60,7 @@ public class CaveState : LevelState
     {
         if (Time.time >= nextCoinTime)
         {
-            switch((int)Time.time%3) //never hits 3. only 0,1,2
+            switch (Random.Range(0, 3))
             {
                 case 0:
                     CollectibleSpawner.Instance.SpawnCoin();
@@ -72,7 +72,7 @@ public class CaveState : LevelState
                     CollectibleSpawner.Instance.SpawnBomb();
                     break;
             }
-            Debug.Log((int)Time.time % 3);
+
             
             
             nextCoinTime = Time.time + coinSpawnRate;

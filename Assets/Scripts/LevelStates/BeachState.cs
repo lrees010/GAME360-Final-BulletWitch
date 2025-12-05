@@ -1,4 +1,4 @@
-using System;
+//using System;
 using UnityEngine;
 
 public class BeachState : LevelState
@@ -44,17 +44,19 @@ public class BeachState : LevelState
     {
         if (Time.time >= nextSpawnTime)
         {
-            switch((int)Time.time%4)
+            switch(Random.Range(0, 4))
             {
                 case 0:
                     EnemySpawner.Instance.SpawnCharger();
+                    EnemySpawner.Instance.SpawnSpitter();
                     //EnemySpawner.Instance.SpawnSpider();
                     break;
                 case 1:
-                    EnemySpawner.Instance.SpawnCharger();
+                    EnemySpawner.Instance.SpawnSpider();
+                    EnemySpawner.Instance.SpawnSpitter();
                     break;
                 case >=2:
-                    EnemySpawner.Instance.SpawnSpider();
+                    EnemySpawner.Instance.SpawnCharger();
                     EnemySpawner.Instance.SpawnSpitter();
                     break;
             }
@@ -69,11 +71,11 @@ public class BeachState : LevelState
     {
         if (Time.time >= nextCoinTime)
         {
-            switch((int)Time.time%3) //never hits 3. only 0,1,2
+            switch(Random.Range(0, 3))
             {
                 case 0:
                     CollectibleSpawner.Instance.SpawnCoin();
-                    CollectibleSpawner.Instance.SpawnLife();
+                    //CollectibleSpawner.Instance.SpawnLife();
                     break;
                 case 1:
                     CollectibleSpawner.Instance.SpawnLife();

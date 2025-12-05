@@ -92,9 +92,15 @@ public class EnemySpawner : MonoBehaviour //provide quick enemy spawning and ui 
         }
     }
 
+    private void SpawnBoss(GameObject enemyPrefab)
+    {
+        int randomIndex = Random.Range(0, spawnPoints.Length);
+        Instantiate(enemyPrefab, spawnPoints[randomIndex].position, Quaternion.identity);
+    }
+
     public void SpawnCharger() => SpawnEnemy(chargerPrefab); 
 
-    public void SpawnObsidian() => SpawnEnemy(obsidianPrefab);
+    public void SpawnObsidian() => SpawnBoss(obsidianPrefab);
     public void SpawnSpider() => SpawnEnemy(spiderPrefab); 
 
     public void SpawnShark() => SpawnEnemy(sharkPrefab);

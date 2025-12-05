@@ -1,4 +1,4 @@
-using System;
+//using System;
 using UnityEngine;
 
 public class LakeState : LevelState
@@ -44,22 +44,26 @@ public class LakeState : LevelState
     {
         if (Time.time >= nextSpawnTime)
         {
-            switch((int)Time.time%4)
+            switch (Random.Range(0, 3))
             {
                 case 0:
-                    EnemySpawner.Instance.SpawnCharger();
-                    EnemySpawner.Instance.SpawnShark();
+
+                    
                     EnemySpawner.Instance.SpawnSpider();
+                    EnemySpawner.Instance.SpawnCharger();
+                    EnemySpawner.Instance.SpawnCharger();
                     break;
                 case 1:
-                    //Debug.Log("sharko");
-                    //EnemySpawner.Instance.SpawnShark();
+
+                    EnemySpawner.Instance.SpawnShark();
+                    EnemySpawner.Instance.SpawnSpider();
                     EnemySpawner.Instance.SpawnCharger();
                     //EnemySpawner.Instance.SpawnSpider();
                     break;
                 case >=2:
                     EnemySpawner.Instance.SpawnCharger();
-                    EnemySpawner.Instance.SpawnShark();
+                    EnemySpawner.Instance.SpawnSpider();
+                    
                     break;
             }
             
@@ -71,7 +75,7 @@ public class LakeState : LevelState
     {
         if (Time.time >= nextCoinTime)
         {
-            switch((int)Time.time%3) //never hits 3. only 0,1,2
+            switch (Random.Range(0,3))
             {
                 case 0:
                     CollectibleSpawner.Instance.SpawnCoin();
