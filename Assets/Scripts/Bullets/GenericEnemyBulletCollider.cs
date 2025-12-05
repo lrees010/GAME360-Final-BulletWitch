@@ -7,14 +7,19 @@ public class GenericEnemyBulletCollider : MonoBehaviour
     {
         EventManager.Subscribe("OnPlayerDeath", Vanish);
         EventManager.Subscribe("OnBomb", Vanish);
+        EventManager.Subscribe("OnLevelChanged", LevelChanged);
     }
 
     private void OnDestroy()
     {
         EventManager.Unsubscribe("OnPlayerDeath", Vanish);
         EventManager.Unsubscribe("OnBomb", Vanish);
+        EventManager.Unsubscribe("OnLevelChanged", LevelChanged);
     }
-
+    private void LevelChanged(object data) 
+    {
+        Vanish();
+    }
     private void Vanish()
     {
         Destroy(gameObject );
