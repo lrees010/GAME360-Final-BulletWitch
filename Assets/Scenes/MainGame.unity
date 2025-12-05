@@ -3860,6 +3860,8 @@ MonoBehaviour:
   goalText: {fileID: 0}
   gameOverPanel: {fileID: 1077280299}
   pausePanel: {fileID: 334187708}
+  victoryPanel: {fileID: 0}
+  victoryPanelText: {fileID: 0}
   slowingPanel: {fileID: 0}
 --- !u!4 &1475493626
 Transform:
