@@ -8,6 +8,7 @@ public class MainMenuState : GameState
         {
             DialogueManager.Instance.EndDialogue();
         }
+        AudioManager.Instance.PauseMusic(true);
         Debug.Log("Entered MainMenuState");
     }
 
