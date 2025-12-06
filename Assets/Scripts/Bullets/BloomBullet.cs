@@ -21,7 +21,7 @@ public class BloomBullet : MonoBehaviour
     }
     private void Start()
     {
-        AudioManager.Instance.PlayBloomShootSound();
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.BloomShootSound);
         send(Instantiate(bloom), Vector2.up);
         send(Instantiate(bloom), (Vector2.up + new Vector2(-0.2f, 0f)));
         send(Instantiate(bloom), (Vector2.up + new Vector2(0.2f, 0f)));

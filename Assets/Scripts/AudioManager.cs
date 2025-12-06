@@ -53,6 +53,15 @@ public class AudioManager : MonoBehaviour
     public AudioClip AchievementSound;
     public AudioClip EnemyKilledSound;
     public AudioClip BombSound;
+    public AudioClip ObsidianDamageSound;
+    public AudioClip DieSound;
+    public AudioClip WaveShootSound;
+    public AudioClip HitSound;
+    public AudioClip SpitterShootSound;
+    public AudioClip BombPickupSound;
+    public AudioClip LifePickupSound;
+    public AudioClip ObsidianShootSound;
+    public AudioClip GameoverSound;
 
     public AudioClip ClearingMusic;
     public AudioClip ForestMusic;
@@ -88,6 +97,15 @@ public class AudioManager : MonoBehaviour
         {
             audioSource.volume = generalVolume;
             audioSource.PlayOneShot(clip);
+        }
+    }
+    private float lastSound = 0f;
+    public void PlayLimitedSFX(AudioClip clip)
+    {
+        if (Time.time - lastSound > 0.23f)
+        {
+            lastSound = Time.time;
+            PlaySFX(clip);
         }
     }
 
@@ -136,17 +154,8 @@ public class AudioManager : MonoBehaviour
 
 
     //non observer sounds
-    public void PlayCoinSound()
-    {
-        PlaySFX(CoinSound);
-    }
-    public void PlayShootSound() => PlaySFX(ShootSound);
-
-    public void PlayBloomShootSound() => PlaySFX(BloomShootSound);
-
-    public void PlayAchievementSound() => PlaySFX(AchievementSound);
 
     public void PlayEnemyKilledSound() => PlaySFX(EnemyKilledSound);
 
-    public void PlayBombSound() => PlaySFX(BombSound);
+    
 }

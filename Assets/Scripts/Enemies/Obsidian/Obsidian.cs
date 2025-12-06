@@ -121,6 +121,9 @@ public class ObsidianManager : MonoBehaviour
             send(Instantiate(spitterBulletPrefab), Vector2.down+Vector2.left, 7f, 2f);
             send(Instantiate(spitterBulletPrefab), Vector2.down + Vector2.right, 7f, 2f);
             lastShootTime = Time.time;
+
+            //play obsidian shoot sound
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.ObsidianShootSound);
         }
     }
 
@@ -212,6 +215,7 @@ public class ObsidianManager : MonoBehaviour
             return;
         }
         health -= damage;
+        AudioManager.Instance.PlayLimitedSFX(AudioManager.Instance.ObsidianDamageSound);
         float healthPercentage = Mathf.Clamp((float)health / (float)originalHealth, 0.5f,1f);
         transform.localScale = new Vector3(healthPercentage, healthPercentage, healthPercentage);
         rb.linearVelocity = rb.linearVelocity * new Vector2(0.8f, 0.5f);

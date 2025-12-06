@@ -178,7 +178,7 @@ public class PlayerController : MonoBehaviour
         {
             
             GameManager.Instance.bombs = GameManager.Instance.bombs - 1;
-            AudioManager.Instance.PlayBombSound();
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.BombSound);
             ExplosionFX();
             EventManager.TriggerEvent("OnBomb");
             ChangeState(PowerupState);

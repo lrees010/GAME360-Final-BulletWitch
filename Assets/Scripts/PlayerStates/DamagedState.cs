@@ -15,6 +15,9 @@ public class DamagedState : PlayerState
         //disappear
         player.rb.position = new Vector2(0, 40);
 
+        //play death sound
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.DieSound);
+
         //kill everything
         EventManager.TriggerEvent("OnPlayerDeath");
         //already doing "OnPlayerStateChanged", "Damaged"

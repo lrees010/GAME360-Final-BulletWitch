@@ -33,7 +33,7 @@ public class AchievementManager : MonoBehaviour
             achievementDictionary[key] = true;
             EventManager.TriggerEvent("OnUnlockAchievement", message);
             Debug.Log(message);
-            AudioManager.Instance.PlayAchievementSound();
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.AchievementSound);
         }
     }
 

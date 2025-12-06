@@ -77,6 +77,9 @@ public class Spitter : MonoBehaviour
             rb.linearVelocity = new Vector2(0f,rb.linearVelocity.y);
             send(Instantiate(spitterBulletPrefab), Vector2.down, 3f, 6f);
             lastShootTime = Time.time;
+
+            //play shoot sound
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.SpitterShootSound);
         }
     }
 
@@ -158,6 +161,9 @@ public class Spitter : MonoBehaviour
     {
         health -= damage;
         rb.linearVelocity = rb.linearVelocity * new Vector2(0.8f, 0.5f);
+
+        //play hit sound
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.HitSound);
 
         if (damageCoroutine != null)
         {

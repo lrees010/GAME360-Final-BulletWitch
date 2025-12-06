@@ -163,12 +163,18 @@ public class GameManager : MonoBehaviour
     {
         lives++;
         EventManager.TriggerEvent("OnLivesChanged");
+
+        //play life pickup sound
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.LifePickupSound);
     }
 
     public void BombPickedUp()
     {
         bombs++;
         EventManager.TriggerEvent("OnBombsChanged");
+
+        //play bomb pickup sound
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.BombPickupSound);
     }
 
     public void EnemyKilled()
@@ -183,7 +189,7 @@ public class GameManager : MonoBehaviour
 
     public void CollectiblePickedUp(int value)
     {
-        AudioManager.Instance.PlayCoinSound();
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.CoinSound);
         AddScore(value);
         Debug.Log($"Collectible picked up worth {value} points!");
     }
