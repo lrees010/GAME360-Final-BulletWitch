@@ -18,6 +18,7 @@ public class CaveState : LevelState
         TextAsset jsonFile = Resources.Load<TextAsset>("Convos/cave");
         DialogueManager.Instance.StartConversation(jsonFile);
 
+        AudioManager.Instance.PlayMusic(AudioManager.Instance.CaveMusic);
     }
 
 

@@ -45,10 +45,17 @@ public class DialogueManager : MonoBehaviour
 
     }
 
+    private void OnDestroy()
+    {
+        EventManager.Unsubscribe("OnReload", Reload);
+    }
+
     private void Reload()
     {
+        RefreshReferences();
+        
         EndDialogue();
-
+        
     }
     public static DialogueManager Instance { get; private set; }
     private void Awake()
@@ -61,14 +68,14 @@ public class DialogueManager : MonoBehaviour
         }
         else
         {
-            Destroy(gameObject); // Destroy duplicate GameManagers
+            Destroy(gameObject); // Destroy duplicates
         }
 
 
     }
     public void StartConversation(object data)
     {
-        if (isDialogueActive == true)
+        if (isDialogueActive == true|| dialoguePanel == null)
         {
             return;
         }
@@ -141,6 +148,7 @@ public class DialogueManager : MonoBehaviour
 
     public void EndDialogue()
     {
+        Debug.Log("enddialgue");
         HidePanel();
         isDialogueActive = false;
         dialogueQueue.Clear();

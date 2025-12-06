@@ -4,13 +4,15 @@ public class MainMenuState : GameState
 {
     public override void EnterState(GameManager game)
     {
+        if (DialogueManager.Instance != null)
+        {
+            DialogueManager.Instance.EndDialogue();
+        }
         Debug.Log("Entered MainMenuState");
-
     }
 
     public override void UpdateState(GameManager game)
     {
-
     }
 
 

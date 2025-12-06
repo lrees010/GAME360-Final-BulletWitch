@@ -88,17 +88,21 @@ public class GameManager : MonoBehaviour
     {
         Application.targetFrameRate = 50;
         exitAction = InputSystem.actions.FindAction("Exit");
-        if (SceneManager.GetActiveScene().name == "MainGame")
+
+        switch(SceneManager.GetActiveScene().name)
         {
-            ChangeState(PlayingState);
-        }
-        else
-        {
-            ChangeState(MainMenuState);
+            case "MainGame":
+                ChangeState(PlayingState);
+                break;
+            case "MainMenu":
+                ChangeState(MainMenuState);
+                break;
+
         }
     }
     public void ChangeState(GameState newState)
     {
+        
         if (currentState != null)
         {
             currentState.ExitState(this);
@@ -213,8 +217,9 @@ public class GameManager : MonoBehaviour
 
     public void RestartGame()
     {
-        ChangeState(PlayingState);
         EventManager.TriggerEvent("OnReload");
+        ChangeState(PlayingState);
+        
         speedOfTime = 1f;
         Time.timeScale = 1f;
 
@@ -226,11 +231,13 @@ public class GameManager : MonoBehaviour
         timePassed = 0f;
         playingTimePassed = 0f;
         currentBullet = "Bullet";
+        
         //_enemyGoal = 1; //don't wanna trigger events
 
 
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-       
+        
+
     }
 
 

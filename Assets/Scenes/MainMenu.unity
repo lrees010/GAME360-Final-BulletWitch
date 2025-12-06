@@ -948,7 +948,7 @@ MonoBehaviour:
   powerupActive: 0
   level: 1
   exitAction:
-    m_Name: 
+    m_Name: Exit
     m_Type: 0
     m_ExpectedControlType: 
     m_Id: 05bb1504-4afe-45a2-9cce-009b90592316

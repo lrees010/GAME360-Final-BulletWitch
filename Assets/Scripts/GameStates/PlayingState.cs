@@ -72,7 +72,7 @@ public class PlayingState : GameState
     }
 
     public override void ExitState(GameManager game) {
-        //game.speedOfTime = 1f;
+
     }
 
     public override string GetStateName() => "PlayingState";

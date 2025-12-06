@@ -18,7 +18,7 @@ public class ClearingState : LevelState
         TextAsset jsonFile = Resources.Load<TextAsset>("Convos/initial");
         DialogueManager.Instance.StartConversation(jsonFile);
 
-        AudioManager.Instance.ChangeMusic("Clearing");
+        AudioManager.Instance.PlayMusic(AudioManager.Instance.ClearingMusic);
     }
 
 

@@ -6298,13 +6298,33 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8300000, guid: 138dcb8c71512ce4381dbcd09c69b19e, type: 3}
     - target: {fileID: 8814104111511847280, guid: 0ac71f02e03809748b22a060ebc7210a, type: 3}
+      propertyPath: CaveMusic
+      value: 
+      objectReference: {fileID: 8300000, guid: af83638c11bfaf94088856e81732725c, type: 3}
+    - target: {fileID: 8814104111511847280, guid: 0ac71f02e03809748b22a060ebc7210a, type: 3}
+      propertyPath: LakeMusic
+      value: 
+      objectReference: {fileID: 8300000, guid: 3465568adda65394581740e6f14f8a54, type: 3}
+    - target: {fileID: 8814104111511847280, guid: 0ac71f02e03809748b22a060ebc7210a, type: 3}
+      propertyPath: BeachMusic
+      value: 
+      objectReference: {fileID: 8300000, guid: a9848a5c19f7fdb4fa7f0c4b20b2fdac, type: 3}
+    - target: {fileID: 8814104111511847280, guid: 0ac71f02e03809748b22a060ebc7210a, type: 3}
       propertyPath: ShootSound
       value: 
       objectReference: {fileID: 8300000, guid: 69658e729c40aca4c8dcc10f69674131, type: 3}
     - target: {fileID: 8814104111511847280, guid: 0ac71f02e03809748b22a060ebc7210a, type: 3}
+      propertyPath: VictoryMusic
+      value: 
+      objectReference: {fileID: 8300000, guid: 2643098828188c84c80d7efbce3443dc, type: 3}
+    - target: {fileID: 8814104111511847280, guid: 0ac71f02e03809748b22a060ebc7210a, type: 3}
       propertyPath: GameoverSound
       value: 
       objectReference: {fileID: 8300000, guid: 3d6dfd47f0f42db4e9338d9746415fb0, type: 3}
+    - target: {fileID: 8814104111511847280, guid: 0ac71f02e03809748b22a060ebc7210a, type: 3}
+      propertyPath: MountainMusic
+      value: 
+      objectReference: {fileID: 8300000, guid: 5a952ad41b98b634ebbca7bafef72300, type: 3}
     - target: {fileID: 8814104111511847280, guid: 0ac71f02e03809748b22a060ebc7210a, type: 3}
       propertyPath: WaveShootSound
       value: 

@@ -20,6 +20,7 @@ public class BeachState : LevelState
         //TextAsset jsonFile = Resources.Load<TextAsset>("Convos/cave");
         //DialogueManager.Instance.StartConversation(jsonFile);
 
+        AudioManager.Instance.PlayMusic(AudioManager.Instance.BeachMusic);
     }
 
 

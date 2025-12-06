@@ -23,7 +23,8 @@ public class MountainState : LevelState
         TextAsset jsonFile = Resources.Load<TextAsset>("Convos/boss");
         DialogueManager.Instance.StartConversation(jsonFile);
 
-        
+        AudioManager.Instance.PlayMusic(AudioManager.Instance.MountainMusic);
+
     }
 
 

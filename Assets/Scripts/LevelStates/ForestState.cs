@@ -19,7 +19,7 @@ public class ForestState : LevelState
         GameManager.Instance.level = 1;
         GameManager.Instance.EnemyGoal = 25;
 
-        AudioManager.Instance.ChangeMusic("Forest");
+        AudioManager.Instance.PlayMusic(AudioManager.Instance.ForestMusic);
     }
 
 

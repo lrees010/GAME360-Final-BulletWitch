@@ -63,8 +63,14 @@ public class AudioManager : MonoBehaviour
     public AudioClip ObsidianShootSound;
     public AudioClip GameoverSound;
 
+    [Header("Music")]
     public AudioClip ClearingMusic;
     public AudioClip ForestMusic;
+    public AudioClip CaveMusic;
+    public AudioClip LakeMusic;
+    public AudioClip BeachMusic;
+    public AudioClip MountainMusic;
+    public AudioClip VictoryMusic;
 
     private AudioSource audioSource;//Unity componenet
 
@@ -109,7 +115,7 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    private void PlayMusic(AudioClip clip)
+    public void PlayMusic(AudioClip clip)
     {
         Debug.Log("musico");
         if (clip != null && musicSource != null)
@@ -121,7 +127,7 @@ public class AudioManager : MonoBehaviour
     }
 
 
-
+    /*
     public void ChangeMusic(string level)
     {
         switch (level)
@@ -136,7 +142,7 @@ public class AudioManager : MonoBehaviour
                 PlayMusic(ForestMusic);
                 break;
         }
-    }
+    }*/
 
     public void PauseMusic(bool pause)
     {
