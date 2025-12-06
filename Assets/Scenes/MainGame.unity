@@ -6188,6 +6188,10 @@ PrefabInstance:
       propertyPath: explosionPrefab
       value: 
       objectReference: {fileID: 58850634041835786, guid: 25cc6479c21cce44aaa17080d205f35c, type: 3}
+    - target: {fileID: 3334363820125390474, guid: a513c012c289ab54882a84faf7c7d496, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4126854077953803790, guid: a513c012c289ab54882a84faf7c7d496, type: 3}
       propertyPath: m_Name
       value: Player

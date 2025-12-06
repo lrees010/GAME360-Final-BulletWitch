@@ -13,7 +13,8 @@ public class DamagedState : PlayerState
         player.rb.linearVelocity = new Vector2(0, 0);
 
         //disappear
-        player.rb.position = new Vector2(0, 40);
+        player.GetComponent<SpriteRenderer>().enabled = false;
+        player.rb.position = new Vector2(0, -4);
 
         //play death sound
         AudioManager.Instance.PlaySFX(AudioManager.Instance.DieSound);
@@ -29,15 +30,21 @@ public class DamagedState : PlayerState
         damagedTicks = damagedTicks + Time.deltaTime;
         if (damagedTicks > 0.4f)
         {
-            player.ChangeState(player.IdleState);
+            //come back!
+            
+            player.GetComponent<SpriteRenderer>().enabled = true;
             player.damageCooldown = false;
 
-            //come back!
-            player.rb.position = new Vector2(0, -4);
+            player.ChangeState(player.IdleState);
+            
+
+            
         }
     }
 
-    public override void ExitState(PlayerController player) { }
+    public override void ExitState(PlayerController player) {
+
+    }
 
     public override string GetStateName() => "Damaged";
 }
