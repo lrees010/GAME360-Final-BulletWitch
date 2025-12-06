@@ -45,11 +45,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AudioManager
   generalVolume: 1
-  ShootSound: {fileID: 8300000, guid: aa659eeaf7a850a41a19d990aa3355dc, type: 3}
+  ShootSound: {fileID: 8300000, guid: 69658e729c40aca4c8dcc10f69674131, type: 3}
   BloomShootSound: {fileID: 8300000, guid: 005f236d730616e40980873737ad50b8, type: 3}
   CoinSound: {fileID: 8300000, guid: 3d16df54a64d949448af175ba9d65dea, type: 3}
   AchievementSound: {fileID: 8300000, guid: 67f3fc789b708144881655c2f3b0d11e, type: 3}
   EnemyKilledSound: {fileID: 8300000, guid: 9bc9cd8bb1d84dc4d8ed2a0418b925dd, type: 3}
   BombSound: {fileID: 8300000, guid: dc6b9904926bd59449bfe9e1fedff4e4, type: 3}
+  ObsidianDamageSound: {fileID: 8300000, guid: 66eedcc548e679c4a92d94e4b36524da, type: 3}
+  DieSound: {fileID: 8300000, guid: 0c8b0a7441290104586727583d537751, type: 3}
+  WaveShootSound: {fileID: 8300000, guid: 2ff04c121a26e234baf15272fd752b0e, type: 3}
+  HitSound: {fileID: 8300000, guid: 138dcb8c71512ce4381dbcd09c69b19e, type: 3}
+  SpitterShootSound: {fileID: 8300000, guid: f2cc4d3e37c36974c93e62f911158ba5, type: 3}
+  BombPickupSound: {fileID: 8300000, guid: 7f810cf890fcd6145bea7ca2529443c4, type: 3}
+  LifePickupSound: {fileID: 8300000, guid: 2dd20fe13c470c94b9d2b3ca56abb810, type: 3}
+  ObsidianShootSound: {fileID: 8300000, guid: 67a90c7e6568f2942943444b58c804cc, type: 3}
+  GameoverSound: {fileID: 8300000, guid: 3d6dfd47f0f42db4e9338d9746415fb0, type: 3}
   ClearingMusic: {fileID: 8300000, guid: 77a6b3c4029bbde488a5886c9cf83875, type: 3}
   ForestMusic: {fileID: 8300000, guid: d76bb2cab213e7b4799c79631713c174, type: 3}
+  CaveMusic: {fileID: 8300000, guid: af83638c11bfaf94088856e81732725c, type: 3}
+  LakeMusic: {fileID: 8300000, guid: 3465568adda65394581740e6f14f8a54, type: 3}
+  BeachMusic: {fileID: 8300000, guid: a9848a5c19f7fdb4fa7f0c4b20b2fdac, type: 3}
+  MountainMusic: {fileID: 8300000, guid: 5a952ad41b98b634ebbca7bafef72300, type: 3}
+  VictoryMusic: {fileID: 8300000, guid: 2643098828188c84c80d7efbce3443dc, type: 3}
