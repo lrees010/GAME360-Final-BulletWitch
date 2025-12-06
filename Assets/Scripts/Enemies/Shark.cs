@@ -141,11 +141,14 @@ public class Shark : MonoBehaviour
         health -= damage;
         rb.linearVelocity = rb.linearVelocity * new Vector2(0.8f, 0.5f);
 
+        //play hit sound
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.HitSound);
+
         if (damageCoroutine!=null)
         {
             StopCoroutine(damageCoroutine);
         }
-        //StopAllCoroutines();
+        
         damageCoroutine = StartCoroutine(DamageVisual(0.3f, 0.3f));
 
         if (health <= 0)
