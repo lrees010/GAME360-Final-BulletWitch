@@ -65,7 +65,7 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         currentState.UpdateState(this);
-
+        HandleSkipDialogue();
 
     }
     
@@ -107,6 +107,14 @@ public class PlayerController : MonoBehaviour
             
         }
 
+    }
+
+    private void HandleSkipDialogue()
+    {
+        if (powerupAction.WasPressedThisFrame())
+        {
+            DialogueManager.Instance.EndDialogue();
+        }
     }
 
     public void FireBullet()

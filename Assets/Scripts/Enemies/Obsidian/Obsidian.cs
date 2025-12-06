@@ -19,7 +19,7 @@ public class ObsidianManager : MonoBehaviour
 
     private Transform player;
     private GameObject playerObj;
-    private Rigidbody2D rb;
+    public Rigidbody2D rb;
     private SpriteRenderer spr;
 
     //state manager 
@@ -118,8 +118,8 @@ public class ObsidianManager : MonoBehaviour
         {
             //rb.linearVelocity = new Vector2(0f,rb.linearVelocity.y);
             send(Instantiate(spitterBulletPrefab), Vector2.down, 7f, 2f);
-            send(Instantiate(spitterBulletPrefab), Vector2.down+Vector2.left, 7f, 2f);
-            send(Instantiate(spitterBulletPrefab), Vector2.down + Vector2.right, 7f, 2f);
+            send(Instantiate(spitterBulletPrefab), (Vector2.down+Vector2.left)/2, 7f, 3f);
+            send(Instantiate(spitterBulletPrefab), (Vector2.down + Vector2.right)/2, 7f, 3f);
             lastShootTime = Time.time;
 
             //play obsidian shoot sound
@@ -163,6 +163,11 @@ public class ObsidianManager : MonoBehaviour
         rb.AddForce(((direction * moveSpeed) * 9)*speedMultiplier);
         //rb.linearVelocity = new Vector2(rb.linearVelocity.x, -2f);
         rb.linearVelocity = Vector2.ClampMagnitude(rb.linearVelocity, speedLimit);
+    }
+
+    public void SnapTo(Vector3 pos)
+    {
+        transform.position = pos;
     }
     public void ChasePlayer()
     {

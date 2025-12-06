@@ -19,8 +19,9 @@ public class ObsidianFiringState : ObsidianState
             float xPos = (float)(
                 Math.Sin(Time.time)
                 * 9.5);
-            obsidian.MoveTo(new Vector3(xPos, 3+ (float)Math.Sin(Time.time*3), 0), 4f, 5f);
-            obsidian.Shoot(0.3f);
+            obsidian.MoveTo(new Vector3(xPos, 3+ (float)Math.Sin((Time.time-startTime)*3), 0), 2f, 5f);
+            //obsidian.SnapTo(new Vector3(xPos, 3 + (float)Math.Sin((Time.time - startTime) * 3), 0));
+            obsidian.Shoot(0.15f);
         }
         else
         {

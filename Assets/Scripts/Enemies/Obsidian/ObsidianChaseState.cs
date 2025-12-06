@@ -17,6 +17,9 @@ public class ObsidianChaseState : ObsidianState
         {
             obsidian.SideShoot(0.4f);
             obsidian.ChasePlayer();
+
+            //limit horizontal speed
+            obsidian.rb.linearVelocity = new Vector2(Mathf.Clamp(obsidian.rb.linearVelocity.x, -4f, 4f), obsidian.rb.linearVelocity.y);
         }
         else
         {

@@ -60,16 +60,16 @@ public class CaveState : LevelState
     {
         if (Time.time >= nextCoinTime)
         {
-            switch (Random.Range(0, 3))
+            switch (Random.Range(0, 4))
             {
                 case 0:
-                    CollectibleSpawner.Instance.SpawnCoin();
-                    break;
-                case 1:
                     CollectibleSpawner.Instance.SpawnLife();
                     break;
-                case 2:
+                case 1:
                     CollectibleSpawner.Instance.SpawnBomb();
+                    break;
+                case >=2:
+                    CollectibleSpawner.Instance.SpawnCoin();
                     break;
             }
 
