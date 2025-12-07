@@ -1,6 +1,6 @@
 # GAME360-Final-BulletWitch
 
-[Game Banner](Screenshots/banner.png)
+![Game Banner](Screenshots/banner.png)
 
 ## Game Overview
 - Genre: SHMUP
