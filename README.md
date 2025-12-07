@@ -10,9 +10,11 @@ Unity Version: 6000.2.6f2
 Course: GAME 360 - Development with Game Engines, Fall 2025
 
 ## How to Play
-# Installation
+
+Installation
 Download the latest release, and run "BulletWitch.exe".
-# Controls
+
+Controls
 Movement: WASD or Arrow Keys / Left Joystick
 Shoot: Left Click or Enter / Button West or Trigger
 Powerup/Bomb: E Key or Right Click / Button North
