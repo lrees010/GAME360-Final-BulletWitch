@@ -1,14 +1,17 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class CollectibleSpawner : MonoBehaviour //provide quick collectible spawning and ui for prefab
+public class CollectibleSpawner : MonoBehaviour 
 {
+    //Singleton to provide quick collectible spawning methods for LevelStates
+
+
     [Header("Spawning")]
     public GameObject coinPrefab;
     public GameObject lifePrefab;
     public GameObject bombPrefab;
 
-    public Transform[] spawnPoints;
+    public Transform[] spawnPoints; //possible spawn points
 
     public static CollectibleSpawner Instance { get; private set; }
     private void Awake()
@@ -28,7 +31,7 @@ public class CollectibleSpawner : MonoBehaviour //provide quick collectible spaw
         refreshSpawnPoints();
     }
 
-    private void refreshSpawnPoints()
+    private void refreshSpawnPoints() //Refreshes to get children Transforms automatically, and use their y positions as spawn points for collectibles
     {
         spawnPoints = new Transform[Instance.transform.childCount];
 
@@ -38,58 +41,27 @@ public class CollectibleSpawner : MonoBehaviour //provide quick collectible spaw
         }
     }
 
-    private void OnTransformChildrenChanged()
+    private void OnTransformChildrenChanged() //automatically refresh spawn point references if they change
     {
         refreshSpawnPoints();
     }
 
-    //private float nextSpawnTime = 0f;
-
-    //public float spawnRate = 2f;
-    void Update()
+    private void SpawnCollectible(GameObject collectiblePrefab) //method for instantiating collectible prefabs onto random spawn points, and randomizing their x position
     {
-        //SpawnDetermination();
-    }
-    /*
-    void SpawnDetermination()
-    {
-        switch (GameManager.Instance.level) //TEMPORARY
-        {
-            case 1: //forest
-                spawnRate = 1f;
-                if (Time.time >= nextSpawnTime)
-                {
-                    SpawnEnemy(chargerPrefab);
-                    nextSpawnTime = Time.time + spawnRate;
-                }
-                break;
-            case 2: //cave
-                spawnRate = 0.1f;
-                if (Time.time >= nextSpawnTime)
-                {
-                    SpawnEnemy(chargerPrefab);
-                    //spawn cave creatures
-                    nextSpawnTime = Time.time + spawnRate;
-                }
-                break;
-        }
-    }*/
-
-    private void SpawnCollectible(GameObject collectiblePrefab)
-    {
-        if (collectiblePrefab && spawnPoints.Length > 0)
+        if (collectiblePrefab && spawnPoints.Length > 0) //if the prefab exists, and the spawnpoints exist
         {
             // Check if game is still running through Singleton
             if (GameManager.Instance.lives > 0)
             {
                 int randomIndex = Random.Range(0, spawnPoints.Length);
-                int randomX = Random.Range(-7, 7);
+                int randomX = Random.Range(-7, 7); //randomize x position
                 Instantiate(collectiblePrefab, spawnPoints[randomIndex].position+(new Vector3(randomX,0,0)), Quaternion.identity);
             }
         }
     }
 
-    public void SpawnCoin() => SpawnCollectible(coinPrefab); //yup again
+    //public methods for spawning certain collectibles
+    public void SpawnCoin() => SpawnCollectible(coinPrefab);
     public void SpawnLife() => SpawnCollectible(lifePrefab);
 
     public void SpawnBomb() => SpawnCollectible(bombPrefab);

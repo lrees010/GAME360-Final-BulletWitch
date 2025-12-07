@@ -25,7 +25,7 @@ public class ReturnButtonHandler : MonoBehaviour
     void Clicky()
     {
         Debug.Log("click");
-        GameManager.Instance.ChangeState(GameManager.Instance.MainMenuState);
-        SceneManager.LoadScene("MainMenu");
+        GameManager.Instance.ChangeState(GameManager.Instance.MainMenuState); //switch to menu state
+        SceneManager.LoadScene("MainMenu"); //load menu scene
     }
 }

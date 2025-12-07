@@ -18,9 +18,7 @@ public class MovingState : PlayerState
 
     private void HandleMovement(PlayerController player)
     {
-        //float horizontal = Input.GetAxisRaw("Horizontal");
-        //float vertical = Input.GetAxisRaw("Vertical");
-
+        //player movement
         Vector2 movement = player.moveAction.ReadValue<Vector2>();
         player.rb.linearVelocity = movement * player.moveSpeed;
 

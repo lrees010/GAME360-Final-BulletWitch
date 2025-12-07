@@ -23,7 +23,7 @@ public class Shark : MonoBehaviour
 
     private void Start()
     {
-        transform.position = transform.position + new Vector3(0, 3,0);
+        transform.position = transform.position + new Vector3(0, 3,0); //move a bit higher on spawn
         rb = GetComponent<Rigidbody2D>();
         spr = SpriteObject.GetComponent<SpriteRenderer>();
 
@@ -31,8 +31,8 @@ public class Shark : MonoBehaviour
         GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
         if (playerObj) player = playerObj.transform;
 
-        chargeLocation = (player.position - transform.position).normalized;
-        chargeDirection = Quaternion.LookRotation(player.position - transform.position);
+        chargeLocation = (player.position - transform.position).normalized; //location to move towards
+        chargeDirection = Quaternion.LookRotation(player.position - transform.position); //direction to visually point in
 
         //events
         EventManager.Subscribe("OnPlayerDeath", Vanish);
@@ -98,9 +98,9 @@ public class Shark : MonoBehaviour
 
             
 
-            transform.rotation = new Quaternion(0, 0, chargeDirection.z, chargeDirection.w);
-            rb.AddForce((chargeLocation*9f)*9f);
-            rb.linearVelocity = Vector2.ClampMagnitude(rb.linearVelocity,6f);
+            transform.rotation = new Quaternion(0, 0, chargeDirection.z, chargeDirection.w); //rotate towards player
+            rb.AddForce((chargeLocation*9f)*9f); //move towards player
+            rb.linearVelocity = Vector2.ClampMagnitude(rb.linearVelocity,6f); //limit overall speed
             
 
         }
@@ -108,6 +108,8 @@ public class Shark : MonoBehaviour
 
     private System.Collections.IEnumerator DamageVisual(float fadeDuration, float holdDuration)
     {
+        //displays enemy being damaged by flashing red
+
         float time = 0f;
         /*
         
@@ -139,7 +141,7 @@ public class Shark : MonoBehaviour
     public void TakeDamage(int damage)
     {
         health -= damage;
-        rb.linearVelocity = rb.linearVelocity * new Vector2(0.8f, 0.5f);
+        rb.linearVelocity = rb.linearVelocity * new Vector2(0.8f, 0.5f); //reduce velocity when hit
 
         //play hit sound
         AudioManager.Instance.PlaySFX(AudioManager.Instance.HitSound);
@@ -149,11 +151,11 @@ public class Shark : MonoBehaviour
             StopCoroutine(damageCoroutine);
         }
         
-        damageCoroutine = StartCoroutine(DamageVisual(0.3f, 0.3f));
+        damageCoroutine = StartCoroutine(DamageVisual(0.3f, 0.3f)); //visualize damage by flashing red
 
         if (health <= 0)
         {
-            //Debug.Log("die");
+            //die when health is too low
             Die();
         }
     }
@@ -171,7 +173,7 @@ public class Shark : MonoBehaviour
         // This is where Singleton shines!
         // Any enemy can easily notify the GameManager
         GameManager.Instance.EnemyKilled(); //update the score of the player
-        AudioManager.Instance.PlayEnemyKilledSound();
+        AudioManager.Instance.PlayEnemyKilledSound(); //play death noise
         
         Destroy(gameObject); // the enemy gets destroyed
     }
@@ -180,7 +182,7 @@ public class Shark : MonoBehaviour
     {
         StartCoroutine(
             DelayedDeath(Mathf.Clamp( ((Vector2.Distance(transform.position, player.position)) / 15f),0f,0.7f))
-            );
+            );//delay explosion death based on distance to player (where bomb explosion originated), for visual effect and to prevent overly loud enemy death noise
     }
 
     private IEnumerator DelayedDeath(float delay)

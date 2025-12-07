@@ -21,10 +21,10 @@ public class PlayingState : GameState
             Debug.Log("no dialogue manager!");
             return;
         }
-        if (game.speedOfTime > 0f && !DialogueManager.Instance.isDialogueActive)
+        if (game.speedOfTime > 0f && !DialogueManager.Instance.isDialogueActive) //if time isn't frozen, and dialogue isn't happening
         {
             game.timePassed = game.timePassed + (Time.deltaTime / game.speedOfTime); //time passed always counts real seconds no matter what the speed of time is
-            //Debug.Log(game.timePassed);
+            
             game.playingTimePassed = game.playingTimePassed + Time.deltaTime;
 
             if (game.timePassed > game.timeLimit) //if ran out of time..
@@ -33,12 +33,12 @@ public class PlayingState : GameState
             }
             else
             {
-                EventManager.TriggerEvent("OnTimeLeftChanged");
+                EventManager.TriggerEvent("OnTimeLeftChanged"); //update ui
             }
         }
         
 
-        if (game.slowingTime == true)
+        if (game.slowingTime == true) //if player is using slow time button
         {
             if (slowedTime == false)
             {
@@ -46,7 +46,7 @@ public class PlayingState : GameState
             }
             slowedTime = true;
 
-            game.speedOfTime = Mathf.Clamp(
+            game.speedOfTime = Mathf.Clamp( //smoothly change speed of time
                 ((slowingInSpeed - (Time.time - lastSlowTime)) / slowingInSpeed),
                 game.speedOfSlowedTime,
                 1f);
@@ -58,13 +58,13 @@ public class PlayingState : GameState
                 lastSlowTime = Time.time;
             }
             slowedTime = false;
-            game.speedOfTime = Mathf.Clamp(
+            game.speedOfTime = Mathf.Clamp( //smoothly change speed of time
                 (((Time.time - lastSlowTime)) / slowingSpeed)+game.speedOfSlowedTime,
                 game.speedOfSlowedTime,
                 1f);
         }
 
-        if (game.exitAction.WasPressedThisFrame())
+        if (game.exitAction.WasPressedThisFrame()) //if esc key is hit, pause the game
         {
             game.ChangeState(game.PausedState);
         }

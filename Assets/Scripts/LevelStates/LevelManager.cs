@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
-    LevelState currentState;
+    LevelState currentState; //all levels as states
     public ForestState ForestState = new ForestState();
     public CaveState CaveState = new CaveState();
     public ClearingState ClearingState = new ClearingState();
@@ -13,7 +13,7 @@ public class LevelManager : MonoBehaviour
 
     private void Start()
     {
-        ChangeState(ClearingState);
+        ChangeState(ClearingState); //initialize with Clearing level
 
         EventManager.Subscribe("OnReload", Reload);
     }
@@ -32,7 +32,7 @@ public class LevelManager : MonoBehaviour
 
     private void Reload()
     {
-        ChangeState(ClearingState);
+        ChangeState(ClearingState); //switch to Clearing level when the game restarts
     }
 
     private void Update()
@@ -43,7 +43,6 @@ public class LevelManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             GameManager.Instance.EnemyGoal = 0;
-            //ChangeState(MountainState);
             if (DialogueManager.Instance.isDialogueActive)
             {
                 DialogueManager.Instance.EndDialogue();

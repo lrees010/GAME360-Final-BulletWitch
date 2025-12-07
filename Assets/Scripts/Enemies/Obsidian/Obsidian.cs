@@ -6,10 +6,10 @@ using UnityEngine.XR;
 public class ObsidianManager : MonoBehaviour
 {
 
-    public GameObject spitterBulletPrefab;
+    public GameObject spitterBulletPrefab; //uses same bullet prefab as spitter enemy
     [Header("Obsidian Stats")]
-    private int health = 400;
-    private int originalHealth;
+    private int health = 400; //boss enemy with more health
+    private int originalHealth; //original health, for division by runtime health
     private float moveSpeed = 6f;
 
     public Transform firePoint;
@@ -31,10 +31,10 @@ public class ObsidianManager : MonoBehaviour
 
     private void Start()
     {
-        originalHealth = health;
+        originalHealth = health; //always have the original health available, to differ from runtime health which changes
         rb = GetComponent<Rigidbody2D>();
         spr = GetComponent<SpriteRenderer>();
-        transform.position = new Vector2(0, 7); //overwrite spawn position
+        transform.position = new Vector2(0, 7); //overwrite spawn position given by EnemySpawner
 
         // Find player
         playerObj = GameObject.FindGameObjectWithTag("Player");
@@ -75,7 +75,7 @@ public class ObsidianManager : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (InBounds==false)
+        if (InBounds==false) //if boss goes out of bounds, respawn it
         {
             Respawn();
             return;
@@ -104,6 +104,7 @@ public class ObsidianManager : MonoBehaviour
 
     private void send(GameObject bullet, Vector2 direction, float lifetime, float speed)
     {
+        //fire bullets in given direction and velocity, from firepoint position
         bullet.transform.position = firePoint.position;
         Rigidbody2D bulletrb;
         bulletrb = bullet.GetComponent<Rigidbody2D>();
@@ -114,6 +115,7 @@ public class ObsidianManager : MonoBehaviour
     private float lastShootTime = 0f;
     public void Shoot(float fireRate)
     {
+        //default shoot behavior, sends three bullets in three directions downwards
         if (spitterBulletPrefab && (Time.time- lastShootTime) > fireRate)
         {
             //rb.linearVelocity = new Vector2(0f,rb.linearVelocity.y);
@@ -129,21 +131,25 @@ public class ObsidianManager : MonoBehaviour
 
     public void SideShoot(float fireRate)
     {
+        //alternative shoot behavior, sends two bullets left and right respectively
         if (spitterBulletPrefab && (Time.time - lastShootTime) > fireRate)
         {
             //rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
             send(Instantiate(spitterBulletPrefab), Vector2.left, 7f, 6f);
             send(Instantiate(spitterBulletPrefab), Vector2.right, 7f, 6f);
             lastShootTime = Time.time;
+
+            //play obsidian shoot sound
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.ObsidianShootSound);
         }
     }
 
-    public void Vanish() //player dies = all enemies vanish, no points
+    public void Vanish()
     {
         Destroy(gameObject);
     }
 
-    private void LevelChanged(object data) //overload
+    private void LevelChanged(object data) //if level changes, get rid of boss enemy
     {
         Vanish();
     }
@@ -158,14 +164,16 @@ public class ObsidianManager : MonoBehaviour
 
     public void MoveTo(Vector3 pos,float speedMultiplier, float speedLimit)
     {
+        //default method for moving boss enemy towards a position
+
         Vector2 direction = (pos - transform.position).normalized;
 
         rb.AddForce(((direction * moveSpeed) * 9)*speedMultiplier);
-        //rb.linearVelocity = new Vector2(rb.linearVelocity.x, -2f);
+
         rb.linearVelocity = Vector2.ClampMagnitude(rb.linearVelocity, speedLimit);
     }
 
-    public void SnapTo(Vector3 pos)
+    public void SnapTo(Vector3 pos) //method to instantly move boss enemy to given position
     {
         transform.position = pos;
     }
@@ -175,9 +183,9 @@ public class ObsidianManager : MonoBehaviour
         {
             return;
         }
-        if (GameManager.Instance.powerupActive == false)
+        if (GameManager.Instance.powerupActive == false) //if player not using powerup
         {
-
+            //move towards the player, changing speed based on sine function
             MoveTo(player.position, Mathf.Abs((Mathf.Sin(Time.time) / 2f)), 8f);
         }
 
@@ -185,6 +193,8 @@ public class ObsidianManager : MonoBehaviour
 
     private System.Collections.IEnumerator DamageVisual(float fadeDuration, float holdDuration)
     {
+        //displays enemy being damaged by flashing red
+
         float time = 0f;
         /*
         
@@ -220,10 +230,12 @@ public class ObsidianManager : MonoBehaviour
             return;
         }
         health -= damage;
-        AudioManager.Instance.PlayLimitedSFX(AudioManager.Instance.ObsidianDamageSound);
-        float healthPercentage = Mathf.Clamp((float)health / (float)originalHealth, 0.5f,1f);
+
+        AudioManager.Instance.PlayLimitedSFX(AudioManager.Instance.ObsidianDamageSound); //play damage sound at a limited rate
+
+        float healthPercentage = Mathf.Clamp((float)health / (float)originalHealth, 0.5f,1f); //use originalHealth variable to create a health percentage, to change size with
         transform.localScale = new Vector3(healthPercentage, healthPercentage, healthPercentage);
-        rb.linearVelocity = rb.linearVelocity * new Vector2(0.8f, 0.5f);
+        rb.linearVelocity = rb.linearVelocity * new Vector2(0.8f, 0.5f); //reduce velocity when hit
 
         if (damageCoroutine != null)
         {
@@ -232,7 +244,7 @@ public class ObsidianManager : MonoBehaviour
         //StopAllCoroutines();
         damageCoroutine = StartCoroutine(DamageVisual(0.3f, 0.3f));
 
-        if (health <= 0)
+        if (health <= 0) //die when health is too low
         {
             Debug.Log("die");
             Die();

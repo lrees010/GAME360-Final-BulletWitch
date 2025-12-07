@@ -14,7 +14,7 @@ public class IdleState : PlayerState
 
         if (Mathf.Abs(horizontal) + Mathf.Abs(vertical) > 0.1f)
         {
-            player.ChangeState(player.MovingState);
+            player.ChangeState(player.MovingState); //if movement input detected, switch to Moving state
         }
 
         player.HandleShooting(player);

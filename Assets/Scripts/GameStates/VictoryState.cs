@@ -8,17 +8,17 @@ public class VictoryState : GameState
         Debug.Log("Entered VictoryState");
  
 
-        EventManager.TriggerEvent("OnVictory");
-        EventManager.ClearAllEvents();
+        EventManager.TriggerEvent("OnVictory"); //trigger victory event
+        //EventManager.ClearAllEvents();
         //Time.timeScale = 0f; // Pause the game
 
-        AudioManager.Instance.PauseMusic(true);
+        AudioManager.Instance.PauseMusic(true); //pause music
     }
 
 
     public override void UpdateState(GameManager game)
     {
-        GameManager.Instance.speedOfTime = 0f;
+        GameManager.Instance.speedOfTime = 0f; //freeze time
     }
 
     public override void ExitState(GameManager game) { }

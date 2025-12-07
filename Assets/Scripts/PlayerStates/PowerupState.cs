@@ -5,7 +5,6 @@ public class PowerupState : PlayerState
     private float powerupTicks;
     public override void EnterState(PlayerController player)
     {
-        //Debug.Log("Entered BombingState");
         powerupTicks = 0f;
 
         //be immune for a little
@@ -14,7 +13,6 @@ public class PowerupState : PlayerState
         //stop movement
         player.rb.linearVelocity = new Vector2(0, 0);
 
-        //already doing "OnPlayerStateChanged", "Damaged"
 
         GameManager.Instance.powerupActive = true;
     }
@@ -22,15 +20,16 @@ public class PowerupState : PlayerState
     public override void UpdateState(PlayerController player)
     {
         powerupTicks = powerupTicks + Time.deltaTime;
-        if (powerupTicks > 0.4f)
+        if (powerupTicks > 0.4f) 
         {
-            player.ChangeState(player.IdleState);
+            player.ChangeState(player.IdleState);//switch back to idle state after some time
             player.damageCooldown = false;
+            GameManager.Instance.powerupActive = false;
         }
     }
 
     public override void ExitState(PlayerController player) {
-        GameManager.Instance.powerupActive = false;
+        
     }
 
     public override string GetStateName() => "Powerup";

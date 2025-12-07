@@ -23,6 +23,6 @@ public class ReplayButtonHandler : MonoBehaviour
 
     void clicky()
     {
-        GameManager.Instance.RestartGame();
+        GameManager.Instance.RestartGame(); //use singleton to restart game
     }
 }

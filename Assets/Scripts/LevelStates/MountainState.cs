@@ -3,9 +3,10 @@ using UnityEngine;
 
 public class MountainState : LevelState
 {
+    //enemy spawning variables
     private float nextSpawnTime = 0f;
     private float spawnRate = 2f;
-    //col
+    //collectible spawning variables
     private float nextCoinTime = 0f;
     private float coinSpawnRate = 3f;
 
@@ -14,34 +15,34 @@ public class MountainState : LevelState
     public override void EnterState(LevelManager level)
     {
         Debug.Log("Entered MountainState");
-        GameManager.Instance.level = 5;
-        GameManager.Instance.EnemyGoal = 1;
-        spawnedBoss = false;
+        GameManager.Instance.level = 5; //we are on level 5
+        GameManager.Instance.EnemyGoal = 1; //kill one enemy (Obsidian boss) to progress
+        spawnedBoss = false; //boss hasn't spawned yet
 
-        GameManager.Instance.currentBullet = "Wave";
+        GameManager.Instance.currentBullet = "Wave"; //change weapon to wave
 
-        TextAsset jsonFile = Resources.Load<TextAsset>("Convos/boss");
-        DialogueManager.Instance.StartConversation(jsonFile);
+        TextAsset jsonFile = Resources.Load<TextAsset>("Convos/boss");//load dialogue json
+        DialogueManager.Instance.StartConversation(jsonFile); //start dialogue using dialoguemanager, with the json as a parameter
 
-        AudioManager.Instance.PlayMusic(AudioManager.Instance.MountainMusic);
+        AudioManager.Instance.PlayMusic(AudioManager.Instance.MountainMusic); //play mountain music
 
     }
 
 
     public override void UpdateState(LevelManager level)
     {
-        SpawnObsidian();
-        if (DialogueManager.Instance.isDialogueActive)
+        SpawnObsidian(); //spawn boss
+        if (DialogueManager.Instance.isDialogueActive)//if dialogue is happening, don't spawn enemies or collectibles
         {
             return;
         }
-        if (GameManager.Instance.EnemyGoal <= 0)
+        if (GameManager.Instance.EnemyGoal <= 0)//if enemy goal is reached, the boss is defeated, switch game to victory state
         {
             GameManager.Instance.ChangeState(GameManager.Instance.VictoryState);
         }
         else
         {
-            CollectibleBehavior();
+            CollectibleBehavior(); //spawn collectibles
             //SpawnBehavior();
         }
     }
@@ -49,10 +50,10 @@ public class MountainState : LevelState
 
     private void SpawnObsidian()
     {
-        //spawn boss
+        //spawn boss, if it wasn't already spawned
         if (!spawnedBoss)
         {
-            spawnedBoss = true;
+            spawnedBoss = true; //boss has been spawned
             EnemySpawner.Instance.SpawnObsidian();
 
         }
@@ -86,14 +87,12 @@ public class MountainState : LevelState
     }
     private void CollectibleBehavior()
     {
-        if (Time.time >= nextCoinTime)
+        if (Time.time >= nextCoinTime)//spawn rate
         {
-            switch (Random.Range(0, 4))
+            switch (Random.Range(0, 4)) //spawn random collectible
             {
                 case 0:
                     CollectibleSpawner.Instance.SpawnBomb();
-                    
-                    //CollectibleSpawner.Instance.SpawnLife();
                     break;
                 case 1:
                     CollectibleSpawner.Instance.SpawnLife();
@@ -102,7 +101,6 @@ public class MountainState : LevelState
                     CollectibleSpawner.Instance.SpawnCoin();
                     break;
             }
-            //Debug.Log((int)Time.time % 3);
             
             
             nextCoinTime = Time.time + coinSpawnRate;

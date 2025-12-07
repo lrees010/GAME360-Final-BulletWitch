@@ -25,7 +25,7 @@ public class PlayButtonHandler : MonoBehaviour
     void Clicky()
     {
         Debug.Log("click");
-        GameManager.Instance.StartGame();
-        SceneManager.LoadScene("MainGame");
+        GameManager.Instance.StartGame(); //restart game using singleton
+        SceneManager.LoadScene("MainGame"); //load menu scene
     }
 }

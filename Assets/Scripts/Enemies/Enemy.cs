@@ -7,8 +7,7 @@ public class Enemy : MonoBehaviour
     public int health = 1;
     public float moveSpeed = 8f;
 
-    [Header("AI")]
-    //public float detectionRange = 0.5f;
+    //[Header("AI")]
 
     private Transform player;
     private Rigidbody2D rb;
@@ -37,13 +36,13 @@ public class Enemy : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (InBounds==false)
+        if (InBounds==false) //destroy if out of bounds
         {
             Vanish();
         }
         else
         {
-            ChasePlayer();
+            ChasePlayer(); //chase player if in bounds
         }
     }
 
@@ -52,7 +51,7 @@ public class Enemy : MonoBehaviour
         Destroy(gameObject);
     }
 
-    private void LevelChanged(object data) //overload
+    private void LevelChanged(object data) //ignore data
     {
         Vanish();
     }
@@ -67,28 +66,22 @@ public class Enemy : MonoBehaviour
 
     private void ChasePlayer()
     {
-        if (player)
+        if (player) //if player exists
         {
-            /*
-            if (GameManager.Instance.score > 99)
-                moveSpeed = 3f;
-            if (GameManager.Instance.score > 1999)
-                moveSpeed = 2f; */
-            //float distance = Vector2.Distance(transform.position, player.position);
-            if (GameManager.Instance.powerupActive)
+            if (GameManager.Instance.powerupActive) //if player is using bomb powerup, don't move
             {
                 rb.linearVelocity = Vector2.zero;
                 return;
             }
 
 
-                Vector2 direction = (player.position - transform.position).normalized;
+                Vector2 direction = (player.position - transform.position).normalized; //set direction to player
 
                 //direction = new Vector2(direction.x, -1f); //Mathf.Clamp(direction.y,-1f,-0.1f)
 
-                rb.AddForce((direction * moveSpeed)*9);
-                rb.linearVelocity = new Vector2(rb.linearVelocity.x, Mathf.Clamp(rb.linearVelocity.y,-4f,-3f));
-                rb.linearVelocity = Vector2.ClampMagnitude(rb.linearVelocity,9f);
+                rb.AddForce((direction * moveSpeed)*9); //add force in player direction
+                rb.linearVelocity = new Vector2(rb.linearVelocity.x, Mathf.Clamp(rb.linearVelocity.y,-4f,-3f)); //limit vertical speed
+                rb.linearVelocity = Vector2.ClampMagnitude(rb.linearVelocity,9f); //limit overall speed
                 
                
 
@@ -99,7 +92,7 @@ public class Enemy : MonoBehaviour
     {
         health -= damage;
 
-        if (health <= 0)
+        if (health <= 0) //if health is 0 or less, trigger die method
         {
             Die();
         }
@@ -127,7 +120,7 @@ public class Enemy : MonoBehaviour
     {
         StartCoroutine(
             DelayedDeath(Mathf.Clamp( ((Vector2.Distance(transform.position, player.position)) / 15f),0f,0.7f))
-            );
+            ); //delay explosion death based on distance to player (where bomb explosion originated), for visual effect and to prevent overly loud enemy death noise
     }
 
     private IEnumerator DelayedDeath(float delay)

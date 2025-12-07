@@ -3,49 +3,50 @@ using UnityEngine;
 
 public class BeachState : LevelState
 {
+    //enemy spawning variables
     private float nextSpawnTime = 0f;
     private float spawnRate = 0.4f;
-    //col
+    //collectible spawning variables
     private float nextCoinTime = 0f;
     private float coinSpawnRate = 1.7f;
 
     public override void EnterState(LevelManager level)
     {
         Debug.Log("Entered BeachState");
-        GameManager.Instance.level = 4;
-        GameManager.Instance.EnemyGoal = 300;
+        GameManager.Instance.level = 4; //we are on level 4
+        GameManager.Instance.EnemyGoal = 300; //kill 300 enemies to progress
 
-        GameManager.Instance.currentBullet = "Bloom";
+        GameManager.Instance.currentBullet = "Bloom"; //set weapon to Bloom
 
         //TextAsset jsonFile = Resources.Load<TextAsset>("Convos/cave");
         //DialogueManager.Instance.StartConversation(jsonFile);
 
-        AudioManager.Instance.PlayMusic(AudioManager.Instance.BeachMusic);
+        AudioManager.Instance.PlayMusic(AudioManager.Instance.BeachMusic); //play beach level music
     }
 
 
     public override void UpdateState(LevelManager level)
     {
-        if (DialogueManager.Instance.isDialogueActive)
+        if (DialogueManager.Instance.isDialogueActive) //if dialogue is happening, don't spawn enemies or collectibles
         {
             return;
         }
-        if (GameManager.Instance.EnemyGoal <= 0)
+        if (GameManager.Instance.EnemyGoal <= 0) //if enemy goal is reached, change to next level
         {
             level.ChangeState(level.MountainState);
         }
-        else
+        else //otherwise
         {
-            SpawnBehavior();
-            CollectibleBehavior();
+            SpawnBehavior(); //spawn enemies
+            CollectibleBehavior(); //spawn collectibles
         }
     }
 
     private void SpawnBehavior()
     {
-        if (Time.time >= nextSpawnTime)
+        if (Time.time >= nextSpawnTime) //spawn rate
         {
-            switch(Random.Range(0, 4))
+            switch(Random.Range(0, 4)) //spawn random set of enemies
             {
                 case 0:
                     EnemySpawner.Instance.SpawnCharger();
@@ -72,7 +73,7 @@ public class BeachState : LevelState
     {
         if (Time.time >= nextCoinTime)
         {
-            switch(Random.Range(0, 3))
+            switch(Random.Range(0, 3)) //spawn random collectible
             {
                 case 0:
                     CollectibleSpawner.Instance.SpawnCoin();

@@ -5986,7 +5986,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: You are so cool. I am Gloober. Yes, that is me. I do things.
+  m_Text: Hello. How are you?
 --- !u!222 &2103787023
 CanvasRenderer:
   m_ObjectHideFlags: 0

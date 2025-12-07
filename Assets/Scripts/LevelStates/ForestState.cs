@@ -3,12 +3,11 @@ using UnityEngine;
 
 public class ForestState : LevelState
 {
-    //
-    //
+    //enemy spawning variables
     private float nextSpawnTime = 0f;
     private float spawnRate = 0.3f;
 
-    //col
+    //collectible spawning variables
     private float nextCoinTime = 0f;
     private float coinSpawnRate = 2f;
 
@@ -16,23 +15,23 @@ public class ForestState : LevelState
     public override void EnterState(LevelManager level)
     {
         Debug.Log("Entered ForestState");
-        GameManager.Instance.level = 1;
-        GameManager.Instance.EnemyGoal = 25;
+        GameManager.Instance.level = 1; //we are on level 1
+        GameManager.Instance.EnemyGoal = 25; //kill 25 enemies to progress
 
-        AudioManager.Instance.PlayMusic(AudioManager.Instance.ForestMusic);
+        AudioManager.Instance.PlayMusic(AudioManager.Instance.ForestMusic); //play forest music
     }
 
 
     public override void UpdateState(LevelManager level)
     {
-        if (GameManager.Instance.EnemyGoal <= 0)
+        if (GameManager.Instance.EnemyGoal <= 0)//if enemy goal is reached, change to next level
         {
             level.ChangeState(level.CaveState);
         }
         else
         {
-            SpawnBehavior();
-            CollectibleBehavior();
+            SpawnBehavior(); //spawn enemies
+            CollectibleBehavior(); //spawn collectibles
         }
 
 
@@ -40,7 +39,7 @@ public class ForestState : LevelState
 
     private void SpawnBehavior()
     {
-        if (Time.time >= nextSpawnTime)
+        if (Time.time >= nextSpawnTime) //spawn rate
         {
             EnemySpawner.Instance.SpawnCharger();
             nextSpawnTime = Time.time + spawnRate;
@@ -49,11 +48,9 @@ public class ForestState : LevelState
 
     private void CollectibleBehavior()
     {
-        if (Time.time >= nextCoinTime)
+        if (Time.time >= nextCoinTime) //spawn rate
         {
             CollectibleSpawner.Instance.SpawnCoin();
-            //CollectibleSpawner.Instance.SpawnLife();
-            //CollectibleSpawner.Instance.SpawnBomb();
             nextCoinTime = Time.time + coinSpawnRate;
         }
     }

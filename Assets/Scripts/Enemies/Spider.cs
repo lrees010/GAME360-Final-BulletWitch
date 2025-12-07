@@ -30,7 +30,7 @@ public class Spider : MonoBehaviour
         EventManager.Subscribe("OnBomb", Explode);
         EventManager.Subscribe("OnLevelChanged", LevelChanged);
 
-        birthTime = Time.time;
+        birthTime = Time.time; //set time of enemy creation, so we can get the enemy to go away after some time
     }
 
     private void OnDestroy()
@@ -43,11 +43,11 @@ public class Spider : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (InBounds==false)
+        if (InBounds==false) //destroy if out of bounds
         {
             Vanish();
         }
-        if (isEscaping == true)
+        if (isEscaping == true) //use escape method if enough time has passed
         {
             Escape();
         }
@@ -61,7 +61,7 @@ public class Spider : MonoBehaviour
     {
         get
         {
-            return Time.time - birthTime > 5f;
+            return Time.time - birthTime > 5f; //if more than 5 seconds have passed, return true
         }
     }
     private void Vanish() //player dies = all enemies vanish, no points
@@ -69,7 +69,7 @@ public class Spider : MonoBehaviour
         Destroy(gameObject);
     }
 
-    private void LevelChanged(object data) //overload
+    private void LevelChanged(object data) //dont use data
     {
         Vanish();
     }
@@ -83,32 +83,26 @@ public class Spider : MonoBehaviour
     }
     private void Escape()
     {
-        rb.AddForce(new Vector2(0f, -5f));
+        rb.AddForce(new Vector2(0f, -5f)); //run off screen, downwards
 
     }
     private void ChasePlayer()
     {
         if (player)
         {
-            /*
-            if (GameManager.Instance.score > 99)
-                moveSpeed = 3f;
-            if (GameManager.Instance.score > 1999)
-                moveSpeed = 2f; */
-            //float distance = Vector2.Distance(transform.position, player.position);
             if (GameManager.Instance.powerupActive)
             {
                 rb.linearVelocity = Vector2.zero;
                 return;
             }
 
-            Vector2 direction = (player.position - transform.position).normalized;
+            Vector2 direction = (player.position - transform.position).normalized; //set direction to player
 
-                //direction = new Vector2(direction.x, -1f); //Mathf.Clamp(direction.y,-1f,-0.1f)
 
-                rb.AddForce((direction * moveSpeed) * 9);
-                //rb.linearVelocity = new Vector2(rb.linearVelocity.x, Mathf.Clamp(rb.linearVelocity.y,-4f,-3f));
-                rb.linearVelocity = Vector2.ClampMagnitude(rb.linearVelocity,7f);
+
+            rb.AddForce((direction * moveSpeed) * 9); //move in direction of the player
+
+                rb.linearVelocity = Vector2.ClampMagnitude(rb.linearVelocity,7f); //limit overall speed
         }
     }
 
@@ -116,7 +110,7 @@ public class Spider : MonoBehaviour
     {
         health -= damage;
 
-        if (health <= 0)
+        if (health <= 0) //when health is too low, die
         {
             Die();
         }
@@ -131,9 +125,9 @@ public class Spider : MonoBehaviour
            Destroy(gameObject); // Destroy self
         }
 
-        if (other.CompareTag("Wall") && !isEscaping)
+        if (other.CompareTag("Wall") && !isEscaping) //if we hit a wall, and we aren't escaping off screen
         {
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x*-0.2f, rb.linearVelocity.y * -0.2f);
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x*-0.2f, rb.linearVelocity.y * -0.2f); //bounce back by reversing and reducing velocity
         }
     }
 
@@ -150,7 +144,7 @@ public class Spider : MonoBehaviour
     {
         StartCoroutine(
             DelayedDeath(Mathf.Clamp( ((Vector2.Distance(transform.position, player.position)) / 15f),0f,0.7f))
-            );
+            );//delay explosion death based on distance to player (where bomb explosion originated), for visual effect and to prevent overly loud enemy death noise
     }
 
     private IEnumerator DelayedDeath(float delay)

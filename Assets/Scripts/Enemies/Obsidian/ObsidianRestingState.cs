@@ -10,20 +10,20 @@ public class ObsidianRestingState : ObsidianState
 
     }
 
-    private void IdleMovement(ObsidianManager obsidian)
+    private void RestingMovement(ObsidianManager obsidian)
     {
-        obsidian.MoveTo(new Vector3(0, 3, 0), 1f, 3f);
+        obsidian.MoveTo(new Vector3(0, 3, 0), 1f, 3f); //stay in one place
     }
 
     public override void UpdateState(ObsidianManager obsidian)
     {
         if (Time.time - startTime > 3f)
         {
-            obsidian.ChangeState(obsidian.ObsidianFiringState);
+            obsidian.ChangeState(obsidian.ObsidianFiringState); //move to firing state after some time of resting
         }
         else
         {
-            IdleMovement(obsidian);
+            RestingMovement(obsidian); //perform resting movement while time isnt up
         }
     }
 

@@ -45,7 +45,7 @@ public class Spitter : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (InBounds==false)
+        if (InBounds==false)//destroy if out of bounds
         {
             Vanish();
         }
@@ -62,20 +62,22 @@ public class Spitter : MonoBehaviour
     }
     private void send(GameObject bullet, Vector2 direction, float lifetime, float speed)
     {
+        //fires bullets in a given direction at a given speed
+
         bullet.transform.position = gameObject.transform.position;
         Rigidbody2D bulletrb;
         bulletrb = bullet.GetComponent<Rigidbody2D>();
-        bulletrb.linearVelocity = (direction * speed);// + rb.linearVelocity; ;
+        bulletrb.linearVelocity = (direction * speed);
         Destroy(bullet, lifetime);
     }
 
     private float lastShootTime = 0f;
     void Shoot()
     {
-        if (spitterBulletPrefab && (Time.time- lastShootTime) >0.6f)
+        if (spitterBulletPrefab && (Time.time- lastShootTime) >0.6f) //limit firerate
         {
-            rb.linearVelocity = new Vector2(0f,rb.linearVelocity.y);
-            send(Instantiate(spitterBulletPrefab), Vector2.down, 3f, 6f);
+            rb.linearVelocity = new Vector2(0f,rb.linearVelocity.y); //stop moving horizontally when firing
+            send(Instantiate(spitterBulletPrefab), Vector2.down, 3f, 6f); //send bullet downwards
             lastShootTime = Time.time;
 
             //play shoot sound
@@ -114,13 +116,13 @@ public class Spitter : MonoBehaviour
 
 
 
-                Vector2 direction = (player.position - transform.position).normalized;
+                Vector2 direction = (player.position - transform.position).normalized;//set direction to player
 
-                //direction = new Vector2(direction.x, -1f); //Mathf.Clamp(direction.y,-1f,-0.1f)
 
-                rb.AddForce((direction * moveSpeed) * 9);
-                rb.linearVelocity = new Vector2(rb.linearVelocity.x, -2f);
-                rb.linearVelocity = Vector2.ClampMagnitude(rb.linearVelocity,6f);
+
+            rb.AddForce((direction * moveSpeed) * 9); //move towards player
+                rb.linearVelocity = new Vector2(rb.linearVelocity.x, -2f); //change y velocity to -2f
+                rb.linearVelocity = Vector2.ClampMagnitude(rb.linearVelocity,6f); //limit overall speed
                 
                
 
@@ -129,19 +131,10 @@ public class Spitter : MonoBehaviour
 
     private System.Collections.IEnumerator DamageVisual(float fadeDuration, float holdDuration)
     {
-        float time = 0f;
-        /*
-        
-        if (holdDuration > 0f)
-        {
-            while (time < holdDuration)
-            {
-                time += Time.deltaTime;
-                yield return null;
-            }
+        //displays enemy being damaged by flashing red
 
-        }
-        */
+        float time = 0f;
+
 
         time = 0f;
         //text.color = new Color(text.color.r, text.color.g, text.color.b, 1f);
@@ -160,7 +153,7 @@ public class Spitter : MonoBehaviour
     public void TakeDamage(int damage)
     {
         health -= damage;
-        rb.linearVelocity = rb.linearVelocity * new Vector2(0.8f, 0.5f);
+        rb.linearVelocity = rb.linearVelocity * new Vector2(0.8f, 0.5f); //reduce velocity when hit
 
         //play hit sound
         AudioManager.Instance.PlaySFX(AudioManager.Instance.HitSound);
@@ -170,9 +163,9 @@ public class Spitter : MonoBehaviour
             StopCoroutine(damageCoroutine);
         }
         //StopAllCoroutines();
-        damageCoroutine = StartCoroutine(DamageVisual(0.3f, 0.3f));
+        damageCoroutine = StartCoroutine(DamageVisual(0.3f, 0.3f)); //visualize damage without halting
 
-        if (health <= 0)
+        if (health <= 0) //die if health too low
         {
             Debug.Log("die");
             Die();
@@ -201,7 +194,7 @@ public class Spitter : MonoBehaviour
         Exploding = true;
         StartCoroutine(
             DelayedDeath(Mathf.Clamp( ((Vector2.Distance(transform.position, player.position)) / 15f),0f,0.7f))
-            );
+            );//delay explosion death based on distance to player (where bomb explosion originated), for visual effect and to prevent overly loud enemy death noise
     }
     private bool Exploding = false;
     private IEnumerator DelayedDeath(float delay)

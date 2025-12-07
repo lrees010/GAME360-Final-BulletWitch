@@ -2,10 +2,11 @@ using UnityEngine;
 
 public class GenericBulletCollider : MonoBehaviour
 {
+    //Provides generic behavior for individual bullets from Bloom and Wave bullet
     private void Start()
     {
-        EventManager.Subscribe("OnPlayerDeath", Vanish);
-        EventManager.Subscribe("OnBomb", Vanish);
+        EventManager.Subscribe("OnPlayerDeath", Vanish); //vanish when player dies
+        EventManager.Subscribe("OnBomb", Vanish); //vanish when bomb used
     }
 
     private void OnDestroy()
@@ -20,17 +21,9 @@ public class GenericBulletCollider : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Enemy"))
+        if (other.CompareTag("Enemy")) //destroy when colliding with enemy
         {
             Destroy(gameObject);
         }
-
-        // Destroy BloomBullet if it hits walls or boundaries
-        /*
-        if (other.CompareTag("Wall"))
-        {
-            Destroy(gameObject);
-        }
-        */
     }
 }

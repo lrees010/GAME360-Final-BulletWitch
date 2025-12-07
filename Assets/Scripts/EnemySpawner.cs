@@ -1,8 +1,10 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class EnemySpawner : MonoBehaviour //provide quick enemy spawning and ui for prefab
+public class EnemySpawner : MonoBehaviour
 {
+    //Singleton to provide quick enemy spawning methods for LevelStates
+
     [Header("Spawning")]
     public GameObject chargerPrefab;
     public GameObject spiderPrefab;
@@ -32,7 +34,7 @@ public class EnemySpawner : MonoBehaviour //provide quick enemy spawning and ui 
         refreshSpawnPoints();
     }
 
-    private void refreshSpawnPoints()
+    private void refreshSpawnPoints() //Refreshes to get children Transforms automatically
     {
         spawnPoints = new Transform[Instance.transform.childCount];
 
@@ -42,46 +44,13 @@ public class EnemySpawner : MonoBehaviour //provide quick enemy spawning and ui 
         }
     }
 
-    private void OnTransformChildrenChanged()
+    private void OnTransformChildrenChanged() //automatically refresh spawn point references if they change
     {
         refreshSpawnPoints();
     }
-
-    //private float nextSpawnTime = 0f;
-
-    //public float spawnRate = 2f;
-    void Update()
+    private void SpawnEnemy(GameObject enemyPrefab) //method for instantiating enemy prefabs onto random spawn points
     {
-        //SpawnDetermination();
-    }
-    /*
-    void SpawnDetermination()
-    {
-        switch (GameManager.Instance.level) //TEMPORARY
-        {
-            case 1: //forest
-                spawnRate = 1f;
-                if (Time.time >= nextSpawnTime)
-                {
-                    SpawnEnemy(chargerPrefab);
-                    nextSpawnTime = Time.time + spawnRate;
-                }
-                break;
-            case 2: //cave
-                spawnRate = 0.1f;
-                if (Time.time >= nextSpawnTime)
-                {
-                    SpawnEnemy(chargerPrefab);
-                    //spawn cave creatures
-                    nextSpawnTime = Time.time + spawnRate;
-                }
-                break;
-        }
-    }*/
-
-    private void SpawnEnemy(GameObject enemyPrefab)
-    {
-        if (enemyPrefab && spawnPoints.Length > 0 && GameManager.Instance.powerupActive == false)
+        if (enemyPrefab && spawnPoints.Length > 0 && GameManager.Instance.powerupActive == false) //if prefab & spawnpoints exist, and player isn't using bomb powerup
         {
             // Check if game is still running through Singleton
             if (GameManager.Instance.lives > 0)
@@ -92,12 +61,13 @@ public class EnemySpawner : MonoBehaviour //provide quick enemy spawning and ui 
         }
     }
 
-    private void SpawnBoss(GameObject enemyPrefab)
+    private void SpawnBoss(GameObject enemyPrefab) //method for instantiating boss prefab onto random spawn point, with no pass through so boss always spawns
     {
         int randomIndex = Random.Range(0, spawnPoints.Length);
         Instantiate(enemyPrefab, spawnPoints[randomIndex].position, Quaternion.identity);
     }
 
+    //public methods for spawning certain enemies and bosses
     public void SpawnCharger() => SpawnEnemy(chargerPrefab); 
 
     public void SpawnObsidian() => SpawnBoss(obsidianPrefab);

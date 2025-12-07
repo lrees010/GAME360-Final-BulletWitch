@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
     public float nextFireTime = 0f;
 
 
-    PlayerState currentState;
+    PlayerState currentState; //player states
     public IdleState IdleState = new IdleState();
     public MovingState MovingState = new MovingState();
     public DamagedState DamagedState = new DamagedState();
@@ -29,11 +29,11 @@ public class PlayerController : MonoBehaviour
 
     public Rigidbody2D rb;
 
-    //inputactions
-    InputAction attackAction;
+    //input actions
+    InputAction attackAction; //fire bullets
     InputAction specialAction; //shift slow time
     public InputAction moveAction;
-    InputAction powerupAction;
+    InputAction powerupAction; //bomb powerup
 
     private void Start()
     {
@@ -71,7 +71,7 @@ public class PlayerController : MonoBehaviour
     
     private GameObject currentBulletPrefab
     {
-        get
+        get //returns different bullet prefabs and firerates based on currentBullet
         {
             switch(GameManager.Instance.currentBullet)
             {
@@ -96,11 +96,11 @@ public class PlayerController : MonoBehaviour
 
     public void HandleShooting(PlayerController player)
     {
-        if (DialogueManager.Instance.isDialogueActive==true)
+        if (DialogueManager.Instance.isDialogueActive==true) //disable shooting when dialogue is happening
         {
             return;
         }
-        if (attackAction.IsPressed() && Time.time >= player.nextFireTime
+        if (attackAction.IsPressed() && Time.time >= player.nextFireTime //if attack button is held, fire bullet
             && GameManager.Instance.GetStateName() == "PlayingState")
         {
             player.FireBullet();
@@ -111,7 +111,7 @@ public class PlayerController : MonoBehaviour
 
     private void HandleSkipDialogue()
     {
-        if (powerupAction.WasPressedThisFrame())
+        if (powerupAction.WasPressedThisFrame()) //powerup button also skips dialogue
         {
             DialogueManager.Instance.EndDialogue();
         }
@@ -119,15 +119,10 @@ public class PlayerController : MonoBehaviour
 
     public void FireBullet()
     {
-        //fireRate = 100f / ((GameManager.Instance.score/10f)+100f);
-
 
         if (currentBulletPrefab && firePoint)
         {
-            Instantiate(currentBulletPrefab, firePoint.position, firePoint.rotation);
-
-            
-            // Play shoot sound effect
+            Instantiate(currentBulletPrefab, firePoint.position, firePoint.rotation); //fire bullet from given position
         }
 
 
@@ -138,14 +133,14 @@ public class PlayerController : MonoBehaviour
     {
         if (explosionPrefab)
         {
-            GameObject explosionInstance = Instantiate(explosionPrefab, gameObject.transform.position, gameObject.transform.rotation);
+            GameObject explosionInstance = Instantiate(explosionPrefab, gameObject.transform.position, gameObject.transform.rotation); //spawn explosion effect prefab
             Destroy(explosionInstance,1f);
         }
     }
 
     public void HandleSlowTime(PlayerController player)
     {
-        if (DialogueManager.Instance.isDialogueActive == true)
+        if (DialogueManager.Instance.isDialogueActive == true) //if dialogue, ignore inputs and automatically unslow time
         {
             GameManager.Instance.slowingTime = false;
             return;
@@ -163,34 +158,32 @@ public class PlayerController : MonoBehaviour
             specialAction.IsPressed() //pressing shift/slow time button
             )
         {
-            //Debug.Log(currentState.GetStateName());
-            GameManager.Instance.slowingTime = true;
+            GameManager.Instance.slowingTime = true; //slow time
         }
         else
         {
-            GameManager.Instance.slowingTime = false;
+            GameManager.Instance.slowingTime = false; //unslow time
         }
     }
 
     public void HandleBomb(PlayerController player)
     {
-        if (DialogueManager.Instance.isDialogueActive == true)
+        if (DialogueManager.Instance.isDialogueActive == true) //dont allow bombs when dialogue occurring
         {
             return;
         }
         if (
-            powerupAction.WasPressedThisFrame()
-            && (GameManager.Instance.GetStateName() == "PlayingState")
-            && (GameManager.Instance.bombs>0)
+            powerupAction.WasPressedThisFrame() //pressing bomb button
+            && (GameManager.Instance.GetStateName() == "PlayingState") //game is currently playing
+            && (GameManager.Instance.bombs>0) //have any bombs
             )
         {
             
-            GameManager.Instance.bombs = GameManager.Instance.bombs - 1;
-            AudioManager.Instance.PlaySFX(AudioManager.Instance.BombSound);
-            ExplosionFX();
+            GameManager.Instance.bombs = GameManager.Instance.bombs - 1; //Reduce bomb count
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.BombSound); //play bomb explosion sound
+            ExplosionFX(); 
             EventManager.TriggerEvent("OnBomb");
             ChangeState(PowerupState);
-            //add flair later
         }
     }
 
@@ -198,12 +191,12 @@ public class PlayerController : MonoBehaviour
 
     private void TakeDamage()
     {
-        if (DialogueManager.Instance.isDialogueActive == true)
+        if (DialogueManager.Instance.isDialogueActive == true) //don't allow taking damage during dialogue
         {
             return;
         }
 
-        if (damageCooldown == false)
+        if (damageCooldown == false) //if we aren't in damage cooldown
         {
             // Player hit by enemy - lose a life
             GameManager.Instance.LoseLife();
@@ -216,7 +209,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        switch(other.tag)
+        switch(other.tag) //different behavior depending on what we collided with
         {
             case "Coin":
                 GameManager.Instance.CollectiblePickedUp(100);
@@ -231,7 +224,7 @@ public class PlayerController : MonoBehaviour
                 break;
 
             case "Life":
-                if (GameManager.Instance.lives< GameManager.Instance.maxLives)
+                if (GameManager.Instance.lives< GameManager.Instance.maxLives) //don't add lives if we have the max amount
                 {
                     GameManager.Instance.LifePickedUp();
                     Destroy(other.gameObject);

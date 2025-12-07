@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 [System.Serializable]
-public class DialogueLine
+public class DialogueLine //class to store things like speaker name, speaker text, and path to the portrait image in Resources
 {
     public string speaker;
     public string text;
@@ -14,7 +14,7 @@ public class DialogueLine
 }
 
 [System.Serializable]
-public class Dialogue
+public class Dialogue //list of dialogue lines
 {
     public List<DialogueLine> lines;
 }
@@ -37,7 +37,7 @@ public class DialogueManager : MonoBehaviour
         RefreshReferences();
 
         
-        dialogueQueue = new Queue<DialogueLine>();
+        dialogueQueue = new Queue<DialogueLine>(); //create new queue
         HidePanel();
 
         EventManager.Subscribe("OnReload",Reload);
@@ -57,7 +57,7 @@ public class DialogueManager : MonoBehaviour
         EndDialogue();
         
     }
-    public static DialogueManager Instance { get; private set; }
+    public static DialogueManager Instance { get; private set; } //singleton
     private void Awake()
     {
         // Singleton pattern implementation
@@ -75,25 +75,25 @@ public class DialogueManager : MonoBehaviour
     }
     public void StartConversation(object data)
     {
-        if (isDialogueActive == true|| dialoguePanel == null)
+        if (isDialogueActive == true|| dialoguePanel == null) //if dialogue is already happening or panel doesnt exist, don't continue
         {
             return;
         }
 
         string jsonString = ((TextAsset)data).text; //convert data to json string
 
-        Dialogue dialogue = JsonUtility.FromJson<Dialogue>(jsonString);
+        Dialogue dialogue = JsonUtility.FromJson<Dialogue>(jsonString); //create new dialogue from class
 
         StartDialogue(dialogue);
     }
 
     void StartDialogue(Dialogue dialogue)
     {
-        nextLineTime = (Time.time) + CalculateLineSpeed(dialogue.lines[0].text.Length);
+        nextLineTime = (Time.time) + CalculateLineSpeed(dialogue.lines[0].text.Length); //time to wait until, based on length of speech text
         isDialogueActive = true;
         dialogueQueue.Clear();
 
-        foreach (DialogueLine line in dialogue.lines)
+        foreach (DialogueLine line in dialogue.lines) //add all to queue
         {
             dialogueQueue.Enqueue(line);
         }
@@ -114,19 +114,19 @@ public class DialogueManager : MonoBehaviour
 
     public void DisplayNextLine()
     {
-        if (dialogueQueue.Count == 0)
+        if (dialogueQueue.Count == 0) //if no more lines to display, end the dialogue
         {
             EndDialogue();
             return;
         }
-        DialogueLine line = dialogueQueue.Dequeue();
+        DialogueLine line = dialogueQueue.Dequeue(); //new line
 
-        speakerNameText.text = line.speaker;
+        speakerNameText.text = line.speaker; //update ui texts
         speechText.text = line.text;
 
 
 
-        if (!string.IsNullOrEmpty(line.faceImagePath))
+        if (!string.IsNullOrEmpty(line.faceImagePath)) //if face portrait path exists, use it
         {
             Texture2D texture = Resources.Load<Texture2D>(line.faceImagePath);
             if (texture != null)
@@ -172,7 +172,7 @@ public class DialogueManager : MonoBehaviour
 
     float CalculateLineSpeed(int lineLength)
     {
-        return Mathf.Clamp(((float)lineLength / 14) * dialogueSpeed,3f,7f);
+        return Mathf.Clamp(((float)lineLength / 14) * dialogueSpeed,3f,7f); //calculates line speed based on amount of characters
     }
     /*
     private void Update()
@@ -188,7 +188,7 @@ public class DialogueManager : MonoBehaviour
         }
     } */
 
-    public void RefreshReferences()
+    public void RefreshReferences() //refresh gameobject references for UI
     {
         faceImage = GameObject.Find("Face")?.GetComponent<RawImage>();
         speakerNameText = GameObject.Find("SpeakerName")?.GetComponent<Text>();

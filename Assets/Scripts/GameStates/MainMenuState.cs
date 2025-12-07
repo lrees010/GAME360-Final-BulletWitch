@@ -4,11 +4,11 @@ public class MainMenuState : GameState
 {
     public override void EnterState(GameManager game)
     {
-        if (DialogueManager.Instance != null)
+        if (DialogueManager.Instance != null) //if dialoguemanager is in the scene
         {
-            DialogueManager.Instance.EndDialogue();
+            DialogueManager.Instance.EndDialogue(); //end current dialogue
         }
-        AudioManager.Instance.PauseMusic(true);
+        AudioManager.Instance.PauseMusic(true); //pause music
         Debug.Log("Entered MainMenuState");
     }
 

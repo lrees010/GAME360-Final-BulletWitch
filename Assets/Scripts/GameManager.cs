@@ -1,7 +1,7 @@
 
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro; //Namesapce for textmeshpro
+using TMPro;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
 
@@ -10,10 +10,10 @@ public class GameManager : MonoBehaviour
     // Singleton instance
     public static GameManager Instance { get; private set; }
 
-    public string currentBullet = "Bullet";
+    public string currentBullet = "Bullet"; //current player weapon as string
 
     [Header("Game Stats")]
-    public int score = 0;//score is calculated
+    public int score = 0;
     public int lives = 3;
     public int bombs = 3;
     public int enemiesKilled = 0;
@@ -33,7 +33,7 @@ public class GameManager : MonoBehaviour
     public int level = 1; //aka wave
 
     private int _enemyGoal = -1;
-    public int EnemyGoal
+    public int EnemyGoal //make property so event is automatically triggered when the value is changed
     {
         get {
             return _enemyGoal;
@@ -89,7 +89,7 @@ public class GameManager : MonoBehaviour
         Application.targetFrameRate = 50;
         exitAction = InputSystem.actions.FindAction("Exit");
 
-        switch(SceneManager.GetActiveScene().name)
+        switch(SceneManager.GetActiveScene().name) //for debugging, when starting the game from the MainGame scene, automatically switch game state to PlayingState
         {
             case "MainGame":
                 ChangeState(PlayingState);
@@ -100,7 +100,7 @@ public class GameManager : MonoBehaviour
 
         }
     }
-    public void ChangeState(GameState newState)
+    public void ChangeState(GameState newState) //switch game state and trigger event
     {
         
         if (currentState != null)
@@ -116,7 +116,7 @@ public class GameManager : MonoBehaviour
 
     public string GetStateName() => currentState.GetStateName();
 
-    public void StartGame() //change later
+    public void StartGame() //When game is played from Main Menu, in case extra code needed in future. Just runs RestartGame method
     {
         
         RestartGame();
@@ -125,7 +125,7 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
 
-        Time.timeScale = speedOfTime;
+        Time.timeScale = speedOfTime; //update TimeScale to our variable
         
         currentState.UpdateState(this);
 
@@ -133,23 +133,16 @@ public class GameManager : MonoBehaviour
     }
 
 
-    public void AddScore(int points)
+    public void AddScore(int points) //public method for giving score to the player
     {
         score += points;
         Debug.Log($"Score increased by {points}. Total: {score}");
 
         EventManager.TriggerEvent("OnScoreChanged");
-
-       
-
-        if (score>1999)
-        {
-            //SceneManager.LoadScene("WinScreen");
-        }
     }
 
 
-    public void LoseLife()
+    public void LoseLife() //method for removing a player life, and switching to game over state when no lives left
     {
         lives--;
         Debug.Log($"Life lost! Lives remaining: {lives}");
@@ -163,7 +156,7 @@ public class GameManager : MonoBehaviour
         EventManager.TriggerEvent("OnLivesChanged");
     }
 
-    public void LifePickedUp()
+    public void LifePickedUp() //public method for adding a player life
     {
         lives++;
         EventManager.TriggerEvent("OnLivesChanged");
@@ -172,7 +165,7 @@ public class GameManager : MonoBehaviour
         AudioManager.Instance.PlaySFX(AudioManager.Instance.LifePickupSound);
     }
 
-    public void BombPickedUp()
+    public void BombPickedUp() //public method for giving player a bomb powerup
     {
         bombs++;
         EventManager.TriggerEvent("OnBombsChanged");
@@ -181,41 +174,29 @@ public class GameManager : MonoBehaviour
         AudioManager.Instance.PlaySFX(AudioManager.Instance.BombPickupSound);
     }
 
-    public void EnemyKilled()
+    public void EnemyKilled() //public method to perform default actions when an enemy is killed
     {
         enemiesKilled++;
-        EnemyGoal--;
+        EnemyGoal--; //Get closer to reaching the goal
         AddScore(100); // 100 points per enemy
         EventManager.TriggerEvent("OnEnemyKilled");
         Debug.Log($"Enemy killed! Total enemies defeated: {enemiesKilled}");
     }
 
 
-    public void CollectiblePickedUp(int value)
+    public void CollectiblePickedUp(int value) //public method for when a coin is picked up
     {
+        //play coin sound
         AudioManager.Instance.PlaySFX(AudioManager.Instance.CoinSound);
+
         AddScore(value);
         Debug.Log($"Collectible picked up worth {value} points!");
     }
 
+    public void quitGame() => Application.Quit(); //public method to close app
 
 
- 
-
-    public void reloadGame()
-    {
-        
-        EventManager.TriggerEvent("OnReload");
-        
-        EventManager.ClearAllEvents();
-        //SceneManager.LoadScene("Delete");
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    }
-
-    public void quitGame() => Application.Quit();
-
-
-    public void RestartGame()
+    public void RestartGame() //public method to reset variables and reload the game scene
     {
         EventManager.TriggerEvent("OnReload");
         ChangeState(PlayingState);

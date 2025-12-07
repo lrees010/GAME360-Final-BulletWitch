@@ -8,7 +8,7 @@ public class Scroller : MonoBehaviour
     // scrolls the background and fades between them wow
 
     [SerializeField] private RawImage _img;
-    [SerializeField] private CanvasGroup _group; //allows adjusting opacity
+    [SerializeField] private CanvasGroup _group; //allows adjusting alpha
     [SerializeField] private float speed;
     [SerializeField] private float fadeDuration = 0.5f;
 
@@ -22,14 +22,15 @@ public class Scroller : MonoBehaviour
 
     void Update()
     {
+        //scroll the image using UVs
         _img.uvRect = new Rect(_img.uvRect.position + new Vector2(0,0.3f) * Time.deltaTime,_img.uvRect.size);
     }
 
     void Start()
     {
-        EventManager.Subscribe("OnLevelChanged", ChangeBG); //i.e "Forest" "Cave"
+        EventManager.Subscribe("OnLevelChanged", ChangeBG); //when level changes, we get a string of the new level name i.e "Forest" "Cave"
 
-        ChangeBG("Clearing");
+        ChangeBG("Clearing"); //first background
     }
 
     private void OnDestroy()
@@ -45,7 +46,7 @@ public class Scroller : MonoBehaviour
 
         Texture nextTex = null;
 
-        switch (LevelName) //Maybe change this
+        switch (LevelName) //use different textures based on name of level
         {
             case "Clearing":
                 nextTex = Clearing;
@@ -72,12 +73,14 @@ public class Scroller : MonoBehaviour
         }
         bool skipFadeOut = (data.ToString() == "Clearing"); //skip fade out if starter level
 
+
         StartCoroutine(FadeTo(nextTex, skipFadeOut));
     }
 
-    //coroutine no halting
+    //coroutine so there is no halting
     private System.Collections.IEnumerator FadeTo(Texture nextTex,bool skipFadeOut)
     {
+        //fades to black, then to another texture. (skips first fade based on bool skipFadeOut)
         float time = 0f;
 
         if (!skipFadeOut)

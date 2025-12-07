@@ -89,6 +89,7 @@ public class UIManager : MonoBehaviour
     {
         if (slowingPanel != null && GameManager.Instance.GetStateName()=="PlayingState" && Time.timeScale>0f)
         {
+            //Change alpha of the slowing time screen effect based on the current speed of time, for visual effect
             slowingPanel.GetComponent<CanvasGroup>().alpha = 1f-(Time.timeScale);
         }
     }
@@ -96,12 +97,12 @@ public class UIManager : MonoBehaviour
     private Coroutine achievementVisualCoroutine;
     void UpdateAchievement(object data)
     {
-        AchievementText.text = data.ToString();
+        AchievementText.text = data.ToString(); //show name of achievement unlocked
         if (achievementVisualCoroutine != null)
         {
             StopCoroutine(achievementVisualCoroutine);
         }
-        achievementVisualCoroutine = StartCoroutine(FadeOutText(AchievementText, 1f, 2f));
+        achievementVisualCoroutine = StartCoroutine(FadeOutText(AchievementText, 1f, 2f)); //fade out the achievement unlock text
     }
 
     void Pause(object data)
@@ -110,7 +111,7 @@ public class UIManager : MonoBehaviour
         {
             return;
         }
-        if (data.ToString() == "Pause")
+        if (data.ToString() == "Pause") //show or hide pausepanel ui, when Pause event triggered
         {
 
             MakeVisible(true, pausePanel.GetComponent<CanvasGroup>());
@@ -123,7 +124,7 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    void MakeVisible(bool visible, CanvasGroup group)
+    void MakeVisible(bool visible, CanvasGroup group) //method for setting up CanvasGroup visibility and interactability automatically based on visibility
     {
         if (visible)
         {
@@ -140,6 +141,7 @@ public class UIManager : MonoBehaviour
     }
     private System.Collections.IEnumerator FadeOutText(Text text, float fadeDuration, float holdDuration)
     {
+        //Fades out text based on duration, no fade in
         float time = 0f;
         if (holdDuration > 0f)
         {
@@ -153,7 +155,6 @@ public class UIManager : MonoBehaviour
         
 
         time = 0f;
-        //text.color = new Color(text.color.r, text.color.g, text.color.b, 1f);
         while (time < fadeDuration)
         {
             time += Time.deltaTime;
@@ -163,7 +164,7 @@ public class UIManager : MonoBehaviour
     }
 
 
-    void UpdateBombs()
+    void UpdateBombs() //updates bomb powerup amount text to show how many bomb powerups player has left
     {
         if (bombText)
         {
@@ -176,7 +177,7 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    string returnS(int goal) //yup
+    string returnS(int goal) //returns an "s" if the given integer is larger than 1, for visual effect (2 = kills, 1 = kill)
     {
         if(goal>1)
         {
@@ -187,7 +188,7 @@ public class UIManager : MonoBehaviour
             return "";
         }
     }
-    void UpdateGoal()
+    void UpdateGoal() //update goal text number to show how many more enemies player has to defeat
     {
         if (goalText)
         {
@@ -209,7 +210,7 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    void UpdateTimeLeft()
+    void UpdateTimeLeft() //update Time text number to display amount of time player has left
     {
         if (timeLeftText)
         {
@@ -224,7 +225,7 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    void UpdateStateDisplay(object stateData)
+    void UpdateStateDisplay(object stateData) //updates player state debug text, to show what state player is in (idle, moving, damaged)
     {
         if (stateText!=null)
         {
@@ -233,8 +234,8 @@ public class UIManager : MonoBehaviour
 
     }
 
-    // This runs when score changes
-    void UpdateScore()
+    
+    void UpdateScore() // update score text to show player their score amount
     {
         if (scoreText)
         {
@@ -249,7 +250,7 @@ public class UIManager : MonoBehaviour
         
     }
 
-    void UpdateLives()
+    void UpdateLives() //update life counter text to show player how many lives they have left
     {
         if (livesText)
         {
@@ -263,7 +264,7 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    void UpdateEnemiesKilled()
+    void UpdateEnemiesKilled() //update Kill counter text to show player how many enemies they've defeated so far
     {
         if (enemiesKilledText)
         {
@@ -279,22 +280,23 @@ public class UIManager : MonoBehaviour
     }
 
 
-    private void GameOver()
+    private void GameOver() //display game over panel on game over, giving options for replay, etc...
     {
         Debug.Log("owwwwww GameOver triggered | panel = " + gameOverPanel);
         MakeVisible(true, gameOverPanel.GetComponent<CanvasGroup>());
 
     }
 
-    private void Victory()
+    private void Victory() //display victory panel on victory, giving options for replay, etc...
     {
         Debug.Log("ui victory");
         MakeVisible(true, victoryPanel.GetComponent<CanvasGroup>());
 
+        //display final stats such as score and total time played
         victoryPanelText.text = $"- FINAL STATS -\nFinal Score: {GameManager.Instance.score}\nFinal Time: {GameManager.Instance.timePassed}";
     }
 
-    public void InitializeUI()
+    public void InitializeUI() //update all ui at once
     {
         UpdateScore();
         UpdateLives();
@@ -304,7 +306,7 @@ public class UIManager : MonoBehaviour
         UpdateGoal();
     }
 
-    private void RefreshUIReferences()
+    private void RefreshUIReferences() //refresh GameObject references
     {
         Debug.Log("refresh");
         scoreText = GameObject.Find("Score")?.GetComponent<Text>(); //scores not scorestext
@@ -349,7 +351,7 @@ public class UIManager : MonoBehaviour
     {
         Debug.Log("sceneloaduimanager");
         RefreshUIReferences(); //refresh ui upon reloading the scene, score and lives
-        InitializeUI();
+        InitializeUI(); //update all ui
     }
 
 }

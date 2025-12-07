@@ -3,7 +3,6 @@ using UnityEngine.UI;
 
 public class VolumeSlider : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
 
     public Slider slider;
     void Start()
@@ -14,20 +13,15 @@ public class VolumeSlider : MonoBehaviour
         {
             slider.onValueChanged.RemoveAllListeners();
             slider.value = AudioManager.Instance.generalVolume;
-            slider.onValueChanged.AddListener(delegate { Changey(); });
+            slider.onValueChanged.AddListener(delegate { Changey(); }); //trigger method when the slider moves
         }
     }
 
     void Changey()
     {
         
-        AudioManager.Instance.generalVolume = slider.value;
+        AudioManager.Instance.generalVolume = slider.value; //set audiomanager general volume to the slider's new value
         Debug.Log(AudioManager.Instance.generalVolume);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

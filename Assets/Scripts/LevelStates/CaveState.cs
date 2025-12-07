@@ -3,47 +3,48 @@ using UnityEngine;
 
 public class CaveState : LevelState
 {
+    //enemy spawning variables
     private float nextSpawnTime = 0f;
     private float spawnRate = 0.4f;
-    //col
+    //collectible spawning variables
     private float nextCoinTime = 0f;
     private float coinSpawnRate = 2f;
 
     public override void EnterState(LevelManager level)
     {
         Debug.Log("Entered CaveState");
-        GameManager.Instance.level = 2;
-        GameManager.Instance.EnemyGoal = 80;
+        GameManager.Instance.level = 2; //we are on level 2
+        GameManager.Instance.EnemyGoal = 80; //kill 80 enemies to progress
 
-        TextAsset jsonFile = Resources.Load<TextAsset>("Convos/cave");
-        DialogueManager.Instance.StartConversation(jsonFile);
+        TextAsset jsonFile = Resources.Load<TextAsset>("Convos/cave"); //load dialogue json
+        DialogueManager.Instance.StartConversation(jsonFile); //start dialogue using dialoguemanager, with the json as a parameter
 
-        AudioManager.Instance.PlayMusic(AudioManager.Instance.CaveMusic);
+        AudioManager.Instance.PlayMusic(AudioManager.Instance.CaveMusic); //play cave music
     }
 
 
     public override void UpdateState(LevelManager level)
     {
-        if (DialogueManager.Instance.isDialogueActive)
+        if (DialogueManager.Instance.isDialogueActive)//if dialogue is happening, don't spawn enemies or collectibles
         {
             return;
         }
-        if (GameManager.Instance.EnemyGoal <= 0)
+        if (GameManager.Instance.EnemyGoal <= 0) //if enemy goal is reached, change to next level
         {
-            level.ChangeState(level.LakeState); //add lake later
+            level.ChangeState(level.LakeState); 
         }
-        else
+        else//otherwise
         {
-            SpawnBehavior();
-            CollectibleBehavior();
+            SpawnBehavior(); //spawn enemies
+            CollectibleBehavior(); //spawn collectibiles
         }
     }
 
     private void SpawnBehavior()
     {
-        if (Time.time >= nextSpawnTime)
+        if (Time.time >= nextSpawnTime)//spawn rate
         {
-            switch (Random.Range(0, 2))
+            switch (Random.Range(0, 2))//spawn random set of enemies
             {
                 case 0:
                     EnemySpawner.Instance.SpawnCharger();
@@ -59,9 +60,9 @@ public class CaveState : LevelState
     }
     private void CollectibleBehavior()
     {
-        if (Time.time >= nextCoinTime)
+        if (Time.time >= nextCoinTime)//spawn rate
         {
-            switch (Random.Range(0, 4))
+            switch (Random.Range(0, 4))//spawn random collectible
             {
                 case 0:
                     CollectibleSpawner.Instance.SpawnLife();

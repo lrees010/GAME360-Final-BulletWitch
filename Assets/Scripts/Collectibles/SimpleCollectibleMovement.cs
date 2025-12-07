@@ -3,9 +3,9 @@ using UnityEngine;
 public class Coin : MonoBehaviour
 {
 
-    //public string collectibleType = "Coin";
+    //provides basic movement for collectibles
 
-    public Vector2 movement = new Vector2(0f, -4f);
+    public Vector2 movement = new Vector2(0f, -4f); //direction to move in, and speed. public so it can be changed per collectible prefab
     private Rigidbody2D rb;
     void Start()
     {
@@ -16,11 +16,9 @@ public class Coin : MonoBehaviour
     void Update()
     {
 
-        //rb.AddForce(new Vector2(0f,-0.5f));
+        rb.linearVelocity = movement; //set velocity
 
-        rb.linearVelocity = movement;
-
-        if (transform.position.y<-7f) //despawn
+        if (transform.position.y<-7f) //despawn if lower than y -7 (off screen)
         {
             Destroy(gameObject);
         }

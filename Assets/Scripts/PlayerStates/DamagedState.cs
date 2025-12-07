@@ -14,14 +14,13 @@ public class DamagedState : PlayerState
 
         //disappear
         player.GetComponent<SpriteRenderer>().enabled = false;
-        player.rb.position = new Vector2(0, -4);
+        player.rb.position = new Vector2(0, -4); //move to spawn point
 
         //play death sound
         AudioManager.Instance.PlaySFX(AudioManager.Instance.DieSound);
 
         //kill everything
         EventManager.TriggerEvent("OnPlayerDeath");
-        //already doing "OnPlayerStateChanged", "Damaged"
     }
 
     public override void UpdateState(PlayerController player)
@@ -30,7 +29,7 @@ public class DamagedState : PlayerState
         damagedTicks = damagedTicks + Time.deltaTime;
         if (damagedTicks > 0.4f)
         {
-            //come back!
+            //make visible
             
             player.GetComponent<SpriteRenderer>().enabled = true;
             player.damageCooldown = false;

@@ -3,49 +3,47 @@ using UnityEngine;
 
 public class LakeState : LevelState
 {
+    //enemy spawning variables
     private float nextSpawnTime = 0f;
     private float spawnRate = 0.4f;
-    //col
+    //collectible spawning variables
     private float nextCoinTime = 0f;
     private float coinSpawnRate = 2f;
 
     public override void EnterState(LevelManager level)
     {
         Debug.Log("Entered LakeState");
-        GameManager.Instance.level = 3;
-        GameManager.Instance.EnemyGoal = 250;
+        GameManager.Instance.level = 3; //we are on level 3
+        GameManager.Instance.EnemyGoal = 250; //kill 250 enemies to progress
 
-        GameManager.Instance.currentBullet = "Bloom";
+        GameManager.Instance.currentBullet = "Bloom"; //switch weapon to Bloom
 
-        //TextAsset jsonFile = Resources.Load<TextAsset>("Convos/cave");
-        //DialogueManager.Instance.StartConversation(jsonFile);
-
-        AudioManager.Instance.PlayMusic(AudioManager.Instance.LakeMusic);
+        AudioManager.Instance.PlayMusic(AudioManager.Instance.LakeMusic); //play lake music
     }
 
 
     public override void UpdateState(LevelManager level)
     {
-        if (DialogueManager.Instance.isDialogueActive)
+        if (DialogueManager.Instance.isDialogueActive) //if dialogue is happening, don't spawn enemies or collectibles
         {
             return;
         }
-        if (GameManager.Instance.EnemyGoal <= 0)
+        if (GameManager.Instance.EnemyGoal <= 0)//if enemy goal is reached, change to next level
         {
             level.ChangeState(level.BeachState); //add lake later
         }
         else
         {
-            SpawnBehavior();
-            CollectibleBehavior();
+            SpawnBehavior(); //spawn enemies
+            CollectibleBehavior(); //spawn collectibles
         }
     }
 
     private void SpawnBehavior()
     {
-        if (Time.time >= nextSpawnTime)
+        if (Time.time >= nextSpawnTime) //spawnrate
         {
-            switch (Random.Range(0, 3))
+            switch (Random.Range(0, 3))//spawn random set of enemies
             {
                 case 0:
 
@@ -74,9 +72,9 @@ public class LakeState : LevelState
     }
     private void CollectibleBehavior()
     {
-        if (Time.time >= nextCoinTime)
+        if (Time.time >= nextCoinTime)//spawn rate
         {
-            switch (Random.Range(0,3))
+            switch (Random.Range(0,3))//spawn random collectible
             {
                 case 0:
                     CollectibleSpawner.Instance.SpawnCoin();
@@ -88,7 +86,6 @@ public class LakeState : LevelState
                     CollectibleSpawner.Instance.SpawnBomb();
                     break;
             }
-            //Debug.Log((int)Time.time % 3);
             
             
             nextCoinTime = Time.time + coinSpawnRate;
