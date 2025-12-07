@@ -1639,14 +1639,14 @@ MonoBehaviour:
     m_Font: {fileID: 12800000, guid: edad63992b8040743944b4bef7ab3a25, type: 3}
     m_FontSize: 40
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 2
-    m_MaxSize: 60
+    m_MaxSize: 40
     m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 1
-    m_VerticalOverflow: 0
+    m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: 'Score: 474743'
 --- !u!222 &591654996
@@ -2376,14 +2376,14 @@ MonoBehaviour:
     m_Font: {fileID: 12800000, guid: edad63992b8040743944b4bef7ab3a25, type: 3}
     m_FontSize: 40
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 2
-    m_MaxSize: 60
+    m_MaxSize: 40
     m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 1
-    m_VerticalOverflow: 0
+    m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: 'Goal:'
 --- !u!222 &898038422
@@ -4726,14 +4726,14 @@ MonoBehaviour:
     m_Font: {fileID: 12800000, guid: edad63992b8040743944b4bef7ab3a25, type: 3}
     m_FontSize: 40
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 2
-    m_MaxSize: 60
+    m_MaxSize: 40
     m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 1
-    m_VerticalOverflow: 0
+    m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: 'Bombs:'
 --- !u!222 &1893675557
@@ -5417,14 +5417,14 @@ MonoBehaviour:
     m_Font: {fileID: 12800000, guid: edad63992b8040743944b4bef7ab3a25, type: 3}
     m_FontSize: 40
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 2
-    m_MaxSize: 60
+    m_MaxSize: 40
     m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 1
-    m_VerticalOverflow: 0
+    m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: 'Lives: 3'
 --- !u!222 &2030328634
@@ -5575,14 +5575,14 @@ MonoBehaviour:
     m_Font: {fileID: 12800000, guid: edad63992b8040743944b4bef7ab3a25, type: 3}
     m_FontSize: 40
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 2
-    m_MaxSize: 60
+    m_MaxSize: 40
     m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 1
-    m_VerticalOverflow: 0
+    m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: 'Kills:'
 --- !u!222 &2057197228
@@ -6056,14 +6056,14 @@ MonoBehaviour:
     m_Font: {fileID: 12800000, guid: edad63992b8040743944b4bef7ab3a25, type: 3}
     m_FontSize: 40
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 2
-    m_MaxSize: 60
+    m_MaxSize: 40
     m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 1
-    m_VerticalOverflow: 0
+    m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: 'Time: 50'
 --- !u!222 &2111801307
