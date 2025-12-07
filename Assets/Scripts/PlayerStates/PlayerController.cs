@@ -34,6 +34,7 @@ public class PlayerController : MonoBehaviour
     InputAction specialAction; //shift slow time
     public InputAction moveAction;
     InputAction powerupAction; //bomb powerup
+    InputAction debugAction; //debug, skips a level
 
     private void Start()
     {
@@ -46,6 +47,7 @@ public class PlayerController : MonoBehaviour
         specialAction = InputSystem.actions.FindAction("Special");
         moveAction = InputSystem.actions.FindAction("Move");
         powerupAction = InputSystem.actions.FindAction("Powerup");
+        debugAction = InputSystem.actions.FindAction("Debug");
     }
 
     public void ChangeState(PlayerState newState)
@@ -65,8 +67,10 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         currentState.UpdateState(this);
-        HandleSkipDialogue();
 
+        //state independent controls
+        HandleSkipDialogue();
+        HandleDebug();
     }
     
     private GameObject currentBulletPrefab
@@ -114,6 +118,18 @@ public class PlayerController : MonoBehaviour
         if (powerupAction.WasPressedThisFrame()) //powerup button also skips dialogue
         {
             DialogueManager.Instance.EndDialogue();
+        }
+    }
+
+    private void HandleDebug()
+    {
+        if (debugAction.WasPressedThisFrame())
+        {
+            GameManager.Instance.EnemyGoal = 0;
+            if (DialogueManager.Instance.isDialogueActive)
+            {
+                DialogueManager.Instance.EndDialogue();
+            }
         }
     }
 
