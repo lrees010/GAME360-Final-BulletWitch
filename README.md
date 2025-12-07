@@ -22,6 +22,7 @@ Download the latest release, and run "BulletWitch.exe".
 - Powerup/Bomb: E Key or Right Click / Button North
 - Slow Time: Left Shift or Q or Middle Mouse Button / Left Shoulder
 - Debug (skip level): Slash / Select
+- Skip Dialogue: E Key or Right Click / Button North
 
 ## Features
 - Sound effects
