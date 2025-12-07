@@ -78,6 +78,9 @@ Uses state machines to switch between levels and their unique behaviors, includi
 
 Responsible for player controls and behaviors, uses state machine to switch between states such as IdleState and DamagedState.
 
+- Obsidian (Boss)
+
+Uses state machine to switch between attack patterns (firing, chasing, resting).
 
 ## Screenshots
 
