@@ -55,32 +55,34 @@ Implemented Mechanics
 
 ## Screenshots
 
-[Screenshot 1](Screenshots/gameplay1.png)
+![Screenshot 1](Screenshots/gameplay1.png)
 
 *Main gameplay showing bullet feature*
 
-[Screenshot 2](Screenshots/gameplay2.png)
+![Screenshot 2](Screenshots/gameplay2.png)
 
 *Main gameplay showing bomb feature*
 
-[Screenshot 3](Screenshots/menu.png)
+![Screenshot 3](Screenshots/menu.png)
 
 *Main menu interface*
 
-[Screenshot 4](Screenshots/victory.png)
+![Screenshot 4](Screenshots/victory.png)
 
 *Victory screen*
 
-[Screenshot 5](Screenshots/gameover.png)
+![Screenshot 5](Screenshots/gameover.png)
 
 *Game over screen*
 
 ## Credits
 
 - Audio (Music & SFX)
+
 Lysander Reese
 
 - Art Assets
+
 Lysander Reese
 
 ## Post-Mortem
