@@ -36,6 +36,7 @@ Download the latest release, and run "BulletWitch.exe".
 - Collectibles
 - Win condition (Defeat final boss)
 - Lose condition (Run out of time/lives)
+- Simple dialogue
 
 ## Implemented Mechanics
 - Bullet: Fire bullets at enemies, change weapons as you progress.
@@ -84,25 +85,25 @@ Uses state machine to switch between attack patterns (firing, chasing, resting).
 
 ## Screenshots
 
-![Screenshot 1](Screenshots/gameplay1.png)
-
 *Main gameplay showing bullet feature*
 
-![Screenshot 2](Screenshots/gameplay2.png)
+![Screenshot 1](Screenshots/gameplay1.png)
 
 *Main gameplay showing bomb feature*
 
-![Screenshot 3](Screenshots/menu.png)
+![Screenshot 2](Screenshots/gameplay2.png)
 
 *Main menu interface*
 
-![Screenshot 4](Screenshots/victory.png)
+![Screenshot 3](Screenshots/menu.png)
 
 *Victory screen*
 
-![Screenshot 5](Screenshots/gameover.png)
+![Screenshot 4](Screenshots/victory.png)
 
 *Game over screen*
+
+![Screenshot 5](Screenshots/gameover.png)
 
 ## Credits
 
