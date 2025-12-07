@@ -64,6 +64,7 @@ Implemented Mechanics
 *Main gameplay showing bomb feature*
 
 [Screenshot 3](Screenshots/menu.png)
+
 *Main menu interface*
 
 [Screenshot 4](Screenshots/victory.png)
@@ -84,25 +85,25 @@ Lysander Reese
 
 ## Post-Mortem
 
-- What I learned
+**What I learned**
 
 I learned more about C# and began understanding state machine patterns more. I learned how to use Unity to create a video game. I also learned terms like "Singleton".
 
-- Future Improvements
+**Future Improvements**
 
-Better use of classes
-
-Cleaner code
-
-Visual improvements
-
-Less use of switches
+- Better use of classes
+- Cleaner code
+- Visual improvements
+- Less use of switches
 
 ## Developer
 
 **Lysander Reese**
+
 Student ID: 01232389
+
 Old Dominion University - GAME 360
+
 Fall 2025
 
 Email: lrees010@odu.edu
