@@ -115,13 +115,17 @@ public class ObsidianManager : MonoBehaviour
     private float lastShootTime = 0f;
     public void Shoot(float fireRate)
     {
-        //default shoot behavior, sends three bullets in three directions downwards
+        //default shoot behavior, sends six bullets in six directions
         if (spitterBulletPrefab && (Time.time- lastShootTime) > fireRate)
         {
-            //rb.linearVelocity = new Vector2(0f,rb.linearVelocity.y);
             send(Instantiate(spitterBulletPrefab), Vector2.down, 7f, 2f);
             send(Instantiate(spitterBulletPrefab), (Vector2.down+Vector2.left)/2, 7f, 3f);
             send(Instantiate(spitterBulletPrefab), (Vector2.down + Vector2.right)/2, 7f, 3f);
+
+            send(Instantiate(spitterBulletPrefab), Vector2.up, 7f, 2f);
+            send(Instantiate(spitterBulletPrefab), (Vector2.up + Vector2.left) / 2, 7f, 3f);
+            send(Instantiate(spitterBulletPrefab), (Vector2.up + Vector2.right) / 2, 7f, 3f);
+
             lastShootTime = Time.time;
 
             //play obsidian shoot sound
