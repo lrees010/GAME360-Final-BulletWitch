@@ -36,21 +36,46 @@ Download the latest release, and run "BulletWitch.exe".
 - Win condition (Defeat final boss)
 - Lose condition (Run out of time/lives)
 
-Implemented Mechanics
+## Implemented Mechanics
 - Bullet: Fire bullets at enemies, change weapons as you progress.
 - Bomb: Kill all enemies (excluding bosses) and destroy all bullets on screen.
 - Slow Time: Reduce the speed of time to allow more precise dodging.
 
 ## Architecture
-- AudioManager: Singleton responsible for playing sound effects and changing music.
-- AchievementManager: Observer responsible for storing and unlocking achievements.
-- CollectibleSpawner: Singleton responsible for spawning collectibles at random positions.
-- EnemySpawner: Singleton responsible for spawning enemies and bosses.
-- EventManager: Responsible for observer pattern.
-- GameManager: Singleton responsible for storing game stats and useful methods like AddScore(). Uses state machine to switch between states such as PlayingState and MainMenuState.
-- UIManager: Responsible for updating and displaying UI elements.
-- LevelManager: Uses state machines to switch between levels and their unique behaviors, including enemy spawning and collectible spawning behaviors.
-- PlayerController: Responsible for player controls and behaviors, uses state machine to switch between states such as IdleState and DamagedState.
+- AudioManager
+
+Singleton responsible for playing sound effects and changing music.
+
+- AchievementManager
+
+Observer responsible for storing and unlocking achievements.
+
+- CollectibleSpawner
+
+Singleton responsible for spawning collectibles at random positions.
+
+- EnemySpawner
+
+Singleton responsible for spawning enemies and bosses.
+
+- EventManager
+
+Responsible for observer pattern.
+
+- GameManager
+
+Singleton responsible for storing game stats and useful methods like AddScore(). Uses state machine to switch between states such as PlayingState and MainMenuState.
+
+- UIManager
+
+Responsible for updating and displaying UI elements.
+- LevelManager
+
+Uses state machines to switch between levels and their unique behaviors, including enemy spawning and collectible spawning behaviors.
+
+- PlayerController
+
+Responsible for player controls and behaviors, uses state machine to switch between states such as IdleState and DamagedState.
 
 
 ## Screenshots
@@ -77,13 +102,13 @@ Implemented Mechanics
 
 ## Credits
 
-- Audio (Music & SFX)
+Audio (Music & SFX)
 
-Lysander Reese
+- Lysander Reese
 
-- Art Assets
+Art Assets
 
-Lysander Reese
+- Lysander Reese
 
 ## Post-Mortem
 
