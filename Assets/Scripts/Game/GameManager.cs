@@ -86,7 +86,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        Application.targetFrameRate = 50;
+        Application.targetFrameRate = 60;
         exitAction = InputSystem.actions.FindAction("Exit");
 
         switch(SceneManager.GetActiveScene().name) //for debugging, when starting the game from the MainGame scene, automatically switch game state to PlayingState
